@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Reynolds Number (Re)",
+    "keywords": ["reynolds", "re =", "flow regime", "laminar", "turbulent"],
+    "formula": "Re = ρvD/μ",
+    "desc": "Ratio of inertial forces to viscous forces. Predicts if flow is laminar or turbulent.",
+    "validations": "📌 For non-circular pipes, replace D with Hydraulic Diameter (Dh = 4 * Area / Perimeter).",
+    "trap": "⚠️ TRAP: 'D' is Diameter, NOT Radius! 'v' must be the average cross-sectional velocity."
+  },
+  {
+    "name": "Bernoulli's Equation",
+    "keywords": ["bernoulli", "energy balance", "head", "p/rho"],
+    "formula": "P/ρg + v²/2g + z = Constant",
+    "desc": "Conservation of mechanical energy for a flowing fluid.",
+    "validations": "📌 Valid ONLY for: Steady, incompressible, inviscid (zero friction) flow along a streamline.",
+    "trap": "⚠️ TRAP: Do not use this directly if there is a pump, compressor, or high friction in the pipeline! Use the modified Bernoulli."
+  },
+  {
+    "name": "Fourier's Law",
+    "keywords": ["fourier", "conduction", "q = -ka"],
+    "formula": "q = -kA(dT/dx)",
+    "desc": "Calculates the rate of heat transfer by conduction through a material.",
+    "validations": "📌 Assumes steady-state and 1-Dimensional heat flow.",
+    "trap": "⚠️ TRAP: Don't forget the negative sign! It signifies that heat flows from High to Low temperature."
+  },
+  {
+    "name": "Nusselt Number (Nu)",
+    "keywords": ["nusselt", "nu =", "convection"],
+    "formula": "Nu = hL/k",
+    "desc": "Ratio of convective to conductive heat transfer across a fluid boundary.",
+    "validations": "📌 'k' is the thermal conductivity of the FLUID.",
+    "trap": "⚠️ TRAP: Do not confuse with Biot Number (Bi). In Biot number, 'k' is for the solid material!"
+  },
+  {
+    "name": "Arrhenius Equation",
+    "keywords": ["arrhenius", "activation energy", "k = a"],
+    "formula": "k = A * exp(-Ea / RT)",
+    "desc": "Shows the temperature dependence of reaction rates.",
+    "validations": "📌 Temperature (T) MUST be in Kelvin.",
+    "trap": "⚠️ TRAP: Check the units of R! If Ea is in Joules, use R = 8.314 J/(mol·K). If Ea is in cal, use R = 1.987 cal/(mol·K)."
+  },
+  {
+    "name": "Fick's First Law",
+    "keywords": ["fick", "diffusion", "flux", "j = -d"],
+    "formula": "J = -D_ab * (dC/dx)",
+    "desc": "Calculates the molar flux due to steady-state molecular diffusion.",
+    "validations": "📌 Valid for binary mixtures in steady-state, isotropic media.",
+    "trap": "⚠️ TRAP: Flux 'J' is relative to the molar average velocity, not a stationary coordinate!"
+  },
+  {
+    "name": "Thiele Modulus (φ)",
+    "keywords": ["thiele", "catalyst", "effectiveness", "pore"],
+    "formula": "φ = L * √(k / D_eff)",
+    "desc": "Ratio of surface reaction rate to pore diffusion rate in a catalyst pellet.",
+    "validations": "📌 L is characteristic length (Volume/External Surface Area).",
+    "trap": "⚠️ TRAP: A large Thiele modulus (> 5) means the reaction is Diffusion-limited (internal resistance controls)."
+  }
+]
