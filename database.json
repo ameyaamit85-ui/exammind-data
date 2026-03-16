@@ -1,87 +1,100 @@
 [
   {
-    "name": "Reynolds Number (Re)",
-    "keywords": ["reynolds", "re =", "flow regime", "laminar", "turbulent"],
-    "formula": "Re = ρvD/μ",
-    "desc": "Ratio of inertial forces to viscous forces. Predicts if flow is laminar or turbulent.",
-    "validations": "📌 For non-circular pipes, replace D with Hydraulic Diameter (Dh = 4 * Area / Perimeter).",
-    "trap": "⚠️ TRAP: 'D' is Diameter, NOT Radius! 'v' must be the average cross-sectional velocity."
+    "name": "Mach Number (Ma)",
+    "keywords": ["mach", "ma =", "speed of sound", "compressible", "incompressible"],
+    "formula": "Ma = V / c",
+    "desc": "Dimensionless ratio of local flow speed (V) to the speed of sound (c) in that fluid.",
+    "validations": "📌 Sonic flow (Ma = 1), Subsonic (Ma < 1), Supersonic (Ma > 1).",
+    "trap": "⚠️ TRAP: Don't assume gases are ALWAYS compressible! If Ma < 0.3 (like air under 100 m/s), density changes are < 5% and the gas MUST be treated as an INCOMPRESSIBLE fluid."
   },
   {
-    "name": "Darcy Friction Factor (f_D)",
-    "keywords": ["darcy", "friction factor", "moody", "f_d"],
-    "formula": "f_D = 64 / Re (Laminar Flow)",
-    "desc": "Used directly in the Darcy-Weisbach equation for head loss.",
-    "trap": "⚠️ TRAP: f_D = 4 * f_Fanning. Always check which 'f' the question is asking for! Many lose 2 marks here."
+    "name": "Specific Weight (γ)",
+    "keywords": ["specific weight", "gamma", "weight density", "y ="],
+    "formula": "γ = ρ * g",
+    "desc": "The weight of a unit volume of a substance.",
+    "validations": "📌 Standard gravity 'g' is approx 9.81 m/s² at sea level.",
+    "trap": "⚠️ TRAP: Density (ρ) is constant, but Specific Weight (γ) changes with location because 'g' changes! Never confuse it with Specific Gravity."
   },
   {
-    "name": "Prandtl Number (Pr)",
-    "keywords": ["prandtl", "pr =", "momentum diffusivity", "heat diffusivity"],
-    "formula": "Pr = ν / α = (μ * Cp) / k",
-    "desc": "Ratio of momentum diffusivity to thermal diffusivity.",
-    "validations": "📌 It is a property of the fluid, independent of flow conditions.",
-    "trap": "⚠️ TRAP: For liquid metals, Pr << 1. For highly viscous oils, Pr >> 1."
+    "name": "No-Slip Condition",
+    "keywords": ["no-slip", "zero velocity", "boundary layer", "relative velocity", "stick"],
+    "formula": "V_fluid = V_surface (at contact point)",
+    "desc": "A fluid in direct contact with a solid surface 'sticks' to it due to viscous effects, causing the boundary layer.",
+    "trap": "⚠️ TRAP: The absolute velocity of the fluid isn't always zero! The RELATIVE velocity is zero. If a plate is moving at 5 m/s, the fluid particle exactly at the wall is ALSO moving at 5 m/s."
   },
   {
-    "name": "Terminal Settling Velocity (Stokes' Law)",
-    "keywords": ["terminal", "settling", "stokes", "vt ="],
-    "formula": "v_t = [g * Dp² * (ρ_p - ρ_f)] / (18 * μ)",
-    "desc": "Maximum constant velocity reached by a falling particle in a fluid.",
-    "validations": "📌 Strictly valid ONLY for creeping flow (Particle Reynolds Number, Re_p < 0.1).",
-    "trap": "⚠️ TRAP: Don't forget to square the particle diameter (Dp)! Also, ensure viscosity is in Pa·s."
+    "name": "Dimensional Homogeneity",
+    "keywords": ["dimensional", "homogeneity", "units", "addition", "equation"],
+    "formula": "[Term 1] = [Term 2] = [Term 3]",
+    "desc": "All additive terms in an engineering equation must have the exact same primary dimensions.",
+    "validations": "📌 Used strictly to catch errors in formula derivation.",
+    "trap": "⚠️ TRAP: You CANNOT add standard Energy (kJ) with Specific Energy (kJ/kg) directly! Always multiply the specific term by mass (m) first before adding. (Classic silly mistake in Thermodynamics/Fluid equations)."
   },
   {
-    "name": "Log Mean Temperature Difference (LMTD)",
-    "keywords": ["lmtd", "log mean", "delta t", "heat exchanger", "amtd"],
-    "formula": "ΔT_lm = (ΔT1 - ΔT2) / ln(ΔT1 / ΔT2)",
-    "desc": "Used to determine the temperature driving force for heat transfer in flow systems.",
-    "trap": "⚠️ TRAP: If ΔT1 = ΔT2 (e.g., in phase change), the formula becomes undefined (0/0). Use AMTD directly!"
+    "name": "Newton's Unity Conversion (Force)",
+    "keywords": ["newton", "conversion", "lbf", "force unit", "gc"],
+    "formula": "1 N = 1 kg·m/s²  |  1 lbf = 32.174 lbm·ft/s²",
+    "desc": "The fundamental conversion ratios for force in SI and English systems.",
+    "trap": "⚠️ TRAP: In the English system, never cancel lbf with lbm directly! You MUST use the conversion factor gc = 32.174 (lbm·ft)/(lbf·s²) to balance the units."
   },
   {
-    "name": "Design Equation for CSTR",
-    "keywords": ["cstr", "mixed flow", "design equation", "tau ="],
-    "formula": "V / F_A0 = τ / C_A0 = X_A / (-r_A)",
-    "desc": "Relates reactor volume to conversion for a Continuous Stirred Tank Reactor.",
-    "validations": "📌 The reaction rate (-r_A) MUST be evaluated at EXIT conditions.",
-    "trap": "⚠️ TRAP: Do not integrate! The composition inside a CSTR is uniform and identical to the exit stream."
+    "name": "Ideal Gas Equation of State",
+    "keywords": ["ideal gas", "equation of state", "pv=rt", "p=rt", "density"],
+    "formula": "P = ρ * R * T",
+    "desc": "Relates absolute pressure, density, and absolute temperature for a gas.",
+    "validations": "📌 R is the specific gas constant (Universal Gas Constant / Molar Mass).",
+    "trap": "⚠️ TRAP: Temperature MUST be in Kelvin (or Rankine) and Pressure MUST be Absolute! Never use Gauge pressure or Celsius here."
   },
   {
-    "name": "Gibbs Phase Rule",
-    "keywords": ["gibbs", "phase rule", "degrees of freedom", "f ="],
-    "formula": "F = C - P + 2",
-    "desc": "Calculates the degrees of freedom (F) for non-reacting systems.",
-    "validations": "📌 C = Number of components, P = Number of phases.",
-    "trap": "⚠️ TRAP: If pressure OR temperature is already fixed in the question, use F = C - P + 1."
+    "name": "Coefficient of Compressibility (Bulk Modulus, K)",
+    "keywords": ["bulk modulus", "compressibility", "k =", "isothermal", "volume change"],
+    "formula": "K = ρ * (∂P / ∂ρ)_T = -V * (∂P / ∂V)_T",
+    "desc": "Measures a fluid's resistance to compression. Higher K means more incompressible.",
+    "trap": "⚠️ TRAP: For an IDEAL GAS, the isothermal bulk modulus K is exactly equal to its absolute pressure (K = P). Don't waste time deriving it in the exam!"
   },
   {
-    "name": "Biot Number (Bi)",
-    "keywords": ["biot", "bi =", "lumped capacitance"],
-    "formula": "Bi = (h * L_c) / k_solid",
-    "desc": "Ratio of internal conductive resistance to external convective resistance.",
-    "validations": "📌 L_c is Characteristic Length (Volume / Surface Area).",
-    "trap": "⚠️ TRAP: Do not confuse with Nusselt! In Bi, 'k' is for the SOLID. In Nu, 'k' is for the FLUID. If Bi < 0.1, use Lumped Capacitance."
+    "name": "Coefficient of Volume Expansion (β)",
+    "keywords": ["volume expansion", "beta", "expansivity", "density change", "temperature"],
+    "formula": "β = -(1/ρ) * (∂ρ / ∂T)_P",
+    "desc": "Measures how much density changes with temperature at constant pressure.",
+    "trap": "⚠️ TRAP: For an IDEAL GAS, β = 1/T. Students often put T in Celsius here. It MUST be in Kelvin! If T = 27°C, β = 1/300 K⁻¹, NOT 1/27."
   },
   {
-    "name": "Sherwood Number (Sh)",
-    "keywords": ["sherwood", "sh =", "mass transfer", "k_c"],
-    "formula": "Sh = (k_c * L) / D_AB",
-    "desc": "Ratio of convective mass transfer to diffusive mass transfer.",
-    "validations": "📌 It is the mass transfer analogue of the Nusselt Number.",
-    "trap": "⚠️ TRAP: Watch units! k_c is the mass transfer coefficient (m/s), D_AB is the molecular diffusivity (m²/s)."
+    "name": "Newton's Law of Viscosity",
+    "keywords": ["newton's law", "viscosity", "shear stress", "tau", "velocity gradient"],
+    "formula": "τ = μ * (du/dy)",
+    "desc": "Relates shear stress to the velocity gradient (rate of shear strain) for Newtonian fluids.",
+    "validations": "📌 μ is Dynamic Viscosity (Pa·s). 1 Poise = 0.1 Pa·s.",
+    "trap": "⚠️ TRAP: Temperature effect is a classic MSQ! Liquid viscosity DECREASES with temp (cohesive forces weaken). Gas viscosity INCREASES with temp (molecular collisions increase)."
   },
   {
-    "name": "Damköhler Number (Da)",
-    "keywords": ["damkohler", "da =", "reaction rate", "transport"],
-    "formula": "Da = (Reaction Rate) / (Convective Mass Transfer Rate)",
-    "desc": "Relates the chemical reaction timescale to the transport phenomena timescale.",
-    "trap": "⚠️ TRAP: Da >> 1 means the system is MASS TRANSFER limited. Da << 1 means it is REACTION RATE limited."
+    "name": "Kinematic Viscosity (ν)",
+    "keywords": ["kinematic viscosity", "nu", "momentum diffusivity", "stoke"],
+    "formula": "ν = μ / ρ",
+    "desc": "Ratio of dynamic viscosity to density. Represents momentum diffusivity.",
+    "validations": "📌 Unit is m²/s. 1 Stoke (St) = 1 cm²/s = 10⁻⁴ m²/s.",
+    "trap": "⚠️ TRAP: For gases, dynamic viscosity (μ) is mostly independent of pressure, but kinematic viscosity (ν) DEPENDS strongly on pressure because density (ρ) changes!"
   },
   {
-    "name": "Schmidt Number (Sc)",
-    "keywords": ["schmidt", "sc =", "mass diffusivity", "kinematic"],
-    "formula": "Sc = ν / D_AB = μ / (ρ * D_AB)",
-    "desc": "Ratio of momentum diffusivity (kinematic viscosity) to mass diffusivity.",
-    "validations": "📌 Mass transfer analogue of the Prandtl Number.",
-    "trap": "⚠️ TRAP: Used to characterize flows where there are simultaneous momentum and mass diffusion processes."
+    "name": "Pressure Jump Across Curved Surface",
+    "keywords": ["surface tension", "droplet", "bubble", "laplace", "pressure jump"],
+    "formula": "ΔP_droplet = 2σ/R  |  ΔP_bubble = 4σ/R",
+    "desc": "The pressure difference between the inside and outside of a curved liquid interface.",
+    "trap": "⚠️ TRAP: A soap 'bubble' has TWO surfaces (inner and outer), hence 4σ/R. A liquid 'droplet' only has ONE surface, hence 2σ/R. Also, the formula uses Radius (R), examiners often give Diameter (D) to trick you."
+  },
+  {
+    "name": "Capillary Rise/Fall (h)",
+    "keywords": ["capillary", "capillarity", "meniscus", "surface tension", "rise", "fall"],
+    "formula": "h = (2 * σ * cos(ϕ)) / (ρ * g * R)",
+    "desc": "The elevation or depression of a liquid in a narrow tube due to surface tension.",
+    "validations": "📌 ϕ is the contact angle.",
+    "trap": "⚠️ TRAP: If the contact angle ϕ > 90° (like Mercury in glass), cos(ϕ) is negative, resulting in a Capillary FALL (depression). Always double-check if the question gave 'Diameter' instead of 'Radius' (R)!"
+  },
+  {
+    "name": "Cavitation Condition",
+    "keywords": ["cavitation", "vapor pressure", "boiling", "bubbles"],
+    "formula": "P_local < P_vapor",
+    "desc": "Formation of destructive vapor bubbles when local static pressure in a flowing liquid drops below its vapor pressure.",
+    "trap": "⚠️ TRAP: Cavitation is driven by PRESSURE drops (e.g., in pump impellers or venturi throats), not just temperature increases. It causes severe structural pitting when the bubbles collapse."
   }
 ]
