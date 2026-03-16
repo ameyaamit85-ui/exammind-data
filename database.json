@@ -194,5 +194,177 @@
     "formula": "dB_sys/dt = Σ(m_dot_out * b_out) - Σ(m_dot_in * b_in)",
     "desc": "Relates the rate of change of a system property to the net flux across a Control Volume boundary.",
     "trap": "⚠️ TRAP: In the integral form (ρb V·n dA), the dot product V·n dictates the sign. Outflow is POSITIVE (vectors in same direction), Inflow is NEGATIVE (vectors oppose). Forgetting this sign convention ruins the entire mass/energy balance!"
-  }
+  },
+  {
+    "name": "Continuity Equation (Incompressible)",
+    "keywords": ["continuity", "mass flow rate", "volume flow rate", "a1v1", "conservation of mass"],
+    "formula": "A_1 * V_1 = A_2 * V_2",
+    "desc": "Conservation of mass for steady, incompressible flow in a single stream.",
+    "validations": "📌 Volume flow rate (V_dot) is conserved ONLY for incompressible fluids.",
+    "trap": "⚠️ TRAP: Never use A1V1 = A2V2 for GASES at high speeds! For compressible flow, you MUST include density: ρ1*A1*V1 = ρ2*A2*V2. Many students lose 2 marks ignoring density changes."
+  },
+  {
+    "name": "Bernoulli Equation",
+    "keywords": ["bernoulli", "pressure head", "velocity head", "elevation head", "constant"],
+    "formula": "P/ρg + V²/2g + z = Constant",
+    "desc": "Conservation of mechanical energy for steady, incompressible, frictionless flow along a streamline.",
+    "validations": "📌 Each term represents 'Head' (Energy per unit weight) in meters.",
+    "trap": "⚠️ TRAP: Do NOT apply Bernoulli across a pump, a turbine, or through a boundary layer! It assumes ZERO friction and ZERO shaft work. If a machine is present, you must use the General Energy Equation."
+  },
+  {
+    "name": "Stagnation Pressure (Pitot Tube)",
+    "keywords": ["stagnation", "pitot", "dynamic pressure", "static pressure", "velocity measurement"],
+    "formula": "V = √[ 2 * (P_stag - P_static) / ρ ]",
+    "desc": "Calculates fluid velocity using the difference between stagnation and static pressure.",
+    "trap": "⚠️ TRAP: Pay strict attention to the density (ρ) in the denominator. It must be the density of the FLOWING FLUID (e.g., Air), NOT the density of the manometer fluid (e.g., Water or Mercury) used to measure the pressure difference!"
+  },
+  {
+    "name": "EGL and HGL (Grade Lines)",
+    "keywords": ["egl", "hgl", "energy grade line", "hydraulic grade line", "head"],
+    "formula": "EGL = HGL + V²/2g",
+    "desc": "EGL represents total head; HGL represents pressure + elevation head.",
+    "validations": "📌 EGL is always physically higher than HGL by the velocity head.",
+    "trap": "⚠️ TRAP: EGL always drops in the direction of flow due to friction. However, HGL can actually RISE if the pipe diameter increases (since velocity drops, kinetic energy converts back to pressure)."
+  },
+  {
+    "name": "General Energy Equation (Head Form)",
+    "keywords": ["energy equation", "head loss", "pump head", "turbine head", "friction"],
+    "formula": "(P1/ρg) + α1(V1²/2g) + z1 + h_pump = (P2/ρg) + α2(V2²/2g) + z2 + h_turbine + h_L",
+    "desc": "The complete mechanical energy balance accounting for machines and friction losses.",
+    "trap": "⚠️ TRAP: Do not forget the Kinetic Energy Correction Factor (α)! For fully developed turbulent flow, α ≈ 1.05 (often ignored), but for fully developed LAMINAR flow, α = 2.0. Missing this completely ruins the calculation."
+  },
+  {
+    "name": "Pump & Turbine Efficiency",
+    "keywords": ["efficiency", "pump efficiency", "turbine efficiency", "shaft power", "fluid power"],
+    "formula": "η_pump = ΔE_fluid / W_shaft_in  |  η_turbine = W_shaft_out / |ΔE_fluid|",
+    "desc": "Calculates how effectively mechanical energy is transferred between the machine and the fluid.",
+    "trap": "⚠️ TRAP: The formulas are inverses of each other! For a pump, fluid energy is the output (numerator). For a turbine, shaft work is the output (numerator). Never mix these up."
+  },
+  {
+    "name": "Steady Linear Momentum Equation",
+    "keywords": ["linear momentum", "force", "pipe bend", "reaction force", "steady flow"],
+    "formula": "ΣF = Σ(β * m_dot * V)_out - Σ(β * m_dot * V)_in",
+    "desc": "Calculates the net force acting on a control volume due to momentum change.",
+    "validations": "📌 Force and Velocity are VECTORS. You must solve this separately for X, Y, and Z directions.",
+    "trap": "⚠️ TRAP: If a water jet makes a U-turn (180° bend), the outlet velocity is NEGATIVE. The formula becomes V_out - V_in = (-V) - (V) = -2V. The force doubles! Also, ALWAYS use Gage Pressures to calculate ΣF, so atmospheric pressure cancels out."
+  },
+  {
+    "name": "Momentum-Flux Correction Factor (β)",
+    "keywords": ["momentum flux", "beta", "correction factor", "laminar flow", "turbulent"],
+    "formula": "β = (1/A) * ∫(V/V_avg)² dA",
+    "desc": "Accounts for the non-uniform velocity profile across a pipe cross-section.",
+    "trap": "⚠️ TRAP: For turbulent flow, β ≈ 1.03 (often ignored). But for fully developed LAMINAR pipe flow, β = 4/3 (1.33). Missing this 33% increase in momentum flux is a guaranteed way to lose marks!"
+  },
+  {
+    "name": "Force of Jet on Stationary Plate",
+    "keywords": ["water jet", "stationary plate", "impingement", "splatter"],
+    "formula": "F_x = m_dot * V_in = ρ * A * V_in²",
+    "desc": "The holding force required to keep a plate stationary when a fluid jet strikes it normally.",
+    "validations": "📌 Assumes the fluid splatters at 90° (V_out_x = 0).",
+    "trap": "⚠️ TRAP: Notice the V² in the formula! If the velocity of the water jet is doubled, the required holding force is QUADRUPLED (2² = 4), not doubled. Classic GATE trick question."
+  },
+  {
+    "name": "Relative Velocity (Moving Control Volume)",
+    "keywords": ["relative velocity", "moving cv", "moving plate", "v_r"],
+    "formula": "V_r = V_absolute - V_control_volume",
+    "desc": "Fluid velocity relative to a moving control surface (like a moving plate or boat).",
+    "trap": "⚠️ TRAP: If a water jet strikes a MOVING plate, the mass flow rate (m_dot) striking the plate is NOT ρ*A*V_absolute. It strictly depends on the relative velocity: m_dot_strike = ρ * A * V_r. Many students forget to change m_dot!"
+  },
+  {
+    "name": "Euler's Turbomachinery Formula (Angular Momentum)",
+    "keywords": ["euler turbine", "angular momentum", "torque", "shaft power", "turbomachinery"],
+    "formula": "T_shaft = m_dot * (r_2 * V_2,t - r_1 * V_1,t)",
+    "desc": "Calculates the shaft torque produced by a radial-flow turbine or required by a pump.",
+    "validations": "📌 V_t is the TANGENTIAL component of the absolute fluid velocity.",
+    "trap": "⚠️ TRAP: Radial (V_r) or Axial (V_z) velocity components create ZERO torque because their moment arm passes through the axis! Only use the Tangential component (V_t) for this equation."
+  },
+  {
+    "name": "Buckingham Pi Theorem",
+    "keywords": ["buckingham", "pi theorem", "repeating variables", "dimensionless groups", "k = n - j"],
+    "formula": "k = n - j",
+    "desc": "Calculates the number of independent dimensionless groups (k) from 'n' parameters and 'j' primary dimensions.",
+    "trap": "⚠️ TRAP: The value of 'j' is NOT always the total number of primary dimensions (M, L, T). It is the number of primary dimensions actually PRESENT in the problem's variables. Always check if a dimension (like M) is missing before setting j=3!"
+  },
+  {
+    "name": "Reynolds Number (Re)",
+    "keywords": ["reynolds", "re", "inertial", "viscous", "dimensionless"],
+    "formula": "Re = (ρ * V * L) / μ = (V * L) / ν",
+    "desc": "Ratio of Inertial forces to Viscous forces. Determines if flow is laminar or turbulent.",
+    "validations": "📌 For pipes, L is Diameter (D). For flat plates, L is distance from leading edge (x).",
+    "trap": "⚠️ TRAP: Pay close attention to whether the question gives Dynamic Viscosity (μ) in Pa·s or Kinematic Viscosity (ν) in m²/s. Mixing them up is the #1 reason for wrong Re calculations."
+  },
+  {
+    "name": "Froude Number (Fr)",
+    "keywords": ["froude", "fr", "inertial", "gravity", "free surface"],
+    "formula": "Fr = V / √(g * L)",
+    "desc": "Ratio of Inertial forces to Gravitational forces. Crucial for open-channel and free-surface flows.",
+    "trap": "⚠️ TRAP: Unlike Reynolds number, Froude number has a SQUARE ROOT in the denominator. A classic mistake is calculating V / (g*L) instead of V / √(g*L)."
+  },
+  {
+    "name": "Mach Number (Ma)",
+    "keywords": ["mach", "ma", "speed of sound", "compressible", "inertial"],
+    "formula": "Ma = V / c",
+    "desc": "Ratio of flow speed (V) to the local speed of sound (c). Indicates compressibility effects.",
+    "trap": "⚠️ TRAP: The speed of sound 'c' is NOT a constant! It changes with the fluid's temperature. Always calculate the LOCAL speed of sound first before finding the Mach number."
+  },
+  {
+    "name": "Weber Number (We)",
+    "keywords": ["weber", "we", "surface tension", "droplet", "inertial"],
+    "formula": "We = (ρ * V² * L) / σ_s",
+    "desc": "Ratio of Inertial forces to Surface Tension forces. Important for droplets, bubbles, and thin films.",
+    "trap": "⚠️ TRAP: Notice the V² in the numerator! Students often forget to square the velocity when calculating the Weber number."
+  },
+  {
+    "name": "Complete Similarity",
+    "keywords": ["similarity", "model", "prototype", "scale", "kinematic", "dynamic"],
+    "formula": "Π_model = Π_prototype",
+    "desc": "For exact modeling, all independent dimensionless groups must be equal between model and prototype.",
+    "validations": "📌 Requires Geometric, Kinematic, AND Dynamic similarity.",
+    "trap": "⚠️ TRAP: You cannot always match BOTH Reynolds and Froude numbers simultaneously if you use the same fluid (like water) for both model and prototype. This leads to 'Incomplete Similarity', requiring mathematical extrapolation."
+  },
+  {
+    "name": "Reynolds Number (Pipe Flow)",
+    "keywords": ["reynolds", "pipe", "laminar", "turbulent", "critical"],
+    "formula": "Re = (ρ * V_avg * D) / μ = (4 * m_dot) / (π * D * μ)",
+    "desc": "Ratio of inertial to viscous forces. Re < 2300 is laminar, Re > 4000 is turbulent.",
+    "trap": "⚠️ TRAP: The formula using mass flow rate (4*m_dot / π*D*μ) is a massive time-saver in GATE! You don't need to calculate velocity or density separately if mass flow rate is given."
+  },
+  {
+    "name": "Hydraulic Diameter (D_h)",
+    "keywords": ["hydraulic diameter", "non-circular", "wetted perimeter", "duct"],
+    "formula": "D_h = 4 * A_c / p",
+    "desc": "Equivalent diameter for non-circular ducts, where A_c is cross-sectional area and p is wetted perimeter.",
+    "validations": "📌 For a completely filled circular pipe, D_h = D.",
+    "trap": "⚠️ TRAP: 'p' is the WETTED perimeter! If a square duct is only half-filled with liquid, you only count the three sides touching the liquid, NOT the top boundary touching the air."
+  },
+  {
+    "name": "Laminar Velocity Profile (V_avg vs V_max)",
+    "keywords": ["velocity profile", "laminar", "centerline", "v_avg", "v_max"],
+    "formula": "V_avg = V_max / 2",
+    "desc": "In fully developed laminar pipe flow, the average velocity is exactly half the centerline (maximum) velocity.",
+    "trap": "⚠️ TRAP: This ONLY applies to Laminar flow! For turbulent flow, the profile is much flatter, and V_avg is typically around 0.8 * V_max. Don't blindly divide by 2 if Re > 4000."
+  },
+  {
+    "name": "Hagen-Poiseuille Equation (Pressure Drop)",
+    "keywords": ["poiseuille", "pressure drop", "laminar flow", "viscous", "delta p"],
+    "formula": "ΔP = (32 * μ * L * V_avg) / D²",
+    "desc": "Calculates the pressure drop due to friction in fully developed laminar pipe flow.",
+    "validations": "📌 ONLY valid for Laminar, fully developed, Newtonian fluids.",
+    "trap": "⚠️ TRAP: Notice the D² in the denominator! If you reduce the pipe diameter by half, the pressure drop increases by a factor of 16. This is a classic GATE theoretical question."
+  },
+  {
+    "name": "Darcy-Weisbach Head Loss & Friction Factor",
+    "keywords": ["head loss", "darcy", "weisbach", "friction factor", "fanning", "h_l"],
+    "formula": "h_L = f_Darcy * (L/D) * (V²/2g)  |  f_Darcy = 64/Re",
+    "desc": "Major head loss due to friction in a pipe.",
+    "trap": "⚠️ TRAP: THE ULTIMATE CHEMICAL ENGINEERING TRAP! The formula 'f = 64/Re' is for the DARCY friction factor. Many ChemE textbooks use the FANNING friction factor (f = 16/Re). ALWAYS check which 'f' the examiner gave you. f_Darcy = 4 * f_Fanning!"
+  },
+  {
+    "name": "Pipes in Series vs Parallel",
+    "keywords": ["series", "parallel", "network", "head loss", "flow rate"],
+    "formula": "Series: Q_total = Q_1 = Q_2, h_L_total = h_L1 + h_L2 | Parallel: Q_total = Q_1 + Q_2, h_L_total = h_L1 = h_L2",
+    "desc": "Rules for combining multiple pipes in a network.",
+    "trap": "⚠️ TRAP: In parallel pipes, the head loss (ΔP) is identical across all branches, NO MATTER their diameter or length! Fluid will automatically distribute its flow rate (Q) to make the head losses equal."
+  },
+  
 ]
