@@ -96,5 +96,58 @@
     "formula": "P_local < P_vapor",
     "desc": "Formation of destructive vapor bubbles when local static pressure in a flowing liquid drops below its vapor pressure.",
     "trap": "⚠️ TRAP: Cavitation is driven by PRESSURE drops (e.g., in pump impellers or venturi throats), not just temperature increases. It causes severe structural pitting when the bubbles collapse."
+  },
+  {
+    "name": "Manometry & Pressure Drop",
+    "keywords": ["manometer", "pressure drop", "u-tube", "delta p", "differential"],
+    "formula": "ΔP = (ρ_manometer - ρ_fluid) * g * h",
+    "desc": "Calculates pressure difference using a fluid column. Pressure increases going DOWN, decreases going UP.",
+    "validations": "📌 For gas flowing in a pipe, ρ_fluid is negligible compared to ρ_manometer.",
+    "trap": "⚠️ TRAP: Always jump across the U-tube at the SAME horizontal fluid level to equate pressure. Never equate pressures across two DIFFERENT fluids at the same level!"
+  },
+  {
+    "name": "Hydrostatic Force on Plane Surface",
+    "keywords": ["hydrostatic force", "plane surface", "submerged", "resultant force", "F_R"],
+    "formula": "F_R = P_c * A = (P_0 + ρ * g * h_c) * A",
+    "desc": "Total force exerted by a static fluid on a submerged flat plate.",
+    "validations": "📌 h_c is the vertical depth to the CENTROID of the plate.",
+    "trap": "⚠️ TRAP: The resultant force depends ONLY on the pressure at the CENTROID (h_c), NOT the center of pressure! Do not confuse the two."
+  },
+  {
+    "name": "Center of Pressure (y_p)",
+    "keywords": ["center of pressure", "y_p", "centroid", "point of application", "I_xx"],
+    "formula": "y_p = y_c + [ I_xx_c / (y_c * A) ]",
+    "desc": "The exact point where the resultant hydrostatic force acts on a submerged surface.",
+    "trap": "⚠️ TRAP: The center of pressure (y_p) is ALWAYS below the centroid (y_c). If atmospheric pressure acts on both sides of the plate, it cancels out—so use Gage Pressure (P_0 = 0) in the formula!"
+  },
+  {
+    "name": "Hydrostatic Force on Curved Surface",
+    "keywords": ["curved surface", "horizontal component", "vertical component", "weight", "F_H", "F_V"],
+    "formula": "F_H = Force on vertical projection  |  F_V = Force on horizontal projection ± Weight of fluid",
+    "desc": "Breaks the force on a curved surface into horizontal and vertical components.",
+    "trap": "⚠️ TRAP: For F_V, the 'Weight' is the weight of the fluid block DIRECTLY ABOVE the curved surface. If the liquid is completely BELOW the curved surface (pushing up), the vertical force acts UPWARDS."
+  },
+  {
+    "name": "Buoyant Force (Archimedes' Principle)",
+    "keywords": ["buoyancy", "archimedes", "float", "sink", "F_B", "displaced volume"],
+    "formula": "F_B = ρ_fluid * g * V_submerged",
+    "desc": "Upward force exerted by a fluid equal to the weight of the displaced fluid.",
+    "validations": "📌 For a floating body, F_B exactly equals the total weight of the body.",
+    "trap": "⚠️ TRAP: ALWAYS use the density of the FLUID (ρ_fluid), NOT the solid body! And V_submerged is only the portion under the fluid level, not the total volume."
+  },
+  {
+    "name": "Fluid in Rigid-Body Linear Acceleration",
+    "keywords": ["linear acceleration", "inclined surface", "rigid body", "a_x", "a_z", "angle"],
+    "formula": "tan(θ) = a_x / (g + a_z)",
+    "desc": "Calculates the angle (θ) of the free liquid surface when a container accelerates.",
+    "trap": "⚠️ TRAP: Pay strict attention to a_z (vertical acceleration). If the tank accelerates UPWARD, use (g + a_z). If it accelerates DOWNWARD, use (g - a_z). In free fall (a_z = -g), hydrostatic pressure variation becomes ZERO!"
+  },
+  {
+    "name": "Forced Vortex (Rotating Cylinder)",
+    "keywords": ["forced vortex", "rotating container", "omega", "paraboloid", "max height"],
+    "formula": "Δz_max = (ω² * R²) / (2 * g)",
+    "desc": "Calculates the maximum height difference between the edge and the center of a rotating liquid.",
+    "validations": "📌 The free surface forms a paraboloid of revolution.",
+    "trap": "⚠️ TRAP: The angular velocity (ω) MUST be in rad/s, not RPM! Multiply RPM by (2π/60) before putting it in the formula. Also, the volume of the empty paraboloid space is exactly HALF the volume of a cylinder with the same dimensions."
   }
 ]
