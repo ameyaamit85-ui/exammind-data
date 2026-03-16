@@ -365,6 +365,5 @@
     "formula": "Series: Q_total = Q_1 = Q_2, h_L_total = h_L1 + h_L2 | Parallel: Q_total = Q_1 + Q_2, h_L_total = h_L1 = h_L2",
     "desc": "Rules for combining multiple pipes in a network.",
     "trap": "⚠️ TRAP: In parallel pipes, the head loss (ΔP) is identical across all branches, NO MATTER their diameter or length! Fluid will automatically distribute its flow rate (Q) to make the head losses equal."
-  },
-  
+  }
 ]
