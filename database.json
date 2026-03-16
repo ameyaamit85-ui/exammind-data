@@ -149,5 +149,50 @@
     "desc": "Calculates the maximum height difference between the edge and the center of a rotating liquid.",
     "validations": "📌 The free surface forms a paraboloid of revolution.",
     "trap": "⚠️ TRAP: The angular velocity (ω) MUST be in rad/s, not RPM! Multiply RPM by (2π/60) before putting it in the formula. Also, the volume of the empty paraboloid space is exactly HALF the volume of a cylinder with the same dimensions."
+  },
+  {
+    "name": "Material (Total) Acceleration",
+    "keywords": ["material derivative", "acceleration", "convective", "local", "advective", "total derivative"],
+    "formula": "a_x = (∂u/∂t) + u(∂u/∂x) + v(∂u/∂y) + w(∂u/∂z)",
+    "desc": "Total acceleration of a fluid particle = Local Acceleration (time) + Convective Acceleration (space).",
+    "validations": "📌 For steady flow, the local acceleration (∂u/∂t) is zero.",
+    "trap": "⚠️ TRAP: A fluid particle CAN accelerate even in a purely STEADY flow! (e.g., flow through a converging nozzle). Students often mistakenly assume a = 0 just because the flow is steady."
+  },
+  {
+    "name": "Streamline Equation (2D/3D)",
+    "keywords": ["streamline", "equation", "pathline", "streakline", "dx/u"],
+    "formula": "dx / u = dy / v = dz / w",
+    "desc": "Mathematical equation for a curve that is everywhere tangent to the instantaneous local velocity vector.",
+    "trap": "⚠️ TRAP: Streamlines, Pathlines, and Streaklines are ONLY identical in STEADY flow. If the velocity field has a 't' in it (Unsteady Flow), they are all completely different curves!"
+  },
+  {
+    "name": "Continuity Equation (Incompressible Flow)",
+    "keywords": ["continuity", "incompressible", "volumetric strain rate", "divergence"],
+    "formula": "∇·V = (∂u/∂x) + (∂v/∂y) + (∂w/∂z) = 0",
+    "desc": "The volumetric strain rate must be exactly zero for an incompressible flow field.",
+    "validations": "📌 In 2D, this reduces to (∂u/∂x) + (∂v/∂y) = 0.",
+    "trap": "⚠️ TRAP: Incompressibility does NOT mean velocity is constant. It just means whatever goes into a volume must come out. Always check (∂u/∂x) + (∂v/∂y) = 0 to verify if a given 2D velocity profile is physically possible!"
+  },
+  {
+    "name": "Vorticity Vector (ζ)",
+    "keywords": ["vorticity", "rotational", "irrotational", "curl", "angular velocity"],
+    "formula": "ζ = ∇ × V = 2 * ω",
+    "desc": "Vorticity is the curl of the velocity vector and is exactly twice the angular velocity of the fluid particle.",
+    "validations": "📌 If ζ = 0 everywhere, the flow is strictly IRROTATIONAL.",
+    "trap": "⚠️ TRAP: Don't confuse Vorticity with Shear Strain! Vorticity in 2D is (∂v/∂x - ∂u/∂y). It has a MINUS sign. A positive value means the fluid particle is spinning counter-clockwise."
+  },
+  {
+    "name": "Angular Velocity (2D xy-plane)",
+    "keywords": ["angular velocity", "omega", "rotation rate", "w_z"],
+    "formula": "ω_z = 0.5 * (∂v/∂x - ∂u/∂y)",
+    "desc": "Average rotation rate of two initially perpendicular lines intersecting at a point.",
+    "trap": "⚠️ TRAP: Students often forget the 0.5 factor! Vorticity is without the 0.5, but Angular Velocity REQUIRES the 0.5 multiplier."
+  },
+  {
+    "name": "Reynolds Transport Theorem (RTT) - Steady Flow",
+    "keywords": ["rtt", "reynolds transport", "control volume", "flux"],
+    "formula": "dB_sys/dt = Σ(m_dot_out * b_out) - Σ(m_dot_in * b_in)",
+    "desc": "Relates the rate of change of a system property to the net flux across a Control Volume boundary.",
+    "trap": "⚠️ TRAP: In the integral form (ρb V·n dA), the dot product V·n dictates the sign. Outflow is POSITIVE (vectors in same direction), Inflow is NEGATIVE (vectors oppose). Forgetting this sign convention ruins the entire mass/energy balance!"
   }
 ]
