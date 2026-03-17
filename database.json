@@ -672,5 +672,263 @@
     "formula": "Q_dot = m_dot * Δh = m_dot * C_p * (T_out - T_in)",
     "desc": "The first law of thermodynamics applied to a steady-flow system with only sensible heat transfer.",
     "trap": "⚠️ TRAP: For liquids and solids, C_p ≈ C_v ≈ C, so you just use 'C'. But for IDEAL GASES in a steady flow system (like air in a duct heating up), you MUST use C_p (constant pressure specific heat), NOT C_v, because the work of flow (Pv) is included in the enthalpy term."
+  },
+  {
+    "name": "General 1D Heat Conduction Equation",
+    "keywords": ["1d conduction", "heat equation", "generation", "transient", "plane wall", "cylinder", "sphere"],
+    "formula": "(1/r^n) * ∂(r^n * k * ∂T/∂r)/∂r + g_dot = ρ * C * (∂T/∂t)",
+    "desc": "The universal 1D heat conduction equation. Set n=0 for plane wall (r=x), n=1 for cylinder, n=2 for sphere.",
+    "trap": "⚠️ TRAP: If the problem says 'Steady State', the entire Right Hand Side (RHS) becomes ZERO. If it says 'No Heat Generation', g_dot becomes ZERO. Do not blindly integrate the full equation; cancel out the zero terms first to save 5 minutes of exam time!"
+  },
+  {
+    "name": "Max Temperature Rise (Uniform Heat Generation)",
+    "keywords": ["heat generation", "max temperature", "centerline", "midplane", "cylinder", "sphere", "wall"],
+    "formula": "ΔT_max = (g_dot * r_o²) / (k * Shape_Factor)",
+    "desc": "Calculates the temperature difference between the center and the surface of a solid with uniform heat generation.",
+    "validations": "📌 Shape_Factor: Plane Wall = 2 (use L instead of r_o), Cylinder = 4, Sphere = 6.",
+    "trap": "⚠️ TRAP: For a plane wall of total thickness 2L, the formula uses 'L' (the half-thickness or distance from midplane to surface). If the question gives a wall of thickness 10 cm, you MUST plug in L = 5 cm (0.05 m) into the formula ΔT = (g_dot * L²)/(2k), NOT 10 cm!"
+  },
+  {
+    "name": "Thermal Symmetry Boundary Condition",
+    "keywords": ["thermal symmetry", "boundary condition", "insulated", "center plane", "dT/dx = 0"],
+    "formula": "∂T/∂x = 0 (at the symmetry plane)",
+    "desc": "Mathematically identical to a perfectly insulated boundary. Heat cannot cross a plane of thermal symmetry.",
+    "trap": "⚠️ TRAP: In heat generation problems (like a heated plate cooled on both sides), the maximum temperature ALWAYS occurs at the plane of symmetry. This means at T_max, the temperature gradient (dT/dx) is exactly zero. This is your primary boundary condition to find integration constants!"
+  },
+  {
+    "name": "Fourier-Biot Equation (3D Constant Properties)",
+    "keywords": ["fourier biot", "3d conduction", "constant conductivity", "laplacian"],
+    "formula": "∇²T + (g_dot / k) = (1 / α) * (∂T / ∂t)",
+    "desc": "The 3D heat conduction equation for a material with constant thermal conductivity (k).",
+    "validations": "📌 ∇²T is the Laplacian of Temperature (∂²T/∂x² + ∂²T/∂y² + ∂²T/∂z²).",
+    "trap": "⚠️ TRAP: Do not confuse this with the Laplace Equation! The Laplace equation (∇²T = 0) is ONLY for Steady-State, 3D/2D conduction with NO heat generation. The Fourier-Biot equation is the parent equation that includes both transient effects and heat generation."
+  },
+  {
+    "name": "Average Thermal Conductivity (k_ave)",
+    "keywords": ["average thermal conductivity", "variable conductivity", "k(T)", "linear variation"],
+    "formula": "k_ave = k(T_ave) = k_0 * [1 + β * (T1 + T2)/2]",
+    "desc": "Used when thermal conductivity varies linearly with temperature: k(T) = k_0 * (1 + βT).",
+    "trap": "⚠️ TRAP: You can only evaluate k at the average temperature (T1+T2)/2 if the variation is strictly LINEAR. If k(T) is a quadratic or exponential function of T, you CANNOT simply average the temperatures; you must formally integrate ∫k(T)dT from T1 to T2."
+  },
+  {
+    "name": "Critical Radius of Insulation (r_cr)",
+    "keywords": ["critical radius", "insulation", "r_cr", "cylinder", "sphere", "wire"],
+    "formula": "r_cr_cylinder = k / h  |  r_cr_sphere = 2k / h",
+    "desc": "The outer radius where adding insulation maximizes heat transfer instead of reducing it.",
+    "trap": "⚠️ TRAP: The ultimate paradox! Adding insulation to a very thin wire (where r_bare < r_cr) actually INCREASES heat loss! This happens because the outer surface area grows so fast that it drops the convection resistance more than the insulation adds to the conduction resistance."
+  },
+  {
+    "name": "Conduction Resistance (Cylinder)",
+    "keywords": ["conduction resistance", "cylinder", "pipe", "radial", "logarithmic"],
+    "formula": "R_cyl = ln(r_2 / r_1) / (2 * π * k * L)",
+    "desc": "Thermal resistance to radial heat conduction through a cylindrical layer.",
+    "trap": "⚠️ TRAP: NEVER use the plane wall formula (R = L/kA) for cylinders or spheres! The area is not constant; it increases as you move outwards. You must use the logarithmic formula for cylinders."
+  },
+  {
+    "name": "Fin Effectiveness (ε_fin)",
+    "keywords": ["fin effectiveness", "epsilon", "fins", "extended surface", "performance"],
+    "formula": "ε_fin = Q_fin / Q_nofin",
+    "desc": "Measures how much the fin actually enhances heat transfer compared to the bare base area.",
+    "validations": "📌 A fin is only justified if ε_fin is significantly greater than 1 (usually > 2).",
+    "trap": "⚠️ TRAP: Don't confuse Effectiveness (ε) with Efficiency (η). Efficiency is always LESS than 100% (it compares the fin to a 'perfect' isothermal fin). Effectiveness MUST be GREATER than 1, otherwise your fin is acting like an insulator!"
+  },
+  {
+    "name": "Radiation Heat Transfer Coefficient (h_rad)",
+    "keywords": ["radiation coefficient", "h_rad", "thermal resistance", "combined", "linearize"],
+    "formula": "h_rad = ε * σ * (T_s² + T_surr²) * (T_s + T_surr)",
+    "desc": "An artificial coefficient created to linearize radiation so it can be added to convection in a resistance network.",
+    "validations": "📌 R_rad = 1 / (h_rad * A_s)",
+    "trap": "⚠️ TRAP: When calculating h_rad, T_s and T_surr MUST be in absolute temperatures (Kelvin). If you plug Celsius into this bracket multiplier, your combined resistance network will completely collapse."
+  },
+  {
+    "name": "Thermal Contact Resistance (R_c)",
+    "keywords": ["contact resistance", "interface", "R_c", "gap", "thermal paste"],
+    "formula": "R_c = ΔT_interface / (Q / A)",
+    "desc": "The resistance to heat flow caused by microscopic air gaps when two solid surfaces are pressed together.",
+    "trap": "⚠️ TRAP: Even if two metal plates look perfectly smooth, microscopically they only touch at a few peaks. The valleys trap air (which is a terrible conductor, k ≈ 0.026 W/mK). This is exactly why we use thermal paste on computer CPUs—to replace the air gaps with a highly conductive fluid!"
+  },
+  {
+    "name": "Biot Number (Lumped System)",
+    "keywords": ["biot number", "Bi", "lumped capacitance", "transient", "Lc"],
+    "formula": "Bi = (h * L_c) / k",
+    "desc": "Determines if internal temperature gradients are negligible (Bi ≤ 0.1).",
+    "validations": "📌 For Lumped Analysis, L_c MUST be Volume / Surface Area.",
+    "trap": "⚠️ TRAP: L_c is NOT always the radius or thickness! For a sphere, L_c = (4/3 π r³) / (4 π r²) = r/3. For a long cylinder, L_c = r/2. Using just 'r' will give you the wrong Biot number and ruin the whole problem."
+  },
+  {
+    "name": "Fourier Number (τ)",
+    "keywords": ["fourier number", "tau", "dimensionless time", "transient"],
+    "formula": "τ = (α * t) / L_c²",
+    "desc": "Dimensionless time ratio of heat conducted to heat stored.",
+    "trap": "⚠️ TRAP: Notice the numerator uses Thermal Diffusivity (α = k/ρCp), NOT Thermal Conductivity (k)! Mixing up α and k in the pressure of an exam is a classic silly mistake."
+  },
+  {
+    "name": "One-Term Approximation (Heisler)",
+    "keywords": ["heisler charts", "one-term approximation", "tau > 0.2", "transient"],
+    "formula": "θ(x,t) ≈ A1 * e^(-λ1² * τ) * cos(λ1 * x/L)",
+    "desc": "Simplified analytical solution for transient conduction with spatial effects.",
+    "validations": "📌 ONLY valid if Fourier number (τ) > 0.2.",
+    "trap": "⚠️ TRAP: If the question asks for the temperature after a VERY short time (τ < 0.2), you CANNOT use the one-term equation or Heisler charts. The infinite series hasn't converged yet. You must use the Semi-Infinite solid equations instead!"
+  },
+  {
+    "name": "Multidimensional Transient Conduction",
+    "keywords": ["product solution", "multidimensional", "short cylinder", "intersection"],
+    "formula": "θ_2D(x,y,t) = θ_wall(x,t) * θ_wall(y,t)",
+    "desc": "The solution for a 2D/3D body is the product of its 1D intersection geometries.",
+    "trap": "⚠️ TRAP: You MUST multiply the DIMENSIONLESS temperatures (θ), NOT the actual absolute temperatures (T)! First find θ for each 1D shape, multiply them to get θ_total, and THEN convert back to the actual temperature T(x,y,t)."
+  },
+  {
+    "name": "Semi-Infinite Solid",
+    "keywords": ["semi-infinite", "erf", "error function", "penetration depth", "short time"],
+    "formula": "ξ = x / (2 * √(α * t))",
+    "desc": "Used for very thick bodies or very short times where the heat wave hasn't reached the other side.",
+    "trap": "⚠️ TRAP: The error function erf(∞) = 1. This means deep inside the solid (x → ∞), the temperature ALWAYS remains at the initial temperature T_i. If the heat wave reaches the back wall, it is no longer a semi-infinite solid!"
+  },
+  {
+    "name": "Fourier Mesh Number (τ)",
+    "keywords": ["fourier mesh number", "tau", "finite difference", "explicit", "implicit", "time step", "mesh"],
+    "formula": "τ = (α * Δt) / (Δx)²",
+    "desc": "A dimensionless parameter used in transient numerical heat conduction to relate time step and spatial step.",
+    "trap": "⚠️ TRAP: Do not confuse this with the analytical Fourier number (τ = αt/L²). The numerical mesh Fourier number uses the TIME STEP (Δt) and GRID SPACING (Δx), not the total time and total macroscopic length!"
+  },
+  {
+    "name": "Stability Criterion (Explicit Method)",
+    "keywords": ["stability", "explicit method", "divergence", "oscillation", "tau limit", "implicit"],
+    "formula": "1D: τ ≤ 1/2  |  2D: τ ≤ 1/4",
+    "desc": "The mathematical limit for the time step (Δt) to prevent a numerical solution from blowing up.",
+    "validations": "📌 The explicit method is conditionally stable. The implicit method is unconditionally stable.",
+    "trap": "⚠️ TRAP: If you blindly choose a huge time step (Δt) in the explicit method just to make the computer finish faster, τ will exceed the limit. The node temperatures will start oscillating wildly into physically impossible values (divergence)!"
+  },
+  {
+    "name": "Insulated Boundary Node (Mirror Concept)",
+    "keywords": ["insulated boundary", "mirror node", "finite difference", "adiabatic", "boundary condition"],
+    "formula": "T_(-1) = T_1",
+    "desc": "To write a finite difference equation for an insulated edge (Node 0), imagine a fictitious 'mirror' node (-1) outside the wall.",
+    "trap": "⚠️ TRAP: When deriving the equation for an insulated Node 0, students often just delete the outside temperature term. WRONG! You must replace T_(-1) with T_1, which changes the formula to: 2*T_1 - 2*T_0 + (Heat Gen Term) = 0."
+  },
+  {
+    "name": "The Numerical Error Paradox",
+    "keywords": ["discretization error", "round-off error", "truncation", "mesh size", "step size", "accuracy"],
+    "formula": "Total Error = Discretization Error + Round-off Error",
+    "desc": "The two main sources of error when using computers to solve differential equations.",
+    "trap": "⚠️ TRAP: A classic theoretical trick question! Making your grid size (Δx) and time step (Δt) infinitely small does NOT give you a perfectly accurate answer. While Discretization error decreases, the computer's Round-off error skyrockets due to millions of extra calculations. There is always an 'optimum' step size."
+  },
+  {
+    "name": "1D Finite Difference (2nd Derivative)",
+    "keywords": ["finite difference", "second derivative", "taylor series", "node", "algebraic"],
+    "formula": "d²T/dx² ≈ (T_m-1 - 2*T_m + T_m+1) / (Δx)²",
+    "desc": "The core algebraic approximation used to replace the differential conduction equation.",
+    "trap": "⚠️ TRAP: Notice the negative sign is on the center node (-2*T_m), while the neighboring nodes are positive. Messing up these signs will completely invert the heat flow direction in your solution matrix!"
+  },
+  {
+    "name": "Nusselt Number (Nu)",
+    "keywords": ["nusselt number", "nu", "convection", "dimensionless", "hL/k", "heat transfer coefficient"],
+    "formula": "Nu = (h * L_c) / k_fluid",
+    "desc": "Dimensionless convection heat transfer coefficient. Represents the ratio of convective to conductive heat transfer across the fluid layer.",
+    "trap": "⚠️ TRAP: THE BIGGEST MISTAKE IN HEAT TRANSFER! The 'k' in the Nusselt number formula is the thermal conductivity of the FLUID, not the solid surface! In the Biot number (Bi = hL/k), 'k' is for the SOLID. Mixing these up is a guaranteed -1.33 marks in GATE."
+  },
+  {
+    "name": "Prandtl Number (Pr)",
+    "keywords": ["prandtl number", "pr", "momentum diffusivity", "thermal diffusivity", "kinematic viscosity"],
+    "formula": "Pr = v / α = (μ * C_p) / k",
+    "desc": "Ratio of momentum diffusivity to thermal diffusivity. Links fluid mechanics to heat transfer.",
+    "validations": "📌 For gases Pr ≈ 1, Oils Pr > 1, Liquid Metals Pr < 1.",
+    "trap": "⚠️ TRAP: Prandtl number is PURELY A FLUID PROPERTY! Unlike Reynolds or Nusselt numbers, it does NOT depend on the flow velocity (V) or the geometry length (L_c). It only changes if the fluid's temperature or state changes."
+  },
+  {
+    "name": "Boundary Layer Thickness Ratio (δ / δ_t)",
+    "keywords": ["boundary layer", "thickness", "velocity", "thermal", "delta", "prandtl effect"],
+    "formula": "δ / δ_t ≈ Pr^(1/3)  (for laminar flow)",
+    "desc": "Describes how the velocity boundary layer (δ) compares to the thermal boundary layer (δ_t).",
+    "trap": "⚠️ TRAP: For Liquid Metals, Pr << 1, meaning heat diffuses much faster than momentum. Therefore, the thermal boundary layer is much THICKER than the velocity boundary layer (δ_t > δ). For heavy oils (Pr >> 1), it's the exact opposite!"
+  },
+  {
+    "name": "Chilton-Colburn Analogy",
+    "keywords": ["chilton", "colburn", "analogy", "friction coefficient", "convection", "st", "j-factor", "reynolds analogy"],
+    "formula": "C_f / 2 = St * Pr^(2/3) = j_H",
+    "desc": "Relates fluid friction (momentum transfer) to convection heat transfer. Useful when only drag force is known.",
+    "trap": "⚠️ TRAP: This analogy ONLY works when pressure drag (form drag) is practically zero, like flow over a flat plate! Do not use this analogy for flow over bluff bodies (cylinders, spheres) where form drag dominates over skin friction."
+  },
+  {
+    "name": "No-Temperature-Jump Condition",
+    "keywords": ["no slip", "no temperature jump", "surface", "interface", "conduction", "convection boundary"],
+    "formula": "h * (T_s - T_∞) = -k_fluid * (∂T/∂y)_surface",
+    "desc": "Equates convection into the fluid bulk with conduction at the exact solid-fluid interface.",
+    "trap": "⚠️ TRAP: A classic theoretical trick question! Examiners often ask 'What is the mode of heat transfer EXACTLY AT the solid-fluid interface in forced convection?' The answer is CONDUCTION, not convection, because the fluid layer directly touching the wall is perfectly stagnant due to the no-slip condition!"
+  },
+  {
+    "name": "Film Temperature (T_f)",
+    "keywords": ["film temperature", "t_f", "properties", "convection", "flat plate"],
+    "formula": "T_f = (T_s + T_∞) / 2",
+    "desc": "The arithmetic average temperature used to evaluate fluid properties (ρ, μ, k, Pr) in external flow.",
+    "trap": "⚠️ TRAP: Do NOT evaluate fluid properties at the free-stream temperature (T_∞) or the surface temperature (T_s)! The boundary layer has a temperature gradient, so you must use the Film Temperature (T_f) to look up properties in the tables."
+  },
+  {
+    "name": "Critical Reynolds Number (Flat Plate)",
+    "keywords": ["critical reynolds number", "flat plate", "transition", "laminar", "turbulent"],
+    "formula": "Re_x,cr ≈ 5 × 10^5",
+    "desc": "The Reynolds number at which flow over a flat plate transitions from laminar to turbulent.",
+    "validations": "📌 This is for a flat plate. For flow INSIDE a pipe, Re_cr ≈ 2000-2300.",
+    "trap": "⚠️ TRAP: Never use the pipe flow transition number (2000) for a flat plate! A flat plate flow remains laminar all the way up to Re = 500,000."
+  },
+  {
+    "name": "Local vs Average Friction Coefficient (Flat Plate)",
+    "keywords": ["friction coefficient", "c_f", "local", "average", "flat plate", "laminar"],
+    "formula": "Local: C_fx = 0.664 / √(Re_x)  |  Average: C_fL = 1.328 / √(Re_L)",
+    "desc": "Formulas for skin friction drag on a flat plate in laminar flow.",
+    "trap": "⚠️ TRAP: Notice that the AVERAGE friction coefficient (C_fL) over the entire plate length L is exactly TWICE the LOCAL friction coefficient (C_fx) at the very end of the plate (x = L). Read the question carefully: are they asking for the drag at a specific point, or the total drag on the plate?"
+  },
+  {
+    "name": "Tube Banks: Maximum Velocity (V_max)",
+    "keywords": ["tube banks", "heat exchanger", "v_max", "staggered", "in-line", "reynolds"],
+    "formula": "V_max = V * S_T / (S_T - D)",
+    "desc": "The velocity used to calculate the Reynolds number for flow across tube banks.",
+    "validations": "📌 For in-line arrays, this always occurs at the transverse plane.",
+    "trap": "⚠️ TRAP: For tube banks, you NEVER use the approach velocity (V) to calculate the Reynolds number! You must calculate V_max, which occurs at the narrowest bottleneck between the tubes. Using just 'V' will give you a completely wrong Nusselt number."
+  },
+  {
+    "name": "Flow Separation (Drag Crisis)",
+    "keywords": ["drag crisis", "bluff body", "cylinder", "sphere", "separation", "turbulent"],
+    "formula": "Re ≈ 2 × 10^5 (Sudden drop in C_D)",
+    "desc": "The phenomenon where a bluff body experiences a sudden decrease in pressure drag.",
+    "trap": "⚠️ TRAP: Counter-intuitive! Transitioning to a TURBULENT boundary layer on a cylinder or sphere actually DECREASES the total drag. A turbulent boundary layer has more momentum, so it resists separation longer, shrinking the low-pressure wake behind the body. This is why golf balls have dimples!"
+  },
+  {
+    "name": "Hydraulic Diameter (D_h)",
+    "keywords": ["hydraulic diameter", "d_h", "noncircular", "duct", "reynolds number"],
+    "formula": "D_h = 4 * A_c / p",
+    "desc": "The characteristic length used to calculate Reynolds number for flow in non-circular ducts.",
+    "trap": "⚠️ TRAP: For a rectangular duct (width 'a', height 'b'), D_h = 4*(a*b) / (2a + 2b) = 2ab / (a+b). Many students just take the average (a+b)/2, which is completely WRONG!"
+  },
+  {
+    "name": "Hydrodynamic vs Thermal Entry Length",
+    "keywords": ["entry length", "hydrodynamic", "thermal", "prandtl number", "laminar"],
+    "formula": "L_t / L_h = Pr (for Laminar Flow)",
+    "desc": "Relates the length required for the temperature profile to develop compared to the velocity profile.",
+    "trap": "⚠️ TRAP: For heavy oils (Pr >> 1), the velocity profile develops much faster than the temperature profile (L_t >> L_h). For liquid metals (Pr << 1), the temperature profile develops almost instantly while the velocity is still developing (L_h >> L_t)."
+  },
+  {
+    "name": "Constant Surface Heat Flux (Pipe Flow)",
+    "keywords": ["constant heat flux", "q_s", "temperature profile", "linear", "pipe flow"],
+    "formula": "T_m(x) = T_i + (q_s * p / (m_dot * C_p)) * x",
+    "desc": "The mean fluid temperature increases linearly along the pipe when subjected to a constant uniform heat flux.",
+    "validations": "📌 In the fully developed region, the surface temperature T_s(x) also increases linearly, parallel to T_m(x).",
+    "trap": "⚠️ TRAP: A classic conceptual question! If heat flux is constant, the difference between surface temperature and mean fluid temperature (T_s - T_m) becomes strictly CONSTANT in the fully developed region. They rise together perfectly parallel."
+  },
+  {
+    "name": "Logarithmic Mean Temperature Difference (LMTD)",
+    "keywords": ["lmtd", "log mean temperature", "constant surface temperature", "pipe flow", "exponential"],
+    "formula": "ΔT_ln = (ΔT_e - ΔT_i) / ln(ΔT_e / ΔT_i)",
+    "desc": "The exact average temperature difference used for heat transfer calculations when T_s is constant.",
+    "validations": "📌 ΔT_i = T_s - T_m,i and ΔT_e = T_s - T_m,e",
+    "trap": "⚠️ TRAP: Never use the simple arithmetic mean ΔT = (ΔT_i + ΔT_e)/2 if the fluid temperature changes significantly. The fluid temperature approaches the wall temperature EXPONENTIALLY, so the arithmetic mean will massively overestimate the heat transfer!"
+  },
+  {
+    "name": "Dittus-Boelter Equation (Turbulent Flow)",
+    "keywords": ["dittus boelter", "turbulent", "nusselt number", "pipe flow", "heating", "cooling"],
+    "formula": "Nu = 0.023 * Re^0.8 * Pr^n",
+    "desc": "The most common empirical correlation for fully developed turbulent flow in smooth pipes.",
+    "validations": "📌 n = 0.4 for heating the fluid (T_s > T_m), n = 0.3 for cooling the fluid (T_s < T_m).",
+    "trap": "⚠️ TRAP: Do NOT use this equation for Laminar flow (Re < 2300)! For fully developed laminar flow with constant surface temperature, Nu is a constant 3.66, regardless of Reynolds or Prandtl numbers!"
   }
 ]
