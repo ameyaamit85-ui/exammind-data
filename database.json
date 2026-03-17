@@ -930,5 +930,152 @@
     "desc": "The most common empirical correlation for fully developed turbulent flow in smooth pipes.",
     "validations": "📌 n = 0.4 for heating the fluid (T_s > T_m), n = 0.3 for cooling the fluid (T_s < T_m).",
     "trap": "⚠️ TRAP: Do NOT use this equation for Laminar flow (Re < 2300)! For fully developed laminar flow with constant surface temperature, Nu is a constant 3.66, regardless of Reynolds or Prandtl numbers!"
+  },
+  {
+    "name": "Grashof Number (Gr)",
+    "keywords": ["grashof number", "gr", "natural convection", "buoyancy", "viscous force", "free convection"],
+    "formula": "Gr_L = [g * β * (T_s - T_∞) * L_c³] / ν²",
+    "desc": "The dimensionless ratio of buoyancy forces to viscous forces in natural convection.",
+    "trap": "⚠️ TRAP: For an IDEAL GAS, the volume expansion coefficient (β) is EXACTLY equal to 1/T_film (where T_film must be in Kelvin!). Do not search the property tables for β if the fluid is air acting as an ideal gas; just calculate 1/T_film."
+  },
+  {
+    "name": "Rayleigh Number (Ra)",
+    "keywords": ["rayleigh number", "ra", "natural convection", "grashof", "prandtl", "free convection"],
+    "formula": "Ra_L = Gr_L * Pr",
+    "desc": "The product of Grashof and Prandtl numbers. It dictates the flow regime (laminar vs turbulent) in natural convection.",
+    "validations": "📌 For a vertical plate, transition to turbulent flow occurs around Ra_L ≈ 10^9.",
+    "trap": "⚠️ TRAP: Do NOT use Reynolds Number (Re) to determine if natural convection is laminar or turbulent! Reynolds number requires a bulk fluid velocity (V), which doesn't exist in pure natural convection. Always use Rayleigh Number (Ra) instead."
+  },
+  {
+    "name": "Combined Natural & Forced Convection",
+    "keywords": ["combined convection", "mixed convection", "grashof", "reynolds", "ratio", "gr/re2"],
+    "formula": "Ratio = Gr_L / (Re_L)²",
+    "desc": "Determines whether a flow is dominated by forced convection, natural convection, or both.",
+    "trap": "⚠️ TRAP: If Gr / Re² ≈ 1, BOTH natural and forced convection are significant. If they are in the same direction (assisting flow), you ADD their effects. If they oppose each other (like hot fluid being forced downwards), you SUBTRACT their effects!"
+  },
+  {
+    "name": "Effective Thermal Conductivity (k_eff)",
+    "keywords": ["effective thermal conductivity", "k_eff", "enclosure", "double pane window", "concentric"],
+    "formula": "Q = k_eff * A * (T_1 - T_2) / L_c",
+    "desc": "Used for natural convection INSIDE enclosures (like double-pane windows). It treats the convective heat transfer as pure conduction with an artificially enhanced conductivity.",
+    "validations": "📌 If Ra_L is small (usually < 1708 for horizontal enclosures), k_eff = k (pure conduction).",
+    "trap": "⚠️ TRAP: If a problem asks for heat transfer across a vertical air gap (like a window) and gives you a Nusselt number (Nu = 1.4), just remember that k_eff = k * Nu. You can then plug k_eff directly into the standard 1D conduction formula!"
+  },
+  {
+    "name": "Characteristic Length (Horizontal Plate)",
+    "keywords": ["characteristic length", "horizontal plate", "natural convection", "L_c", "area", "perimeter"],
+    "formula": "L_c = A_s / p",
+    "desc": "The characteristic length for natural convection over a horizontal flat surface.",
+    "trap": "⚠️ TRAP: Do NOT use the total length or width of the plate! For a horizontal square plate of side 'L', L_c = L² / 4L = L/4. For a horizontal circular disk of diameter 'D', L_c = (πD²/4) / (πD) = D/4. Using the full length/diameter will ruin your Grashof calculation."
+  },
+  {
+    "name": "The Boiling Curve (Regimes)",
+    "keywords": ["boiling curve", "nucleate", "transition", "film boiling", "critical heat flux", "leidenfrost"],
+    "formula": "Natural Convection ➔ Nucleate ➔ Transition ➔ Film Boiling",
+    "desc": "The relationship between heat flux and excess temperature (ΔT_excess = T_s - T_sat).",
+    "trap": "⚠️ TRAP: The highest heat transfer coefficient (h) occurs in the NUCLEATE boiling regime, not film boiling! In film boiling, a continuous vapor film covers the heater, acting as a massive thermal insulator, causing the heat flux to actually DROP (Transition regime) before rising again due to radiation."
+  },
+  {
+    "name": "Critical (Maximum) Heat Flux (q_max)",
+    "keywords": ["critical heat flux", "q_max", "burnout", "nucleate boiling", "pool boiling"],
+    "formula": "q_max = C_cr * h_fg * [σ * g * ρ_v² * (ρ_l - ρ_v)]^(1/4)",
+    "desc": "The absolute maximum heat flux achievable in nucleate boiling before the vapor film blankets the surface (Burnout point).",
+    "validations": "📌 C_cr ≈ 0.15 for large horizontal plates.",
+    "trap": "⚠️ TRAP: Notice what is MISSING from this formula! q_max is completely INDEPENDENT of the fluid's viscosity (μ), thermal conductivity (k), and specific heat (C_p). It depends purely on fluid density, surface tension, and latent heat."
+  },
+  {
+    "name": "Leidenfrost Point (Minimum Heat Flux)",
+    "keywords": ["leidenfrost point", "minimum heat flux", "q_min", "film boiling", "transition boiling"],
+    "formula": "q_min = 0.09 * ρ_v * h_fg * [ (σ * g * (ρ_l - ρ_v)) / (ρ_l + ρ_v)² ]^(1/4)",
+    "desc": "The point on the boiling curve where transition boiling ends and stable film boiling begins.",
+    "trap": "⚠️ TRAP: This is the exact point where water droplets 'dance' on a very hot pan instead of evaporating instantly! The vapor film physically lifts the droplet, insulating it from the hot surface."
+  },
+  {
+    "name": "Modified Latent Heat of Vaporization (h*_fg)",
+    "keywords": ["modified latent heat", "h*_fg", "condensation", "subcooling", "film condensation"],
+    "formula": "h*_fg = h_fg + 0.68 * C_pl * (T_sat - T_s)",
+    "desc": "Used in condensation calculations to account for the additional heat released when the liquid film cools below the saturation temperature.",
+    "trap": "⚠️ TRAP: Standard h_fg only accounts for the phase change from vapor to liquid at T_sat. But the liquid film on the wall is cooler than T_sat (it approaches T_s). If you don't use h*_fg, you will underpredict the total heat transfer rate!"
+  },
+  {
+    "name": "Film vs Dropwise Condensation",
+    "keywords": ["film condensation", "dropwise condensation", "wettability", "heat transfer coefficient"],
+    "formula": "h_dropwise > 10 * h_film",
+    "desc": "The two modes of condensation. Dropwise occurs on non-wettable surfaces; Film occurs on wettable surfaces.",
+    "trap": "⚠️ TRAP: Dropwise condensation is vastly superior for heat transfer because the bare metal surface is constantly re-exposed. However, in 99% of industrial condenser designs, we ASSUME Film Condensation because dropwise is almost impossible to sustain reliably over long periods without special (and expensive) surface coatings."
+  },
+  {
+    "name": "Stefan-Boltzmann Law (Blackbody)",
+    "keywords": ["stefan boltzmann", "blackbody", "emissive power", "radiation", "E_b"],
+    "formula": "E_b = σ * T^4",
+    "desc": "The total maximum radiation energy emitted by a blackbody per unit time per unit surface area.",
+    "validations": "📌 σ = 5.67 × 10^-8 W/(m²·K^4).",
+    "trap": "⚠️ TRAP: The temperature 'T' MUST be in absolute units (Kelvin or Rankine). If you put Celsius or Fahrenheit into a T^4 equation, your answer won't just be a little wrong; it will be astronomically wrong!"
+  },
+  {
+    "name": "Wien's Displacement Law",
+    "keywords": ["wien's law", "displacement", "peak wavelength", "maximum power", "color"],
+    "formula": "λ_max * T = 2897.8 μm·K",
+    "desc": "Calculates the wavelength at which a blackbody emits the maximum amount of radiation at a given temperature.",
+    "trap": "⚠️ TRAP: As temperature INCREASES, the peak wavelength DECREASES. This inverse relationship is why a piece of metal glows dull red when heated, but turns bright white (shorter wavelengths) as it gets even hotter."
+  },
+  {
+    "name": "Solid Angle (ω)",
+    "keywords": ["solid angle", "omega", "steradian", "intensity", "hemisphere", "sphere"],
+    "formula": "dω = dA_n / r² = sin(θ) dθ dΦ",
+    "desc": "The 3D equivalent of a 2D plane angle, used to calculate how much radiation intensity hits a specific area.",
+    "validations": "📌 A full sphere is 4π steradians (sr). A hemisphere is 2π sr.",
+    "trap": "⚠️ TRAP: The area 'dA_n' MUST be the projected area NORMAL (perpendicular) to the line of sight. If the receiving surface is tilted at an angle α, you must use dA * cos(α) in the numerator!"
+  },
+  {
+    "name": "Emissive Power vs Radiation Intensity",
+    "keywords": ["emissive power", "intensity", "diffuse emitter", "blackbody", "pi"],
+    "formula": "E = π * I_e",
+    "desc": "Relates the total hemispherical emissive power (E) to the directional radiation intensity (I_e) for a diffuse emitter.",
+    "trap": "⚠️ TRAP: Why is it π and not 2π (since a hemisphere has 2π steradians)? Because of Lambert's Cosine Law! The intensity hitting the edges of the hemisphere is reduced by cos(θ). Integrating I_e * cos(θ) over a hemisphere mathematically results in exactly π * I_e."
+  },
+  {
+    "name": "Kirchhoff's Law of Radiation",
+    "keywords": ["kirchhoff", "emissivity", "absorptivity", "thermal equilibrium", "gray surface"],
+    "formula": "ε(λ, θ, T) = α(λ, θ, T)",
+    "desc": "States that the emissivity of a surface is exactly equal to its absorptivity at the same wavelength, direction, and temperature.",
+    "trap": "⚠️ TRAP: The general form (ε = α) is ONLY strictly valid when the surface is in thermal equilibrium with its surroundings (Surface Temp = Surroundings Temp). We often assume ε = α for 'Gray' surfaces to simplify math, but in reality, a surface that absorbs high-temp solar radiation (low λ) may have a very different emissivity for low-temp room radiation (high λ)."
+  },
+  {
+    "name": "View Factor Summation Rule",
+    "keywords": ["view factor", "summation rule", "enclosure", "concave", "convex", "self-view"],
+    "formula": "Σ F_ij = 1  (for j = 1 to N)",
+    "desc": "Conservation of energy: all radiation leaving surface 'i' must hit some surface in the enclosure.",
+    "trap": "⚠️ TRAP: For a plane or convex surface, F_ii = 0 (it cannot see itself). But for a CONCAVE surface, F_ii ≠ 0! If you forget to include F_ii in your summation for a concave bowl or cylinder, your entire view factor matrix will be wrong."
+  },
+  {
+    "name": "Reciprocity Relation",
+    "keywords": ["reciprocity", "view factor", "area", "shape factor"],
+    "formula": "A_i * F_ij = A_j * F_ji",
+    "desc": "The most powerful shortcut to find an unknown view factor when areas and the inverse view factor are known.",
+    "trap": "⚠️ TRAP: F_ij is NOT equal to F_ji unless the areas are identical (A_i = A_j). In GATE, they often give a small sphere inside a large room; always use reciprocity to find the room-to-sphere factor from the sphere-to-room factor (which is 1)."
+  },
+  {
+    "name": "Radiosity (J_i)",
+    "keywords": ["radiosity", "emissive power", "reflection", "J", "gray surface"],
+    "formula": "J_i = ε_i * E_bi + (1 - ε_i) * G_i",
+    "desc": "Total radiation leaving a surface per unit area (Emitted + Reflected).",
+    "validations": "📌 For a blackbody, J = E_b because reflection is zero.",
+    "trap": "⚠️ TRAP: When solving radiation networks, the 'driving force' is the difference in Radiosities (J1 - J2), NOT temperatures (T1 - T2). Only for blackbodies can you directly use σT⁴."
+  },
+  {
+    "name": "Radiation Surface Resistance",
+    "keywords": ["surface resistance", "radiation network", "gray body", "emissivity"],
+    "formula": "R_surface = (1 - ε_i) / (A_i * ε_i)",
+    "desc": "The internal resistance of a non-black surface to emitting radiation.",
+    "trap": "⚠️ TRAP: If a surface is 'Adiabatic' or a 'Reradiating Surface', its net heat transfer Q = 0. This means its Radiosity (J) is exactly equal to its blackbody emissive power (E_b). You can treat it as a floating node in your electrical network analogy."
+  },
+  {
+    "name": "Radiation Shields (N-shields)",
+    "keywords": ["radiation shield", "reduction", "emissivity", "n-shields"],
+    "formula": "Q_n_shields = Q_no_shield / (N + 1)",
+    "desc": "Calculates the reduction in heat transfer when N shields with equal emissivities are added.",
+    "validations": "📌 1 shield reduces heat transfer by 50%, 2 shields by 66.7%, etc.",
+    "trap": "⚠️ TRAP: This simplified (N+1) formula ONLY works if all surfaces (plates and shields) have the SAME emissivity. If the emissivities are different, you MUST draw the full resistance network and sum all 2N+1 resistances manually."
   }
 ]
