@@ -1770,5 +1770,47 @@
     "formula": "Rule: Not all steady-looking setups have steady solutions.",
     "desc": "A steady solver assumes time-derivative terms (∂/∂t) are exactly zero. A transient (unsteady) solver actually marches forward in physical time steps, allowing the flow to evolve.",
     "trap": "STUDENT MISTAKE: Forcing a Steady-State solver on a flow that naturally wants to oscillate (like flow over a blunt car mirror). The residuals will bounce up and down forever and never converge. You MUST switch to a Transient solver and let the flow oscillate in time!"
+  },
+  {
+    "name": "Thermodynamics vs. Heat Transfer",
+    "keywords": ["thermodynamics", "heat transfer", "time", "rate", "amount", "state"],
+    "formula": "Rule: Thermo = 'How much?' | Heat Transfer = 'How fast?'",
+    "desc": "Thermodynamics only tells you the total AMOUNT of energy needed to go from State 1 to State 2. Heat Transfer tells you the RATE (Watts or Joules/sec) and exactly how long that process will take.",
+    "trap": "STUDENT MISTAKE: Trying to find the 'time taken' to cool a coffee cup using only Thermodynamics equations. You can't! Thermo assumes infinite time for equilibrium. You MUST use Heat Transfer (Newton's Law of Cooling) to find out if it takes 5 minutes or 5 hours."
+  },
+  {
+    "name": "Thermal Conductivity (k) vs. Thermal Diffusivity (α)",
+    "keywords": ["thermal conductivity", "thermal diffusivity", "storage", "propagation", "insulator", "conductor"],
+    "formula": "Rule: k = How well it conducts | α = How fast it spreads (k / ρCp)",
+    "desc": "Thermal conductivity (k) measures raw heat flow capability. Thermal diffusivity (α) measures the ratio of heat conducted away vs. heat stored inside the material.",
+    "trap": "STUDENT MISTAKE: Thinking a material with high 'k' always heats up faster. If the material also has a massive heat capacity (ρCp), it will store all the heat locally and take forever to heat up completely. High Diffusivity (α), not just high 'k', is the true measure of fast temperature propagation!"
+  },
+  {
+    "name": "Convection: The Fluid Motion Requirement",
+    "keywords": ["convection", "conduction", "fluid motion", "advection", "newton's law of cooling"],
+    "formula": "Rule: Convection = Conduction + Fluid Bulk Motion",
+    "desc": "Convection is not a purely unique mode of heat transfer; it is physically just conduction into a fluid, combined with the fluid physically moving away (advection) to make room for fresh cold fluid.",
+    "trap": "STUDENT MISTAKE: Believing heat transfer through a perfectly STILL layer of liquid or gas is convection. False! If the fluid is completely trapped and stagnant (like air between double-pane windows), the heat transfer is purely CONDUCTION."
+  },
+  {
+    "name": "Radiation Absolute Temperature Trap",
+    "keywords": ["radiation", "stefan-boltzmann", "emissivity", "absolute temperature", "kelvin", "celcius"],
+    "formula": "Q_rad = ε * σ * A * (T_s^4 - T_surr^4)",
+    "desc": "Radiation is the only mode of heat transfer that doesn't need a medium (works in a vacuum) and scales with the fourth power of absolute temperature.",
+    "trap": "STUDENT MISTAKE: Using Celsius or Fahrenheit in the Stefan-Boltzmann equation! If you plug 20°C and 10°C into (20^4 - 10^4), your answer will be massively, catastrophically wrong. You MUST convert all temperatures to Kelvin or Rankine before raising them to the 4th power!"
+  },
+  {
+    "name": "The Surface Energy Balance",
+    "keywords": ["surface energy balance", "boundary condition", "volume", "mass", "conduction", "convection", "radiation"],
+    "formula": "Rule: Energy IN = Energy OUT (At the exact surface boundary)",
+    "desc": "A mathematical surface has absolutely zero thickness, zero mass, and zero volume. Therefore, it is physically impossible for a surface to store any thermal energy.",
+    "trap": "STUDENT MISTAKE: Adding an 'Energy Storage' term (m*Cp*dT/dt) when analyzing the exact outer boundary of a wall. Because the surface has no mass, ALL heat conducted to the surface from the inside MUST instantly leave via convection and radiation to the outside."
+  },
+  {
+    "name": "Kirchhoff's Law of Radiation",
+    "keywords": ["kirchhoff's law", "emissivity", "absorptivity", "radiation", "blackbody", "gray body"],
+    "formula": "Rule: Emissivity (ε) = Absorptivity (α) at thermal equilibrium",
+    "desc": "A fundamental law stating that a material's ability to emit radiation at a given wavelength and temperature is exactly equal to its ability to absorb radiation at that same wavelength.",
+    "trap": "STUDENT MISTAKE: Thinking a good reflector (like aluminum foil) is a good emitter. By Kirchhoff's law, because foil reflects (does not absorb) infrared heat, its absorptivity is nearly zero. Therefore, its emissivity is ALSO nearly zero! Good reflectors are terrible emitters."
   }
 ]
