@@ -454,5 +454,80 @@
     "formula": "δ ≈ 0.16 * x / (Re_x)^(1/7)",
     "desc": "Empirical thickness approximation for a turbulent boundary layer using the 1/7th power law.",
     "trap": "⚠️ TRAP: A turbulent boundary layer grows much FASTER than a laminar one. Laminar grows as x^(1/2) (or x^0.5), while turbulent grows as x^(6/7) (or x^0.857). This is a very common theoretical comparison question."
+  },
+  {
+    "name": "Drag and Lift Coefficients (CD, CL)",
+    "keywords": ["drag coefficient", "lift coefficient", "CD", "CL", "dynamic pressure", "reference area"],
+    "formula": "C_D = F_D / (0.5 * ρ * V² * A)  |  C_L = F_L / (0.5 * ρ * V² * A)",
+    "desc": "Dimensionless coefficients representing the drag and lift forces acting on a body.",
+    "validations": "📌 The term (0.5 * ρ * V²) is the dynamic pressure.",
+    "trap": "⚠️ TRAP: The Reference Area 'A' changes based on the object! For bluff bodies (cylinders, cars, spheres), 'A' is the Frontal Area (projected area). But for airfoils and wings, 'A' is the Planform Area (top-down view). Mixing this up guarantees a -0.66 in GATE."
+  },
+  {
+    "name": "Average Friction Coefficient (Laminar Flat Plate)",
+    "keywords": ["average friction", "skin friction", "flat plate", "laminar", "C_f"],
+    "formula": "C_f = 1.33 / √(Re_L)",
+    "desc": "Calculates the AVERAGE friction drag over the entire length L of a flat plate in laminar flow.",
+    "trap": "⚠️ TRAP: Do not confuse AVERAGE coefficient (C_f = 1.33 / √Re_L) with LOCAL coefficient (C_f,x = 0.664 / √Re_x). The average friction coefficient over the whole plate is exactly TWICE the local friction coefficient at the end of the plate!"
+  },
+  {
+    "name": "Stokes' Law Drag Coefficient",
+    "keywords": ["stokes law", "creeping flow", "sphere", "drag coefficient", "24/Re"],
+    "formula": "C_D = 24 / Re",
+    "desc": "The drag coefficient for a smooth sphere in strictly creeping flow.",
+    "trap": "⚠️ TRAP: This formula is ONLY valid for highly viscous or very slow flows where Re ≤ 1. If Re > 1, flow separation begins at the rear of the sphere, pressure drag kicks in, and you can no longer use 24/Re."
+  },
+  {
+    "name": "Minimum Flight Velocity (Takeoff Speed)",
+    "keywords": ["takeoff", "minimum velocity", "flight", "stall speed", "lift", "weight"],
+    "formula": "V_min = √[ (2 * W) / (ρ * C_L,max * A) ]",
+    "desc": "The absolute minimum speed an aircraft must reach to generate enough lift to balance its weight (W).",
+    "trap": "⚠️ TRAP: Notice the air density (ρ) is in the denominator! At high altitudes or on very hot summer days, air density drops significantly. This means an aircraft needs a much HIGHER takeoff speed (and a longer runway) compared to winter days at sea level."
+  },
+  {
+    "name": "Drag Crisis (Bluff Bodies)",
+    "keywords": ["drag crisis", "bluff body", "sphere", "cylinder", "separation", "boundary layer", "roughness"],
+    "formula": "Re_critical ≈ 2 × 10^5 to 5 × 10^5",
+    "desc": "The flow region where the drag coefficient of a bluff body suddenly and massively drops.",
+    "validations": "📌 Occurs because the boundary layer transitions from laminar to turbulent.",
+    "trap": "⚠️ TRAP: Counter-intuitive concept! Making a surface ROUGH (like dimples on a golf ball) actually REDUCES total drag for bluff bodies. The roughness trips the boundary layer into turbulence earlier, which delays flow separation and drastically shrinks the low-pressure wake behind the ball."
+  },
+  {
+    "name": "Stagnation Temperature (T0)",
+    "keywords": ["stagnation", "temperature", "T0", "dynamic temperature", "adiabatic", "rest"],
+    "formula": "T0 = T + V² / (2 * c_p)",
+    "desc": "The temperature an ideal gas reaches when brought to rest adiabatically.",
+    "trap": "⚠️ TRAP: Unit mismatch is the biggest killer here! The term V²/(2) will give you J/kg. You MUST ensure your specific heat (c_p) is also in J/(kg·K), NOT kJ/(kg·K). Otherwise, your dynamic temperature term will be off by a factor of 1000!"
+  },
+  {
+    "name": "Speed of Sound (Ideal Gas)",
+    "keywords": ["speed of sound", "acoustic velocity", "mach", "ideal gas", "kRT"],
+    "formula": "c = √(k * R * T)",
+    "desc": "The speed of an infinitesimally small pressure wave through a medium.",
+    "validations": "📌 'T' must be absolute temperature (Kelvin or Rankine).",
+    "trap": "⚠️ TRAP: The gas constant 'R' must be the SPECIFIC gas constant (R_universal / Molecular Weight) in J/(kg·K), not the universal gas constant (8.314 J/mol·K). Using the wrong 'R' will ruin your Mach number calculation."
+  },
+  {
+    "name": "Choked Flow (Converging Nozzle)",
+    "keywords": ["choked flow", "converging nozzle", "critical pressure", "Ma=1", "throat", "mass flow rate"],
+    "formula": "P* = P0 * [2 / (k + 1)]^(k / (k - 1))",
+    "desc": "The critical pressure required at the throat to achieve Mach 1 (Choked Flow).",
+    "validations": "📌 For air (k=1.4), P* ≈ 0.528 * P0.",
+    "trap": "⚠️ TRAP: If the back pressure (Pb) drops BELOW the critical pressure (P*), the flow rate WILL NOT increase! The nozzle is choked. The pressure at the exit plane remains stuck at P*, regardless of how low Pb gets."
+  },
+  {
+    "name": "Normal Shock Waves",
+    "keywords": ["normal shock", "shock wave", "supersonic", "subsonic", "irreversible", "entropy"],
+    "formula": "Ma_1 > 1 (Supersonic)  --> Normal Shock -->  Ma_2 < 1 (Subsonic)",
+    "desc": "An abrupt, irreversible change in fluid properties where flow goes from supersonic to subsonic.",
+    "validations": "📌 Stagnation Temperature (T0) remains CONSTANT across a normal shock.",
+    "trap": "⚠️ TRAP: Stagnation Pressure (P0) DOES NOT remain constant across a shock wave! Because the shock is highly irreversible (entropy increases), the stagnation pressure always DROPS (P02 < P01)."
+  },
+  {
+    "name": "Rayleigh Flow vs Fanno Flow",
+    "keywords": ["rayleigh", "fanno", "duct flow", "heat transfer", "friction", "choking"],
+    "formula": "Rayleigh: Heat Transfer (Q ≠ 0, Friction = 0) | Fanno: Friction (f ≠ 0, Q = 0)",
+    "desc": "1D flow models. Rayleigh involves heat addition/rejection, Fanno involves wall friction.",
+    "trap": "⚠️ TRAP: In BOTH flows, the effects drive the flow towards Mach 1 (Choking). Friction accelerates subsonic flow and decelerates supersonic flow. Heating accelerates subsonic flow and decelerates supersonic flow. Both lines converge at Ma = 1 on a T-s diagram."
   }
 ]
