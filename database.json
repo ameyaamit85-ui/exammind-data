@@ -1077,5 +1077,112 @@
     "desc": "Calculates the reduction in heat transfer when N shields with equal emissivities are added.",
     "validations": "📌 1 shield reduces heat transfer by 50%, 2 shields by 66.7%, etc.",
     "trap": "⚠️ TRAP: This simplified (N+1) formula ONLY works if all surfaces (plates and shields) have the SAME emissivity. If the emissivities are different, you MUST draw the full resistance network and sum all 2N+1 resistances manually."
+  },
+  {
+    "name": "LMTD: Phase Change Exception",
+    "keywords": ["lmtd", "phase change", "condenser", "boiler", "parallel", "counter"],
+    "formula": "LMTD_parallel = LMTD_counter",
+    "desc": "For condensers and boilers, the fluid undergoing phase change has a constant temperature (T_in = T_out).",
+    "trap": "⚠️ TRAP: If a problem says 'steam condenses at 100°C', the flow arrangement (parallel or counter-flow) DOES NOT MATTER! The LMTD will be exactly the same for both. Don't waste time drawing different temperature profiles."
+  },
+  {
+    "name": "Maximum Possible Heat Transfer (Q_max)",
+    "keywords": ["q_max", "effectiveness", "ntu", "heat capacity rate", "c_min"],
+    "formula": "Q_max = C_min * (T_h,in - T_c,in)",
+    "desc": "The theoretical maximum heat transfer that could occur in a heat exchanger with infinite area.",
+    "validations": "📌 C_min is the smaller of (m_dot * C_p)_hot and (m_dot * C_p)_cold.",
+    "trap": "⚠️ TRAP: Q_max is ALWAYS based on C_min, never C_max! The fluid with the smaller heat capacity rate will be the one to reach the extreme temperature first (either T_h,in or T_c,in). If you use C_max, you violate the 2nd Law of Thermodynamics."
+  },
+  {
+    "name": "Heat Capacity Rate Ratio (c)",
+    "keywords": ["capacity ratio", "c_min", "c_max", "phase change", "ntu"],
+    "formula": "c = C_min / C_max",
+    "desc": "Ratio used in Effectiveness-NTU charts and formulas.",
+    "trap": "⚠️ TRAP: For a boiler or condenser, C_max → ∞ (because temperature doesn't change, specific heat behaves as infinite). Therefore, c = 0! The effectiveness formula drastically simplifies to ε = 1 - exp(-NTU) for phase change systems."
+  },
+  {
+    "name": "Fouling Factor (R_f)",
+    "keywords": ["fouling factor", "r_f", "overall heat transfer coefficient", "scaling", "thermal resistance"],
+    "formula": "1 / U_dirty = 1 / U_clean + R_f",
+    "desc": "Represents the added thermal resistance due to scale, dirt, or biological growth on the tube surfaces.",
+    "trap": "⚠️ TRAP: R_f is a RESISTANCE, not a convection coefficient. You ADD it to the other resistances (1/h). Do not write it as 1/R_f in the denominator! Also, watch the units carefully (m²·°C/W)."
+  },
+  {
+    "name": "L'Hôpital's Rule for LMTD",
+    "keywords": ["lmtd", "indeterminate", "balanced counter flow", "l'hopital"],
+    "formula": "If ΔT_1 = ΔT_2, then ΔT_lm = ΔT_1 = ΔT_2",
+    "desc": "Resolves the 0/0 mathematical error in the LMTD formula for perfectly balanced counter-flow heat exchangers.",
+    "trap": "⚠️ TRAP: In a counter-flow heat exchanger where (m_dot * C_p)_hot = (m_dot * C_p)_cold, the temperature difference between the two fluids is CONSTANT everywhere! The LMTD formula will give you ln(1) = 0 in the denominator. Don't panic; the LMTD is just the arithmetic difference."
+  },
+  {
+    "name": "Concentration Boundary Condition (Interface)",
+    "keywords": ["interface", "boundary condition", "continuous", "henry's law", "raoult's law", "solubility"],
+    "formula": "P_i,gas = H * y_i,liquid  (Henry's Law)",
+    "desc": "Determines the concentration of a species at a phase interface (e.g., air-water boundary).",
+    "trap": "⚠️ TRAP: Unlike temperature, species concentration is ALMOST NEVER CONTINUOUS across a phase boundary! The concentration of oxygen in the air right next to a lake is totally different from the concentration of oxygen in the water right at the surface. You MUST use Henry's Law or Raoult's Law to link them."
+  },
+  {
+    "name": "Fick's Law of Diffusion",
+    "keywords": ["fick's law", "diffusion", "mass flux", "concentration gradient", "D_AB"],
+    "formula": "m_dot_diff = -D_AB * A * (dρ_A / dx)",
+    "desc": "The fundamental equation for mass diffusion, directly analogous to Fourier's Law of heat conduction.",
+    "trap": "⚠️ TRAP: Fick's law only describes the movement of a species relative to the bulk mixture. If the entire fluid is moving (like wind blowing), you must ADD the bulk convective mass flux (ρ_A * V_bulk) to the diffusive flux to get the total mass flow rate!"
+  },
+  {
+    "name": "Schmidt (Sc) vs Lewis (Le) Number",
+    "keywords": ["schmidt number", "lewis number", "mass diffusivity", "prandtl analog", "sc", "le"],
+    "formula": "Sc = ν / D_AB  |  Le = α / D_AB = Pr / Sc",
+    "desc": "Dimensionless numbers linking fluid mechanics, heat transfer, and mass transfer.",
+    "trap": "⚠️ TRAP: Do not mix these up! Schmidt (Sc) is the mass analog to Prandtl (Pr) and links momentum to mass. Lewis (Le) links HEAT to MASS. If Le ≈ 1 (like in air-water vapor mixtures), thermal and concentration boundary layers grow at the exact same rate."
+  },
+  {
+    "name": "Mass vs Mole Fractions (Ideal Gases)",
+    "keywords": ["mole fraction", "mass fraction", "ideal gas", "partial pressure", "dalton's law"],
+    "formula": "y_i = P_i / P_total  (Mole/Pressure Fraction)  |  w_i = y_i * (M_i / M_mix)",
+    "desc": "Converts between partial pressure, mole fractions, and mass fractions.",
+    "trap": "⚠️ TRAP: For an ideal gas, Mole Fraction (y_i) is EXACTLY equal to Pressure Fraction and Volume Fraction. However, it is NEVER equal to Mass Fraction (w_i) unless all species have the exact same molar mass! Always multiply by the molar mass ratio to convert."
+  },
+  {
+    "name": "Stefan Flow (Diffusion in Stationary Gas)",
+    "keywords": ["stefan flow", "stationary gas", "evaporation", "bulk motion", "molar flux"],
+    "formula": "V_bulk = (1/C) * Σ(N_i)",
+    "desc": "Occurs when a liquid evaporates into a 'stagnant' gas column above it.",
+    "trap": "⚠️ TRAP: A 'stationary' gas (like air above an evaporating water tank) does NOT mean bulk velocity is zero! As water vapor diffuses upward, it physically pushes the air upward. The air diffuses back down to maintain a net zero flow of air, but the overall bulk velocity of the mixture is UPWARD."
+  },
+  {
+    "name": "Junction Temperature (T_junction)",
+    "keywords": ["junction temperature", "t_junction", "case", "ambient", "thermal resistance", "electronics cooling"],
+    "formula": "T_junction = T_ambient + Q * R_total",
+    "desc": "The highest temperature inside an electronic chip where the actual heat is generated.",
+    "validations": "📌 R_total = R_junction-case + R_case-ambient",
+    "trap": "⚠️ TRAP: The 'Q' here is the net heat dissipated (Electrical Power In - Non-Thermal Power Out). If a device consumes 10W of electricity but emits 2W of RF radiation (like an antenna), the heat dissipated 'Q' is only 8W, not 10W!"
+  },
+  {
+    "name": "Failure Rate vs Temperature",
+    "keywords": ["failure rate", "reliability", "rule of thumb", "temperature", "electronics"],
+    "formula": "Failure Rate halves for every 10°C drop in T_junction",
+    "desc": "A critical industry rule of thumb relating electronic component reliability to its operating temperature.",
+    "trap": "⚠️ TRAP: This is an exponential relationship, not linear! Dropping the temperature by 20°C doesn't reduce the failure rate by 20%; it reduces it by a factor of 4 (halved, and then halved again)."
+  },
+  {
+    "name": "PCB Effective Thermal Conductivity",
+    "keywords": ["pcb", "printed circuit board", "copper cladding", "effective thermal conductivity", "k_eff"],
+    "formula": "k_eff = (k_copper*t_copper + k_epoxy*t_epoxy) / (t_copper + t_epoxy)",
+    "desc": "Calculates the overall thermal conductivity for heat conduction ALONG a multi-layer Printed Circuit Board.",
+    "trap": "⚠️ TRAP: This weighted average formula ONLY works for conduction PARALLEL to the layers (along the board). If heat is conducting ACROSS the thickness of the board, the resistances are in series, and this formula is completely invalid!"
+  },
+  {
+    "name": "Fan Placement: Inlet vs Exit",
+    "keywords": ["fan", "inlet", "exit", "pressurize", "vacuum", "forced air"],
+    "formula": "Inlet Fan = Pressurizes Box | Exit Fan = Creates Vacuum",
+    "desc": "Design guidelines for placing cooling fans in electronic enclosures.",
+    "trap": "⚠️ TRAP: Placing a fan at the exit sounds smart because it blows the hot fan-motor air outside. But this creates a vacuum inside the box, sucking in unfiltered, dusty air through every crack and seam, which eventually blankets the electronics and destroys them!"
+  },
+  {
+    "name": "Thermal Constriction Resistance",
+    "keywords": ["constriction resistance", "spreading resistance", "heat source", "d", "substrate"],
+    "formula": "R_constriction ≈ 1 / (π * k * d)",
+    "desc": "The extra thermal resistance caused when heat flows from a very small source (like a chip junction) into a much larger substrate.",
+    "trap": "⚠️ TRAP: Notice the formula has 'd' (diameter of the heat source), not area (d²)! This means constriction resistance drops very slowly as you increase the size of the heat source. It acts as a severe bottleneck in modern miniaturized electronics."
   }
 ]
