@@ -529,5 +529,148 @@
     "formula": "Rayleigh: Heat Transfer (Q ≠ 0, Friction = 0) | Fanno: Friction (f ≠ 0, Q = 0)",
     "desc": "1D flow models. Rayleigh involves heat addition/rejection, Fanno involves wall friction.",
     "trap": "⚠️ TRAP: In BOTH flows, the effects drive the flow towards Mach 1 (Choking). Friction accelerates subsonic flow and decelerates supersonic flow. Heating accelerates subsonic flow and decelerates supersonic flow. Both lines converge at Ma = 1 on a T-s diagram."
+  },
+  {
+    "name": "Froude Number (Open Channel)",
+    "keywords": ["froude number", "Fr", "open channel", "critical", "subcritical", "supercritical"],
+    "formula": "Fr = V / √(g * y)",
+    "desc": "Ratio of inertial forces to gravity forces. Determines the flow regime in an open channel.",
+    "trap": "⚠️ TRAP: For open channels, the characteristic length in the Froude number is the FLOW DEPTH (y), NOT the hydraulic radius (R_h) or hydraulic diameter! Using R_h here is a guaranteed way to get a negative mark."
+  },
+  {
+    "name": "Hydraulic Radius (R_h)",
+    "keywords": ["hydraulic radius", "R_h", "wetted perimeter", "cross section"],
+    "formula": "R_h = A_c / p",
+    "desc": "The ratio of the cross-sectional area (A_c) to the wetted perimeter (p).",
+    "trap": "⚠️ TRAP: Do NOT confuse Hydraulic Radius (R_h) with Hydraulic Diameter (D_h)! For a fully flowing circular pipe, D_h = D, but R_h = D/4. They are off by a factor of 4. Always check which one the formula requires."
+  },
+  {
+    "name": "Minimum Specific Energy (E_s,min)",
+    "keywords": ["specific energy", "minimum", "critical depth", "E_s"],
+    "formula": "E_s,min = (3/2) * y_c",
+    "desc": "The minimum specific energy required to pass a given flow rate, occurring exactly at the critical depth.",
+    "validations": "📌 Only valid for rectangular channels.",
+    "trap": "⚠️ TRAP: Specific Energy is measured relative to the CHANNEL BOTTOM, not a fixed horizontal datum. If the channel bottom goes up or down (like a bump), the specific energy changes, but the total energy (H) might remain constant."
+  },
+  {
+    "name": "Hydraulic Jump (Depth Ratio)",
+    "keywords": ["hydraulic jump", "depth ratio", "supercritical", "subcritical", "conjugate depths"],
+    "formula": "y2 / y1 = 0.5 * [-1 + √(1 + 8 * Fr_1²)]",
+    "desc": "Calculates the downstream depth (y2) after a hydraulic jump given the upstream depth (y1) and Froude number (Fr_1).",
+    "trap": "⚠️ TRAP: A hydraulic jump CANNOT occur if the upstream flow is subcritical (Fr_1 < 1). The formula mathematically breaks or gives physically impossible results if you plug in Fr_1 < 1. It ALWAYS goes from Supercritical -> Subcritical."
+  },
+  {
+    "name": "Manning Equation (Velocity)",
+    "keywords": ["manning", "uniform flow", "velocity", "roughness", "slope"],
+    "formula": "V0 = (a / n) * R_h^(2/3) * S0^(1/2)",
+    "desc": "Empirical formula calculating the average velocity in uniform open-channel flow.",
+    "validations": "📌 'a' is 1 for SI units and 1.486 for English units.",
+    "trap": "⚠️ TRAP: Notice the exponents! Hydraulic radius (R_h) is raised to the power of 2/3, and the bottom slope (S0) is raised to 1/2. In the rush of the exam, students often swap these exponents or forget the (1/n) factor."
+  },
+  {
+    "name": "Net Positive Suction Head (NPSH)",
+    "keywords": ["npsh", "cavitation", "vapor pressure", "suction head", "pump"],
+    "formula": "NPSH = (P_inlet / ρg) + (V_inlet² / 2g) - (P_v / ρg)",
+    "desc": "The margin of pressure above the vapor pressure at the pump inlet required to prevent cavitation.",
+    "validations": "📌 P_inlet and P_v MUST be in ABSOLUTE pressure, not gage pressure.",
+    "trap": "⚠️ TRAP: Available NPSH drops drastically if the liquid temperature INCREASES (because vapor pressure P_v goes up). Never forget to check the fluid temperature when calculating cavitation risk! If NPSH_available < NPSH_required, your pump will cavitate and get destroyed."
+  },
+  {
+    "name": "Euler Turbomachine Equation",
+    "keywords": ["euler", "turbomachine", "torque", "pump power", "tangential velocity", "impeller"],
+    "formula": "T_shaft = ρ * Q * (r_2 * V_2,t - r_1 * V_1,t)",
+    "desc": "Calculates the shaft torque required for a pump based on the change in angular momentum of the fluid.",
+    "validations": "📌 V_t is the TANGENTIAL component of the ABSOLUTE fluid velocity.",
+    "trap": "⚠️ TRAP: Do not use the relative velocity of the fluid with respect to the blade! You must resolve the velocity triangle to find the absolute tangential velocity (V_t) to plug into this equation. Mixing up absolute and relative velocity is the #1 mistake here."
+  },
+  {
+    "name": "Pump Affinity Laws",
+    "keywords": ["affinity laws", "scaling", "pump speed", "diameter", "power", "head", "brake horsepower"],
+    "formula": "Q2/Q1 = (N2/N1)(D2/D1)³  |  H2/H1 = (N2/N1)²(D2/D1)²  |  P2/P1 = (ρ2/ρ1)(N2/N1)³(D2/D1)⁵",
+    "desc": "Predicts the performance of geometrically similar pumps operating at different speeds (N) or sizes (D).",
+    "trap": "⚠️ TRAP: Look at the exponents carefully! Brake horsepower (P) scales with the CUBE of the rotational speed (N³). If you increase a pump's speed by just 10%, the power required shoots up by 33% (1.1³ = 1.331). A classic GATE numerical trap."
+  },
+  {
+    "name": "Pump Specific Speed (N_s)",
+    "keywords": ["specific speed", "N_s", "BEP", "pump selection", "centrifugal", "axial"],
+    "formula": "N_s = (N * √Q) / H^(3/4)",
+    "desc": "A dimensionless index used to classify pump impellers based on their geometry and flow type.",
+    "validations": "📌 Must strictly be evaluated at the Best Efficiency Point (BEP).",
+    "trap": "⚠️ TRAP: Specific speed decides the shape of your pump! Low N_s means high head/low flow (Centrifugal/Radial pumps). High N_s means low head/high flow (Axial pumps). Examiners will give you Q, H, and N and ask you to select the correct pump type."
+  },
+  {
+    "name": "Pumps in Series & Parallel",
+    "keywords": ["series", "parallel", "head", "capacity", "combined pump", "piping network"],
+    "formula": "Series: H_tot = ΣH (at same Q)  |  Parallel: Q_tot = ΣQ (at same H)",
+    "desc": "Rules for combining pump performance curves in a network.",
+    "trap": "⚠️ TRAP: Connecting TWO identical pumps in series does NOT double the flow rate in a real piping system! It only doubles the available head at a given flow. The actual new operating point depends entirely on where this new combined pump curve intersects the system's pipeline resistance curve."
+  },
+  {
+    "name": "Equiangle Skewness (Grid Quality)",
+    "keywords": ["equiangle skewness", "cfd", "mesh", "grid quality", "Q_EAS", "cell"],
+    "formula": "Q_EAS = MAX [ (θ_max - θ_equal)/θ_equal , (θ_equal - θ_min)/θ_equal ]",
+    "desc": "A metric to quantify how much a 2D mesh cell deviates from a perfect equilateral shape.",
+    "validations": "📌 For a 2D triangle, θ_equal is 60°. For a quad, it is 90°.",
+    "trap": "⚠️ TRAP: In CFD, a Q_EAS value of 0 means the cell is PERFECT. A value closer to 1 means it is highly distorted/skewed. Many students logically guess that '1' means 100% perfect, which is completely backwards here!"
+  },
+  {
+    "name": "Strouhal Number (St)",
+    "keywords": ["strouhal number", "st", "vortex shedding", "karman vortex", "cylinder", "oscillation"],
+    "formula": "St = (f_shedding * D) / V",
+    "desc": "A dimensionless number describing oscillating flow mechanisms, like the Kármán vortex street behind a cylinder.",
+    "trap": "⚠️ TRAP: Flow around a cylinder becomes strictly UNSTEADY at Re > 90 due to alternating vortex shedding. If you force a 'Steady State' solver in CFD (or assume symmetry) for this problem, you will get a completely wrong, unphysical Drag Coefficient!"
+  },
+  {
+    "name": "CFD Convergence vs Physical Accuracy",
+    "keywords": ["cfd", "convergence", "residuals", "iterations", "accuracy"],
+    "formula": "Residuals ≤ 10^-3 or 10^-4",
+    "desc": "The state where the iterative numerical solution stops changing significantly and satisfies the discretized equations.",
+    "trap": "⚠️ TRAP: Reaching mathematical 'Convergence' DOES NOT mean the answer is physically correct! If you choose the wrong turbulence model or incorrect boundary conditions, your CFD solver will perfectly converge to a 100% WRONG answer."
+  },
+  {
+    "name": "Grid Independence",
+    "keywords": ["grid independence", "mesh refinement", "cfd accuracy", "cells"],
+    "formula": "Result_Coarse ≠ Result_Fine ≈ Result_Ultrafine",
+    "desc": "The condition where further refining the mesh (making cells smaller) no longer changes the final solution.",
+    "validations": "📌 You MUST prove grid independence before trusting any CFD result.",
+    "trap": "⚠️ TRAP: Never trust a CFD output from a single, unrefined mesh. A highly skewed unstructured grid might converge faster, but a high-quality unstructured grid is always better than a poor-quality structured grid."
+  },
+  {
+    "name": "Fourier's Law of Conduction",
+    "keywords": ["fourier", "conduction", "heat transfer rate", "thermal conductivity", "gradient"],
+    "formula": "Q_cond = -k * A * (dT / dx)",
+    "desc": "The fundamental rate equation for heat conduction through a material.",
+    "trap": "⚠️ TRAP: The negative sign is crucial! Heat ALWAYS flows in the direction of DECREASING temperature. If T2 is lower than T1, (dT/dx) is negative, making the overall heat transfer rate (Q) positive in the positive x-direction."
+  },
+  {
+    "name": "Thermal Diffusivity (α)",
+    "keywords": ["thermal diffusivity", "alpha", "conduction", "heat capacity", "transient"],
+    "formula": "α = k / (ρ * C_p)",
+    "desc": "The ratio of heat conducted through a material to the heat stored per unit volume.",
+    "validations": "📌 A high α means heat propagates very quickly into the medium.",
+    "trap": "⚠️ TRAP: Don't confuse Thermal Conductivity (k) with Thermal Diffusivity (α). 'k' tells you how fast heat moves, but 'α' tells you how fast the material's TEMPERATURE changes. Two materials can have the same 'k' but completely different 'α' if their densities or specific heats differ."
+  },
+  {
+    "name": "Newton's Law of Cooling (Convection)",
+    "keywords": ["newton", "cooling", "convection", "heat transfer coefficient", "h"],
+    "formula": "Q_conv = h * A_s * (T_s - T_∞)",
+    "desc": "The rate equation for convective heat transfer between a solid surface and a fluid.",
+    "validations": "📌 'h' is NOT a property of the fluid; it depends on flow geometry and velocity.",
+    "trap": "⚠️ TRAP: The area 'A_s' is the SURFACE area in contact with the fluid, NOT the cross-sectional area! For a pipe, A_s is the curved surface area (π*D*L), not the cross-sectional area (π*D²/4)."
+  },
+  {
+    "name": "Stefan-Boltzmann Law (Radiation)",
+    "keywords": ["stefan boltzmann", "radiation", "emissivity", "blackbody", "temperature"],
+    "formula": "Q_rad = ε * σ * A_s * (T_s⁴ - T_surr⁴)",
+    "desc": "The net rate of radiation heat transfer between a gray surface and its surroundings.",
+    "validations": "📌 σ = 5.67 × 10^-8 W/(m²·K⁴).",
+    "trap": "⚠️ TRAP: FATAL ERROR ALERT! Temperatures in radiation formulas MUST be in absolute scale (Kelvin or Rankine). You CANNOT use Celsius. (100°C)⁴ - (20°C)⁴ is NOT equal to (373 K)⁴ - (293 K)⁴. Always convert to Kelvin first!"
+  },
+  {
+    "name": "Steady Flow Energy Balance",
+    "keywords": ["steady flow", "energy balance", "enthalpy", "mass flow rate", "first law"],
+    "formula": "Q_dot = m_dot * Δh = m_dot * C_p * (T_out - T_in)",
+    "desc": "The first law of thermodynamics applied to a steady-flow system with only sensible heat transfer.",
+    "trap": "⚠️ TRAP: For liquids and solids, C_p ≈ C_v ≈ C, so you just use 'C'. But for IDEAL GASES in a steady flow system (like air in a duct heating up), you MUST use C_p (constant pressure specific heat), NOT C_v, because the work of flow (Pv) is included in the enthalpy term."
   }
 ]
