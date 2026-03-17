@@ -1184,5 +1184,591 @@
     "formula": "R_constriction ≈ 1 / (π * k * d)",
     "desc": "The extra thermal resistance caused when heat flows from a very small source (like a chip junction) into a much larger substrate.",
     "trap": "⚠️ TRAP: Notice the formula has 'd' (diameter of the heat source), not area (d²)! This means constriction resistance drops very slowly as you increase the size of the heat source. It acts as a severe bottleneck in modern miniaturized electronics."
+  },
+  {
+    "name": "Fluid vs Solid (Deformation)",
+    "keywords": ["fluid", "solid", "shear stress", "continuous deformation", "strain", "viscosity"],
+    "formula": "Fluid: Stress ∝ Rate of Strain | Solid: Stress ∝ Strain",
+    "desc": "A fluid deforms CONTINUOUSLY under any shear stress, whereas a solid stops deforming at a fixed strain angle.",
+    "trap": "⚠️ TRAP: Many students think fluids don't resist shear stress. They DO resist it! But their resistance depends entirely on the *rate* of deformation (how fast it moves), not the amount of deformation."
+  },
+  {
+    "name": "The No-Slip Condition",
+    "keywords": ["no-slip", "velocity", "boundary layer", "viscosity", "wall", "surface drag"],
+    "formula": "V_fluid = V_wall (At the contact boundary)",
+    "desc": "A fluid in direct contact with a solid 'sticks' to the surface due to viscosity, having zero relative velocity.",
+    "validations": "📌 This creates the boundary layer and causes surface drag on vehicles and pipes.",
+    "trap": "⚠️ TRAP: Students assume the fluid is completely stationary (V=0) at the wall. It is only stationary *relative* to the wall! If the wall is a moving belt traveling at 5 m/s, the fluid touching it is ALSO moving exactly at 5 m/s."
+  },
+  {
+    "name": "Incompressible Flow Approximation",
+    "keywords": ["compressible", "incompressible", "density", "mach number", "gas", "liquid"],
+    "formula": "Incompressible if Δρ ≈ 0  (For gases: Ma < 0.3)",
+    "desc": "Flow where fluid density remains nearly constant. Liquids are always assumed incompressible.",
+    "trap": "⚠️ TRAP: Assuming ALL gas flows are compressible! A gas flowing at low speeds (Mach < 0.3, roughly under 100 m/s for air) is treated as INCOMPRESSIBLE in calculations because its density changes by less than 5%."
+  },
+  {
+    "name": "Mach Number (Ma)",
+    "keywords": ["mach number", "speed of sound", "sonic", "subsonic", "supersonic", "compressible"],
+    "formula": "Ma = V_flow / c_sound",
+    "desc": "The dimensionless ratio of the local flow velocity to the local speed of sound in that medium.",
+    "validations": "📌 Ma < 1 (Subsonic), Ma = 1 (Sonic), Ma > 1 (Supersonic).",
+    "trap": "⚠️ TRAP: Treating the speed of sound (c) as a universal constant! The speed of sound actually changes with the fluid's temperature. A plane flying at 300 m/s at sea level has a different Mach number than at 30,000 feet."
+  },
+  {
+    "name": "Closed System vs Control Volume",
+    "keywords": ["system", "control volume", "closed system", "open system", "mass", "boundary", "isolated"],
+    "formula": "Closed: Fixed Mass | Open (CV): Fixed Region",
+    "desc": "A closed system tracks a fixed amount of matter, while an open system (Control Volume) tracks a fixed region in space where mass flows in and out.",
+    "trap": "⚠️ TRAP: Confusing a 'Closed System' with an 'Isolated System'. In a CLOSED system, mass cannot cross the boundary, but ENERGY (heat or work) definitely can! Only an ISOLATED system blocks both."
+  },
+  {
+    "name": "Accuracy vs Precision",
+    "keywords": ["accuracy", "precision", "error", "measurement", "significant digits", "resolution", "bias"],
+    "formula": "Accuracy = Closeness to True Value | Precision = Repeatability",
+    "desc": "Accuracy is how correct a measurement is (low bias error), while precision is how consistently you get the same result (random error).",
+    "trap": "⚠️ TRAP: Assuming a highly precise instrument is automatically accurate. A digital scale reading 12.0001 grams is highly precise, but if it wasn't zeroed (calibrated) properly, it will be wildly inaccurate!"
+  },
+  {
+    "name": "Intensive vs Extensive Properties",
+    "keywords": ["intensive", "extensive", "mass", "volume", "temperature", "pressure", "specific property"],
+    "formula": "Intensive = Mass Independent | Extensive = Mass Dependent",
+    "desc": "Intensive properties (Temp, Pressure) don't change if you cut the system in half. Extensive properties (Mass, Volume) get halved.",
+    "trap": "STUDENT MISTAKE: Thinking 'Specific Volume' or 'Specific Energy' is extensive. Anytime you divide an extensive property by mass (e.g., Volume / Mass), it becomes an INTENSIVE specific property!"
+  },
+  {
+    "name": "Continuum Approximation",
+    "keywords": ["continuum", "discrete molecules", "mean free path", "homogeneous", "continuous"],
+    "formula": "Characteristic Length (L) ≫ Mean Free Path (λ)",
+    "desc": "Treating a fluid as a continuous, homogeneous matter without holes, ignoring the fact that it is made of individual moving molecules.",
+    "trap": "STUDENT MISTAKE: Assuming Continuum is always valid. It completely FAILS at very high altitudes (rarefied gas flow) or in nano-channels where the mean free path of molecules is comparable to the object's size!"
+  },
+  {
+    "name": "Cavitation & Vapor Pressure",
+    "keywords": ["cavitation", "vapor pressure", "saturation pressure", "boiling", "bubbles", "collapse", "erosion"],
+    "formula": "Cavitation occurs if: P_local < P_vapor",
+    "desc": "If the local static pressure in a flowing liquid drops below its vapor pressure at that temperature, the liquid boils locally and forms destructive vapor bubbles.",
+    "trap": "STUDENT MISTAKE: Believing water only boils at high temperatures (like 100°C). Water can violently boil at room temperature (20°C) inside a pipe if a pump or valve causes the local pressure to drop below 2.34 kPa!"
+  },
+  {
+    "name": "Coefficient of Compressibility (Bulk Modulus, K)",
+    "keywords": ["compressibility", "bulk modulus", "density change", "isothermal", "ideal gas"],
+    "formula": "K = -V * (∂P / ∂V)_T = ρ * (∂P / ∂ρ)_T",
+    "desc": "Measures a fluid's resistance to compression. A higher K means the fluid is more incompressible (liquids have huge K values).",
+    "trap": "STUDENT MISTAKE: Trying to derive K for an Ideal Gas from scratch. For an IDEAL GAS at constant temperature (isothermal), the bulk modulus K is EXACTLY equal to its absolute pressure (K = P). Save time in the exam!"
+  },
+  {
+    "name": "Dynamic (μ) vs Kinematic (ν) Viscosity",
+    "keywords": ["dynamic viscosity", "kinematic viscosity", "shear stress", "stokes", "poise", "momentum diffusivity"],
+    "formula": "ν = μ / ρ",
+    "desc": "Dynamic viscosity (μ) is the internal resistance to shear. Kinematic viscosity (ν) is the ratio of dynamic viscosity to density.",
+    "validations": "Dynamic Units: Pa·s or Poise | Kinematic Units: m²/s or Stokes.",
+    "trap": "STUDENT MISTAKE: Mixing up the units! Questions often give viscosity in Poise or Stokes to trick you. 1 Poise = 0.1 Pa·s, and 1 Stoke = 10^-4 m²/s. Not converting these is the #1 reason for wrong Reynolds Number calculations."
+  },
+  {
+    "name": "Capillary Effect & Contact Angle (ϕ)",
+    "keywords": ["capillary", "meniscus", "rise", "fall", "cohesive", "adhesive", "wetting", "surface tension"],
+    "formula": "Capillary Rise (h) = (2 * σ_s * cosϕ) / (ρ * g * R)",
+    "desc": "The rise or fall of a liquid in a narrow tube depending on whether adhesive forces (wetting) or cohesive forces (non-wetting) dominate.",
+    "trap": "STUDENT MISTAKE: Assuming all fluids 'rise' in a capillary. If the contact angle is > 90° (like mercury on glass), cohesive forces are stronger than adhesive. The fluid does NOT wet the surface, resulting in a capillary DEPRESSION (h is negative)!"
+  },
+  {
+    "name": "Absolute vs Gage Pressure",
+    "keywords": ["absolute", "gage", "vacuum", "atmospheric", "pressure", "hydrostatic"],
+    "formula": "P_abs = P_atm + P_gage",
+    "desc": "Absolute pressure is measured relative to a perfect vacuum. Gage pressure is measured relative to local atmospheric pressure.",
+    "trap": "STUDENT MISTAKE: Using Gage pressure in the Ideal Gas Law (Pv = RT) or thermodynamic calculations! You MUST always use Absolute Pressure when calculating density or temperatures of gases."
+  },
+  {
+    "name": "Pascal's Law (Hydraulic Leverage)",
+    "keywords": ["pascal's law", "hydraulic", "lift", "pressure", "piston", "mechanical advantage"],
+    "formula": "P1 = P2  ⟹  F1/A1 = F2/A2",
+    "desc": "Pressure applied to a confined fluid increases the pressure everywhere by the same amount, allowing small forces to lift heavy weights.",
+    "validations": "📌 The mechanical advantage is equal to the ratio of the areas (A2/A1).",
+    "trap": "STUDENT MISTAKE: Thinking a hydraulic lift creates 'free energy'. While the force multiplies (F2 > F1), the WORK done remains exactly the same! The smaller piston must move a much larger distance to lift the heavy weight."
+  },
+  {
+    "name": "Center of Pressure (Hydrostatic Force)",
+    "keywords": ["center of pressure", "centroid", "hydrostatic force", "submerged", "plane surface"],
+    "formula": "y_p = y_c + I_xx,c / (y_c * A)",
+    "desc": "The exact point where the total resultant hydrostatic force acts on a submerged plane surface.",
+    "trap": "STUDENT MISTAKE: Assuming the resultant pressure force acts at the geometric center (Centroid). Because pressure increases with depth, the Center of Pressure is ALWAYS mathematically below the centroid (unless the plate is perfectly horizontal)!"
+  },
+  {
+    "name": "Archimedes' Principle (Buoyancy)",
+    "keywords": ["archimedes", "buoyancy", "buoyant force", "submerged", "floating", "displaced fluid", "float"],
+    "formula": "F_B = ρ_fluid * g * V_submerged",
+    "desc": "The upward buoyant force equals the WEIGHT of the fluid displaced by the body.",
+    "trap": "STUDENT MISTAKE: Using the density of the *solid object* instead of the *fluid* to calculate buoyant force. Also, using the total volume instead of just the *submerged* volume! Always use ρ_fluid and V_submerged."
+  },
+  {
+    "name": "Stability of Floating Bodies (Metacenter)",
+    "keywords": ["stability", "metacenter", "center of gravity", "center of buoyancy", "floating", "overturning", "ship"],
+    "formula": "Stable if: Metacenter (M) is ABOVE Center of Gravity (G)",
+    "desc": "A floating body is rotationally stable if a small disturbance creates a restoring moment, governed by the metacentric height (GM).",
+    "trap": "STUDENT MISTAKE: Thinking the Center of Gravity (G) MUST be below the Center of Buoyancy (B) for stability. False! A ship floats perfectly stable even with heavy cargo on deck (G above B), as long as its METACENTER (M) remains above G."
+  },
+  {
+    "name": "Fluid Rigid-Body Motion (Isobars)",
+    "keywords": ["rigid body", "acceleration", "rotation", "isobar", "free surface", "vortex", "paraboloid"],
+    "formula": "dz/dx = - a_x / (g + a_z)",
+    "desc": "When a fluid moves as a solid block (constant linear acceleration or rotation), shear stresses vanish, and pressure surfaces tilt or curve.",
+    "trap": "STUDENT MISTAKE: Assuming pressure only varies vertically. In a fluid accelerating horizontally or rotating, pressure ALSO varies radially or horizontally! A rotating coffee cup has a parabolic free surface, and pressure at the walls is much higher than at the center."
+  },
+  {
+    "name": "Lagrangian vs Eulerian Approach",
+    "keywords": ["lagrangian", "eulerian", "control volume", "fluid particle", "tracking", "probe"],
+    "formula": "Lagrangian = Track Particle | Eulerian = Track Space",
+    "desc": "Lagrangian tracks individual fluid particles as they move (like tracking a specific car). Eulerian anchors a probe in a fixed volume and watches fluid pass by (like a traffic camera).",
+    "trap": "STUDENT MISTAKE: Thinking weather balloons are Eulerian! Even though they measure data, they MOVE WITH the fluid. Any probe that floats and travels with the fluid is a Lagrangian measurement. A probe fixed to the ground or a stationary airplane wing is Eulerian."
+  },
+  {
+    "name": "Material (Substantial) Derivative",
+    "keywords": ["material derivative", "total derivative", "local acceleration", "advective acceleration", "convective"],
+    "formula": "D/Dt = ∂/∂t + (V · ∇)",
+    "desc": "Transforms Lagrangian tracking into the Eulerian frame. It consists of Local change (change over time at a fixed point) and Advective change (change due to particle moving to a new location).",
+    "trap": "STUDENT MISTAKE: Assuming acceleration is ZERO in a steady flow! In a steady flow, the *local* acceleration (∂V/∂t) is zero, but the *advective* acceleration (V·∇V) can be huge (e.g., water speeding up as it enters a narrow nozzle)."
+  },
+  {
+    "name": "Streamlines, Pathlines & Streaklines",
+    "keywords": ["streamline", "pathline", "streakline", "dye", "smoke", "flow visualization"],
+    "formula": "Steady Flow: Streamline = Pathline = Streakline",
+    "desc": "Streamline: Snapshot of velocity directions. Pathline: Actual history of one particle. Streakline: Locus of all particles that passed through a single injection point (like a smoke wand).",
+    "trap": "STUDENT MISTAKE: Forgetting the golden rule of Unsteady flow! In an unsteady (time-varying) flow, these three lines are ALWAYS completely different from each other. They only perfectly overlap in STEADY flow."
+  },
+  {
+    "name": "Volumetric Strain Rate (Dilation)",
+    "keywords": ["volumetric strain rate", "dilation", "incompressible", "divergence", "velocity field"],
+    "formula": "1/V * (DV/Dt) = ∇ · V = (∂u/∂x + ∂v/∂y + ∂w/∂z)",
+    "desc": "The rate at which a fluid element's volume expands or shrinks as it moves.",
+    "validations": "📌 For an incompressible flow, the volumetric strain rate (divergence of velocity) is EXACTLY ZERO.",
+    "trap": "STUDENT MISTAKE: Mixing up linear strain with volumetric strain. A fluid element can be stretched in the x-direction and squashed in the y-direction (linear strains exist), but if its total volume doesn't change, the volumetric strain rate is zero!"
+  },
+  {
+    "name": "Vorticity (ζ) and Rotationality",
+    "keywords": ["vorticity", "curl", "angular velocity", "rotational", "irrotational", "zeta"],
+    "formula": "Vorticity (ζ) = ∇ × V = 2 * ω (Angular Velocity)",
+    "desc": "Vorticity is the curl of the velocity field. It mathematically represents twice the angular velocity of a fluid particle.",
+    "trap": "STUDENT MISTAKE: Thinking 'Irrotational flow' means the fluid moves in straight lines. False! Fluid can move in a perfect circle (like a free vortex or a line sink) and still be completely IRROTATIONAL as long as the individual fluid particles aren't spinning on their own axes!"
+  },
+  {
+    "name": "Reynolds Transport Theorem (RTT)",
+    "keywords": ["rtt", "reynolds transport theorem", "system", "control volume", "extensive property"],
+    "formula": "dB_sys/dt = (d/dt ∫_CV ρb dV) + ∫_CS ρb (V_r · n) dA",
+    "desc": "The ultimate bridge between System (Lagrangian) and Control Volume (Eulerian) physics. It tracks how much of an extensive property (B) changes within the CV and how much flows out.",
+    "trap": "STUDENT MISTAKE: Messing up the dot product (V_r · n) at the boundaries. The normal vector (n) always points OUTWARD. So, for flow EXITING the control volume, the term is POSITIVE. For flow ENTERING, the term is NEGATIVE."
+  },
+  {
+    "name": "Bernoulli Equation Limits & Validity",
+    "keywords": ["bernoulli", "assumptions", "frictionless", "steady", "incompressible", "streamline"],
+    "formula": "Valid ONLY IF: Steady + Incompressible + Inviscid + No Shaft Work",
+    "desc": "The holy grail of fluid mechanics, but it only works for idealized fluid streams where mechanical energy isn't lost to friction or changed by machines.",
+    "trap": "STUDENT MISTAKE: Applying Bernoulli across a pump, turbine, or through a boundary layer! If there's a machine or high friction (viscous region), Bernoulli fails completely. You MUST use the General Energy Equation instead."
+  },
+  {
+    "name": "Hydraulic vs Energy Grade Lines (HGL & EGL)",
+    "keywords": ["hgl", "egl", "hydraulic grade line", "energy grade line", "head", "piezometer", "pitot"],
+    "formula": "EGL = HGL + (Velocity Head)",
+    "desc": "HGL shows the static pressure + elevation. EGL shows the total mechanical energy. EGL is ALWAYS physically above HGL by a distance of V²/2g.",
+    "trap": "STUDENT MISTAKE: Thinking pipe elevation above the HGL is safe. If a physical pipe goes mathematically ABOVE its own HGL, the pressure inside drops below atmospheric (vacuum/negative pressure), which is a guaranteed recipe for catastrophic cavitation!"
+  },
+  {
+    "name": "Stagnation vs Static Pressure (Pitot Tube)",
+    "keywords": ["stagnation", "static", "dynamic", "pitot tube", "piezometer", "velocity"],
+    "formula": "P_stagnation = P_static + P_dynamic",
+    "desc": "Static pressure is the actual fluid pressure. Stagnation pressure is the absolute max pressure felt when the fluid crashes into a dead stop (like the tip of a Pitot probe).",
+    "trap": "STUDENT MISTAKE: Thinking a Pitot tube directly measures 'velocity'. It doesn't! A pure Pitot tube ONLY measures total stagnation pressure. You need a separate static pressure tap (or a combined Pitot-Static probe) to find the dynamic difference and calculate velocity."
+  },
+  {
+    "name": "Kinetic Energy Correction Factor (α)",
+    "keywords": ["alpha", "kinetic energy correction", "velocity profile", "laminar", "turbulent"],
+    "formula": "Laminar: α = 2.0 | Turbulent: α ≈ 1.05",
+    "desc": "Corrects the kinetic energy equation (V²/2g) because real fluids don't move at a single uniform average velocity; they have parabolic or fluctuating profiles.",
+    "trap": "STUDENT MISTAKE: Ignoring 'α' in Laminar flow problems! If you just use (V_avg² / 2g) for a laminar pipe, your kinetic energy calculation will be EXACTLY 50% wrong because α = 2.0. Always multiply the velocity head by α!"
+  },
+  {
+    "name": "Flow Energy (Flow Work)",
+    "keywords": ["flow energy", "flow work", "enthalpy", "open system", "control volume"],
+    "formula": "Flow Energy = P / ρ",
+    "desc": "The invisible 'pushing' work required by the fluid behind to force a unit mass of fluid into or out of a control volume.",
+    "trap": "STUDENT MISTAKE: Adding flow energy (P/ρ) to a CLOSED system energy balance. Flow energy literally only exists at the boundary of an OPEN system (Control Volume) where fluid is actively crossing. No mass flow = No flow energy!"
+  },
+  {
+    "name": "Conservation of Mass vs Volume",
+    "keywords": ["mass flow rate", "volume flow rate", "compressibility", "continuity"],
+    "formula": "Mass is ALWAYS conserved. Volume is NOT.",
+    "desc": "What goes in must come out (in steady state) in terms of MASS (kg/s). But the volume (m³/s) can easily shrink or expand depending on density changes.",
+    "trap": "STUDENT MISTAKE: Applying Q_in = Q_out (Volume flow in = out) for air compressors or gas systems! Q_in = Q_out ONLY works for perfectly incompressible fluids (liquids). For gases, you MUST use m_in = m_out (ρ1*Q1 = ρ2*Q2) or you will get completely wrong answers."
+  },
+  {
+    "name": "Body Forces vs. Surface Forces",
+    "keywords": ["body force", "surface force", "weight", "gravity", "pressure", "friction", "viscous"],
+    "formula": "Rule: Body = Acts on Volume | Surface = Acts on Boundaries",
+    "desc": "Body forces act invisibly on the entire mass of the fluid from a distance (like gravity/weight or magnetism). Surface forces act only where the fluid physically touches a boundary (like pressure pushing on a wall or viscous friction).",
+    "trap": "STUDENT MISTAKE: Confusing Pressure as a body force. Pressure is strictly a SURFACE force! It only pushes against the control surface boundaries, it doesn't pull the entire volume from the inside."
+  },
+  {
+    "name": "The Helicopter Hovering Paradox",
+    "keywords": ["helicopter", "hover", "density", "altitude", "temperature", "power", "momentum"],
+    "formula": "Rule: Lower Air Density = Higher Power Required",
+    "desc": "A helicopter hovers by imparting downward momentum to the air. If the air is thin (less dense), the rotors must spin much faster and work harder to push the same mass of air.",
+    "trap": "STUDENT MISTAKE: Assuming a helicopter performs better in hot summer air. False! Hot air expands and becomes LESS dense. A helicopter engine has to work significantly harder to hover in the summer or at high mountain altitudes compared to a cold day at sea level."
+  },
+  {
+    "name": "The Rocket Exhaust Velocity Myth",
+    "keywords": ["rocket", "space", "exhaust velocity", "momentum", "thrust", "limit"],
+    "formula": "Rule: Rocket Velocity CAN exceed its own Exhaust Velocity",
+    "desc": "A rocket propels itself by continuously throwing mass backward. Because space has no friction, the continuous thrust keeps accelerating the rocket regardless of how fast the gas is leaving the nozzle.",
+    "trap": "STUDENT MISTAKE: Believing a rocket can only go as fast as the gases shooting out of its back. A rocket can easily travel much faster than its own exhaust velocity due to the continuous expulsion of mass over time!"
+  },
+  {
+    "name": "The U-Turn Momentum Trap (Firehose Effect)",
+    "keywords": ["u-turn", "hose", "firefighter", "reaction force", "momentum change", "direction"],
+    "formula": "Rule: Reversing flow creates DOUBLE the reaction force of just stopping it.",
+    "desc": "Momentum is a VECTOR. When fluid changes direction completely (like a U-turn), the change in velocity is [V - (-V)] = 2V, causing a massive reaction force.",
+    "trap": "STUDENT MISTAKE: Thinking holding a straight hose requires the same strength as a hose with a U-turn nozzle. Making water do a 180-degree U-turn creates TWICE the momentum change, meaning the firefighter feels double the backward kick!"
+  },
+  {
+    "name": "Gage Pressure Cancellation Rule",
+    "keywords": ["gage pressure", "atmospheric pressure", "momentum equation", "control volume", "force"],
+    "formula": "Rule: Always use Gage Pressure if CV is fully exposed to Atmosphere.",
+    "desc": "Because atmospheric pressure pushes equally from all outer sides of a control volume, its net effect is mathematically zero. Using Gage pressure automatically removes this clutter.",
+    "trap": "STUDENT MISTAKE: Wasting 10 minutes in the exam adding 101.325 kPa (Patm) to absolute pressure calculations, only to realize it cancels out on both sides of the pipe. Unless specifically calculating absolute fluid properties, always default to Gage pressure for force balances!"
+  },
+  {
+    "name": "Dimensional Homogeneity & Pure Numbers",
+    "keywords": ["dimensional homogeneity", "additive terms", "units", "equation", "consistency", "pure constant"],
+    "formula": "Rule: You cannot add Mass to Length!",
+    "desc": "Every single additive term in an equation must represent the exact same physical dimension. If an equation has A = B + C, then A, B, and C must all have the same dimensions.",
+    "trap": "STUDENT MISTAKE: Forgetting that pure numbers, angles, and exponents (like e^x or sin(θ)) are strictly DIMENSIONLESS {1}. If a formula has e^(a*t), the product of 'a' and 't' MUST cancel out to be completely dimensionless, otherwise the physics is broken!"
+  },
+  {
+    "name": "The Three Levels of Complete Similarity",
+    "keywords": ["complete similarity", "geometric", "kinematic", "dynamic", "scale model", "prototype"],
+    "formula": "Rule: Complete Similarity = Geometric + Kinematic + Dynamic",
+    "desc": "For a wind tunnel model to perfectly predict a real airplane, it must match in Shape (Geometric), Velocity/Flow patterns (Kinematic), and Force ratios (Dynamic).",
+    "trap": "STUDENT MISTAKE: Thinking that just building an exact 1:10 scale model (Geometric Similarity) is enough. If the force ratios (Dynamic Similarity) don't match, your scale model might show smooth flow while the real airplane experiences violent turbulence!"
+  },
+  {
+    "name": "Buckingham Pi Theorem (Choosing Repeating Variables)",
+    "keywords": ["buckingham pi", "repeating variables", "dimensions", "pi groups", "dependent variable"],
+    "formula": "Rule: Never pick the Dependent Variable as a repeating variable!",
+    "desc": "A systematic method to reduce a complex problem with 'n' variables into a smaller set of 'k' independent dimensionless groups, vastly saving time and money in experimental testing.",
+    "trap": "STUDENT MISTAKE: Picking the ultimate thing you want to find (like Drag Force) as a repeating variable. If you do this, your Drag Force will scatter across multiple Pi groups, making it mathematically impossible to isolate and solve for it!"
+  },
+  {
+    "name": "Physical Meaning of Dimensionless Numbers",
+    "keywords": ["reynolds number", "froude number", "mach number", "ratio of forces", "inertial force"],
+    "formula": "Rule: Dimensionless Number = (Inertia Force) / (Other Force)",
+    "desc": "These numbers aren't just random math; they represent a physical battle of forces. Reynolds = Inertia vs Viscous. Froude = Inertia vs Gravity. Mach = Flow Speed vs Speed of Sound.",
+    "trap": "STUDENT MISTAKE: Memorizing the math but failing the interview logic. Interviewers ask: 'Why is Froude number important for ships but completely ignored for deeply submerged submarines?' Answer: Because Froude deals with gravity/free-surface waves, which a deep submarine doesn't create!"
+  },
+  {
+    "name": "Incomplete Similarity & Reynolds Independence",
+    "keywords": ["incomplete similarity", "reynolds independence", "bluff body", "drag coefficient", "wind tunnel", "extrapolation"],
+    "formula": "Rule: Sometimes matching every Pi group is physically impossible.",
+    "desc": "If you can't match all parameters (like Re and Fr at the same time), we rely on 'Reynolds Independence'—where parameters like Drag Coefficient flatten out and become constant at very high speeds.",
+    "trap": "STUDENT MISTAKE: Trying to match both Froude and Reynolds numbers for a ship model using the same fluid (water). It's mathematically impossible unless your model is exactly 1:1 scale! You must purposefully distort the model or accept incomplete similarity."
+  },
+  {
+    "name": "Dimensions vs. Units",
+    "keywords": ["dimension", "unit", "primary dimension", "physical quantity", "work", "torque"],
+    "formula": "Dimension = The Concept | Unit = The Standard",
+    "desc": "A dimension is the fundamental physical concept (like Mass or Time). A unit is just the human-invented standard to measure it (like Kilograms or Seconds).",
+    "trap": "STUDENT MISTAKE: Assuming 'Work' and 'Torque' are the exact same physical thing just because they both have units of Newton-meters (N·m) and dimensions of {M*L²/t²}. Torque is a vector cross product, Work is a scalar dot product!"
+  },
+  {
+    "name": "Laminar vs. Turbulent Pipe Flow (Reynolds Number)",
+    "keywords": ["laminar", "turbulent", "reynolds number", "critical", "internal flow", "pipe"],
+    "formula": "Re = (ρ * V_avg * D) / μ",
+    "desc": "The ultimate predictor of flow regime in a pipe. It compares the powerful inertial forces pushing the fluid forward against the sticky viscous forces holding it back.",
+    "trap": "STUDENT MISTAKE: Memorizing Re = 5,00,000 for pipes! 500,000 is for a FLAT PLATE. For internal flow in a CIRCULAR PIPE, the critical Reynolds number is strictly 2300. Anything below 2300 is definitely Laminar."
+  },
+  {
+    "name": "Hydrodynamic Entry Length (L_h)",
+    "keywords": ["entry length", "developing flow", "fully developed", "boundary layer", "laminar", "turbulent"],
+    "formula": "Laminar: L_h ≈ 0.05 * Re * D | Turbulent: L_h ≈ 10 * D",
+    "desc": "The distance it takes for the viscous boundary layers to grow from the pipe walls and merge in the center, after which the velocity profile stops changing (Fully Developed).",
+    "trap": "STUDENT MISTAKE: Assuming pressure drop is constant everywhere in a pipe. In the Entrance Region, the wall shear stress is drastically higher because the boundary layer is thin. Therefore, the pressure drops much FASTER at the entrance than in the fully developed region!"
+  },
+  {
+    "name": "Laminar Flow Velocity Profile (Parabolic)",
+    "keywords": ["laminar profile", "parabolic", "maximum velocity", "average velocity", "centerline"],
+    "formula": "V_avg = V_max / 2  (Only for Laminar Circular Pipe)",
+    "desc": "In perfectly laminar pipe flow, the velocity profile is a beautiful parabola. The fluid at the dead center moves exactly twice as fast as the average bulk flow.",
+    "trap": "STUDENT MISTAKE: Applying V_avg = V_max / 2 to TURBULENT flow! In turbulent flow, intense mixing makes the profile very flat (plug-like), not parabolic. For turbulent flow, V_avg is usually around 80-85% of V_max, never 50%!"
+  },
+  {
+    "name": "Major Losses vs. Minor Losses",
+    "keywords": ["major loss", "minor loss", "friction factor", "darcy", "valves", "fittings", "equivalent length"],
+    "formula": "Major = f*(L/D)*(V²/2g) | Minor = K_L*(V²/2g)",
+    "desc": "Major losses are due to the pure straight-pipe wall friction over long distances. Minor losses are caused by violent flow separation and mixing at valves, bends, and sudden expansions.",
+    "trap": "STUDENT MISTAKE: Thinking 'Minor' losses are always small! If a pipeline is very short but has a half-closed globe valve (K_L = 10), the 'Minor' loss will be massively larger than the 'Major' pipe friction loss. The name is historically misleading!"
+  },
+  {
+    "name": "The Moody Chart (Friction Factor)",
+    "keywords": ["moody chart", "friction factor", "relative roughness", "colebrook", "fully rough"],
+    "formula": "Laminar: f = 64/Re (Independent of roughness ε)",
+    "desc": "The master chart for finding the Darcy friction factor (f). It depends on both Reynolds Number (Re) and relative pipe roughness (ε/D).",
+    "trap": "STUDENT MISTAKE: Trying to find pipe roughness (ε) to calculate pressure drop in Laminar flow. In laminar flow, the fluid glides over the microscopic wall bumps. The friction factor is simply 64/Re. Roughness ONLY matters when the flow is Turbulent!"
+  },
+  {
+    "name": "Obstruction Flowmeters (Orifice, Nozzle, Venturi)",
+    "keywords": ["flowmeter", "orifice", "venturi", "nozzle", "bernoulli", "pressure drop", "discharge coefficient"],
+    "formula": "V_throat ∝ √(P1 - P2)",
+    "desc": "These meters purposefully restrict the pipe to force the fluid to speed up (increasing kinetic energy), which causes a massive, measurable drop in static pressure (Bernoulli's principle).",
+    "trap": "STUDENT MISTAKE: Thinking an Orifice meter is 'better' because it's cheaper. An Orifice meter creates a violent flow separation (Vena Contracta), causing a huge IRREVERSIBLE pressure loss in your system. A Venturi meter is expensive but smoothly recovers almost all the pressure!"
+  },
+  {
+    "name": "Control Volume vs. Differential Analysis",
+    "keywords": ["differential analysis", "control volume", "macro", "micro", "black box", "flow field"],
+    "formula": "Rule: CV = Macro (Black Box) | Differential = Micro (Every Point)",
+    "desc": "Control Volume only cares about what goes IN and comes OUT (gross forces/flow). Differential Analysis calculates the exact velocity and pressure at every single microscopic point inside the flow.",
+    "trap": "STUDENT MISTAKE: Thinking Differential Analysis is always better. For 95% of engineering problems (like finding force on a pipe bend), Differential Analysis is impossible without supercomputers (CFD). Always use Control Volume unless you specifically need the internal velocity profile!"
+  },
+  {
+    "name": "Physical Meaning of Divergence (∇·V = 0)",
+    "keywords": ["divergence", "incompressible", "continuity", "volumetric strain rate", "volume change"],
+    "formula": "Rule: ∇·V = 0 means ZERO Volume Change",
+    "desc": "The differential continuity equation for incompressible flow simply states that the volumetric strain rate is zero. A fluid element's volume remains permanently constant as it moves.",
+    "trap": "STUDENT MISTAKE: Believing that ∇·V = 0 means the fluid element cannot change SHAPE. False! A fluid element can be stretched, twisted, and distorted heavily by shear and linear strains. It just can't change its TOTAL VOLUME."
+  },
+  {
+    "name": "The Magic of Stream Function (ψ)",
+    "keywords": ["stream function", "streamline", "2d flow", "incompressible", "volume flow rate", "psi"],
+    "formula": "Rule: Δψ = Volume Flow Rate (per unit width)",
+    "desc": "A mathematical trick for 2D incompressible flows. If you draw lines where ψ is constant, you get the exact physical streamlines of the flow.",
+    "trap": "STUDENT MISTAKE: Treating ψ just as a random mathematical constant. The numerical difference between two streamlines (ψ2 - ψ1) has a direct physical meaning: it is EXACTLY the volumetric flow rate passing between those two lines!"
+  },
+  {
+    "name": "The Navier-Stokes Pressure Anomaly",
+    "keywords": ["navier stokes", "pressure gradient", "absolute pressure", "incompressible", "boundary condition"],
+    "formula": "Rule: Absolute Pressure does NOT drive incompressible flow; only Differences do!",
+    "desc": "In the incompressible Navier-Stokes equation, pressure ONLY appears as a gradient (∇P). The flow doesn't care if the absolute pressure is 1 atm or 1000 atm.",
+    "trap": "STUDENT MISTAKE: Trying to calculate the exact absolute pressure of a fluid using only the N-S equations. You mathematically CANNOT! Because it's a gradient, you can add 10,000 Pa to the entire system and the velocity won't change at all. You MUST have a known pressure boundary condition to anchor it."
+  },
+  {
+    "name": "Why Navier-Stokes is Unsolvable (The Nonlinearity)",
+    "keywords": ["navier stokes", "nonlinear", "advective acceleration", "convective", "viscous", "analytical solution"],
+    "formula": "Rule: Advective Acceleration is the villain, not Friction!",
+    "desc": "The Navier-Stokes equations are famously unsolvable for general cases (a $1 Million math prize exists for it) because they are nonlinear partial differential equations.",
+    "trap": "STUDENT MISTAKE: Thinking the complex 'viscous friction' term (μ∇²V) makes the equation nonlinear and hard to solve. The friction term is actually linear! The true nightmare is the Advective Acceleration term (V·∇V), where velocity multiplies its own derivative, causing the extreme nonlinearity and turbulence."
+  },
+  {
+    "name": "Solid Boundary vs. Free Surface (Boundary Conditions)",
+    "keywords": ["boundary condition", "no-slip", "free surface", "shear stress", "interface", "velocity"],
+    "formula": "Rule: Solid = Zero Velocity (No-Slip) | Free Surface = Zero Shear Stress",
+    "desc": "To solve any differential fluid problem, you need boundary conditions. At a solid wall, fluid sticks (velocity matches wall). At a liquid-gas free surface, the gas offers almost no resistance.",
+    "trap": "STUDENT MISTAKE: Applying the 'No-Slip' condition to the top surface of a river! Air doesn't hold water still. At a free surface, the VELOCITY is not zero; instead, the SHEAR STRESS is assumed to be zero."
+  },
+  {
+    "name": "Creeping Flow (Stokes Flow / Re ≪ 1)",
+    "keywords": ["creeping flow", "stokes flow", "low reynolds number", "microorganism", "viscous", "inertia", "density"],
+    "formula": "Rule: Viscosity is King, Inertia is Dead.",
+    "desc": "When fluid moves incredibly slowly, or the object is microscopic (like bacteria), viscous forces completely overpower inertial forces. The flow acts like thick honey.",
+    "trap": "STUDENT MISTAKE: Thinking density matters in creeping flow. In true creeping flow (Re ≪ 1), the density term (ρ) completely drops out of the Navier-Stokes equation! Aerodynamic drag on a dust particle depends ONLY on the fluid's viscosity, not its density."
+  },
+  {
+    "name": "Euler Equation (Inviscid Flow / Re ≫ 1)",
+    "keywords": ["euler equation", "inviscid", "high reynolds number", "no-slip", "navier stokes"],
+    "formula": "Rule: Inertia is King, Viscosity is Ignored.",
+    "desc": "An approximation used far away from solid walls where the fluid moves so fast that viscous friction becomes mathematically insignificant compared to momentum and pressure.",
+    "trap": "STUDENT MISTAKE: Believing 'inviscid flow' means the fluid literally has zero viscosity. False! The fluid is still viscous (like water or air), but the *net viscous forces* are so small compared to inertial forces that we cross them out of the equation to save time."
+  },
+  {
+    "name": "D'Alembert's Paradox (Potential Flow)",
+    "keywords": ["d'alembert's paradox", "potential flow", "irrotational", "drag", "aerodynamic", "cylinder"],
+    "formula": "Rule: Perfect Math = Zero Physical Drag",
+    "desc": "If you calculate the flow of a perfectly inviscid and irrotational fluid around any object (like a cylinder), the high pressure at the front is perfectly balanced by the high pressure at the back.",
+    "trap": "STUDENT MISTAKE: Trusting potential flow to calculate drag! D'Alembert proved that potential flow math predicts EXACTLY ZERO aerodynamic drag for any shape. In reality, boundary layers separate and create a low-pressure wake at the rear, causing massive pressure drag."
+  },
+  {
+    "name": "The Boundary Layer Approximation (Prandtl)",
+    "keywords": ["boundary layer", "prandtl", "thin", "pressure gradient", "outer flow", "viscous"],
+    "formula": "Rule: ∂P/∂y = 0 (Pressure is constant across the layer)",
+    "desc": "Prandtl's genius idea: Split the flow into an 'Outer' inviscid region and a 'Thin Inner' viscous boundary layer. The boundary layer is so incredibly thin that pressure doesn't have room to change vertically.",
+    "trap": "STUDENT MISTAKE: Trying to solve for pressure *inside* the boundary layer. You don't have to! Because ∂P/∂y = 0, the pressure inside the boundary layer is dictated entirely by the 'Outer' inviscid flow riding above it."
+  },
+  {
+    "name": "Displacement (δ*) vs. Momentum (θ) Thickness",
+    "keywords": ["displacement thickness", "momentum thickness", "boundary layer", "mass flow", "momentum flux"],
+    "formula": "Rule: δ* = Missing Mass | θ = Missing Momentum",
+    "desc": "Because fluid slows down near a wall, the flow loses some mass flow rate and momentum compared to if there were no wall. Displacement thickness (δ*) is always physically larger than Momentum thickness (θ).",
+    "trap": "STUDENT MISTAKE: Confusing what they physically represent. Displacement thickness (δ*) tells you how much you need to visually 'thicken' the solid wall to pretend the flow is perfectly uniform. Momentum thickness (θ) directly relates to the physical skin friction drag on the plate."
+  },
+  {
+    "name": "Flow Separation (Adverse Pressure Gradient)",
+    "keywords": ["flow separation", "adverse pressure gradient", "favorable", "wake", "boundary layer", "reverse flow"],
+    "formula": "Rule: Separation ONLY happens if dP/dx > 0",
+    "desc": "If the flow is expanding and slowing down (Adverse Pressure Gradient), the pressure pushes backward against the flow. Eventually, the tired boundary layer fluid stops and reverses direction, tearing away from the wall.",
+    "trap": "STUDENT MISTAKE: Thinking laminar boundary layers are 'better'. Turbulent boundary layers have violent mixing that pulls high-energy fluid down to the wall. This makes turbulent flow vastly MORE resistant to flow separation than smooth, fragile laminar flow!"
+  },
+  {
+    "name": "Skin Friction Drag vs. Form (Pressure) Drag",
+    "keywords": ["skin friction", "form drag", "pressure drag", "bluff body", "streamlined", "separation"],
+    "formula": "Total Drag = Friction Drag + Pressure Drag",
+    "desc": "Friction drag comes from the fluid 'rubbing' against the surface (Viscosity). Pressure drag comes from the high-pressure front and the low-pressure wake at the back (Separation).",
+    "trap": "STUDENT MISTAKE: Thinking 'Streamlining' always reduces total drag. Streamlining heavily reduces Pressure Drag (by closing the wake), but because it makes the object longer, it actually INCREASES Skin Friction Drag! You have to find the perfect middle ground."
+  },
+  {
+    "name": "The Drag Crisis (Golf Ball Paradox)",
+    "keywords": ["drag crisis", "golf ball", "dimples", "roughness", "turbulent boundary layer", "separation", "wake"],
+    "formula": "Rule: Turbulence Delays Separation = Smaller Wake",
+    "desc": "For bluff bodies (like spheres or cylinders), making the surface rough (like golf ball dimples) forces the boundary layer to become turbulent earlier.",
+    "trap": "STUDENT MISTAKE: Assuming roughness always increases drag. For bluff bodies at moderate speeds, roughness is GOOD! A turbulent boundary layer has more momentum, which helps it stick to the back of the ball longer, dramatically shrinking the low-pressure wake and reducing total drag."
+  },
+  {
+    "name": "Stokes' Law (Creeping Flow over a Sphere)",
+    "keywords": ["stokes law", "creeping flow", "sphere", "low reynolds number", "terminal velocity", "drag coefficient"],
+    "formula": "F_D = 3 * π * μ * V * D  (Valid ONLY for Re < 1)",
+    "desc": "The exact analytical solution for drag on a tiny, slow-moving sphere (like a dust particle settling). The Drag Coefficient here is mathematically exactly C_D = 24 / Re.",
+    "trap": "STUDENT MISTAKE: Using Stokes' Law for a baseball or a raindrop! Stokes' Law completely ignores fluid density (inertia). If Re > 1, the wake starts to form, pressure drag kicks in, and the 24/Re formula becomes totally useless."
+  },
+  {
+    "name": "Flow Separation & Stall",
+    "keywords": ["flow separation", "stall", "angle of attack", "airfoil", "lift", "adverse pressure gradient"],
+    "formula": "Rule: Separation destroys Lift and skyrockets Drag.",
+    "desc": "When an airplane wings tilts too high (high angle of attack), the fluid cannot negotiate the steep curve on the top surface. The flow tears away, creating a massive chaotic wake.",
+    "trap": "STUDENT MISTAKE: Believing lift keeps increasing as you tilt the wing higher. At the 'Stall Angle' (usually around 15°), the flow completely separates from the top surface. The airplane suddenly loses all its lift and starts falling like a rock!"
+  },
+  {
+    "name": "Frontal Area vs. Planform Area",
+    "keywords": ["frontal area", "planform area", "drag coefficient", "lift coefficient", "reference area", "bluff body", "airfoil"],
+    "formula": "Rule: Bluff Bodies = Frontal | Airfoils = Planform",
+    "desc": "The 'A' in the Drag/Lift formula is a reference area. For cars, cylinders, and spheres, we look at them from the FRONT (Frontal Area). For airplane wings, we look at them from the TOP (Planform Area).",
+    "trap": "STUDENT MISTAKE: Using the total surface area of a sphere to calculate drag! The formula C_D = F_D / (0.5*ρ*V²*A) requires 'A' to be the projected FRONTAL area. For a sphere, you must use A = (π/4)*D², NOT the surface area 4*π*r²!"
+  },
+  {
+    "name": "The Magnus Effect",
+    "keywords": ["magnus effect", "spinning", "lift", "cylinder", "sphere", "baseball", "tennis"],
+    "formula": "Rule: Spin + Forward Motion = Lift Force",
+    "desc": "When a ball spins as it flies through the air, it drags air along with it. This makes air move faster on one side (low pressure) and slower on the other side (high pressure), creating a net force.",
+    "trap": "STUDENT MISTAKE: Thinking curveballs curve because of air hitting the seams. It's pure fluid mechanics! A top-spin creates a downward force (making a tennis ball dip fast), while a back-spin creates an upward lift force (making a baseball seem to 'rise')."
+  },
+  {
+    "name": "Pipe Flow vs. Open-Channel Flow",
+    "keywords": ["open channel", "pipe flow", "driving force", "pressure", "gravity", "free surface"],
+    "formula": "Rule: Open Channel = Gravity Driven | Pipe = Pressure Driven",
+    "desc": "In a pipe, water is pushed by a pump (pressure gradient). In an open channel (like a river or half-full sewer), water falls downhill purely due to gravity.",
+    "trap": "STUDENT MISTAKE: Assuming pressure changes along the flow direction in an open channel. Since the top is exposed to the air, the pressure at the free surface is CONSTANT (Atmospheric) everywhere! Only gravity (elevation drop) drives the flow."
+  },
+  {
+    "name": "The Froude Number (Fr)",
+    "keywords": ["froude number", "critical flow", "subcritical", "supercritical", "wave speed", "gravity", "inertia"],
+    "formula": "Fr = V / √(g * y_c)",
+    "desc": "The open-channel equivalent of the Mach number. It compares the water's flow speed to the speed at which a surface wave can travel through that water.",
+    "trap": "STUDENT MISTAKE: Confusing flow regimes. If Fr < 1 (Subcritical/Tranquil), the water is moving slower than a wave, so a rock thrown in will send ripples UPSTREAM. If Fr > 1 (Supercritical/Rapid), the water sweeps all waves downstream immediately!"
+  },
+  {
+    "name": "Specific Energy & Alternate Depths",
+    "keywords": ["specific energy", "alternate depths", "critical depth", "minimum energy", "subcritical", "supercritical"],
+    "formula": "E_s = y + V² / (2g)",
+    "desc": "The total mechanical energy of the water measured strictly relative to the channel BOTTOM, not sea level.",
+    "trap": "STUDENT MISTAKE: Thinking a specific energy value corresponds to only ONE flow depth. For any given specific energy (except the absolute minimum), there are ALWAYS TWO mathematically possible depths: one deep/slow (subcritical) and one shallow/fast (supercritical)."
+  },
+  {
+    "name": "The Hydraulic Jump",
+    "keywords": ["hydraulic jump", "supercritical", "subcritical", "energy dissipation", "head loss", "froude number"],
+    "formula": "Rule: Supercritical (Fr > 1) ➔ Subcritical (Fr < 1)",
+    "desc": "A violent, churning transition where fast, shallow water suddenly crashes into slower water, rapidly rising in depth and destroying massive amounts of kinetic energy.",
+    "trap": "STUDENT MISTAKE: Thinking a hydraulic jump can happen in reverse. NEVER! A jump ONLY occurs when water goes from Supercritical (Fr>1) to Subcritical (Fr<1). Subcritical flow can never suddenly 'jump' into supercritical flow."
+  },
+  {
+    "name": "Hydraulic Radius (R_h) in Open Channels",
+    "keywords": ["hydraulic radius", "wetted perimeter", "cross section", "manning equation", "reynolds number"],
+    "formula": "R_h = A_c / p  (Area / Wetted Perimeter)",
+    "desc": "A crucial geometric parameter used instead of 'Diameter' for open channels to calculate friction and Reynolds number.",
+    "trap": "STUDENT MISTAKE: Calculating the full geometric perimeter. 'p' is ONLY the *Wetted Perimeter*—the length of the channel wall that actually physically touches the water. Do NOT include the invisible top line (free surface) exposed to the air!"
+  },
+  {
+    "name": "Manning's Equation & Normal Depth",
+    "keywords": ["manning", "uniform flow", "normal depth", "slope", "roughness"],
+    "formula": "V = (α / n) * R_h^(2/3) * S_0^(1/2)",
+    "desc": "The ultimate empirical formula to find the uniform flow velocity or 'Normal Depth' (y_n) in a long, straight channel based on bottom slope (S_0) and surface roughness (n).",
+    "trap": "STUDENT MISTAKE: Using Manning's equation for Rapidly Varied Flow (like over a weir or at a gate). Manning's equation is ONLY valid for perfectly UNIFORM flow where the water depth doesn't change along the channel length."
+  },
+  {
+    "name": "Pumps vs. Turbines (Energy Flow)",
+    "keywords": ["pump", "turbine", "energy", "pressure", "velocity", "head"],
+    "formula": "Pump: Adds Energy (Raises Pressure) | Turbine: Extracts Energy (Lowers Pressure)",
+    "desc": "Pumps consume mechanical shaft work to increase fluid energy (usually pressure). Turbines extract fluid energy (dropping pressure) to produce mechanical shaft work.",
+    "trap": "STUDENT MISTAKE: Assuming pumps always increase fluid VELOCITY. If a pump has identical inlet and outlet pipe diameters (D_in = D_out), the conservation of mass dictates that the average velocity MUST remain exactly the same! The pump only increases the fluid's PRESSURE, not its speed."
+  },
+  {
+    "name": "Net Positive Suction Head (NPSH) & Cavitation",
+    "keywords": ["npsh", "cavitation", "vapor pressure", "suction", "pump inlet", "boiling"],
+    "formula": "NPSH_available = (P_inlet / ρg) + (V_inlet² / 2g) - (P_vapor / ρg)",
+    "desc": "The margin of safety between the pressure at the pump inlet and the fluid's boiling point (vapor pressure). If NPSH drops too low, the liquid boils inside the pump.",
+    "trap": "STUDENT MISTAKE: Thinking cavitation happens at the pump *discharge* because pressure is highest there. False! Cavitation ALWAYS happens at the pump *suction (inlet)* or the eye of the impeller where the pressure drops to its absolute lowest point."
+  },
+  {
+    "name": "Pumps in Series vs. Parallel",
+    "keywords": ["series", "parallel", "pump curve", "head", "flow rate", "capacity"],
+    "formula": "Series = Add Heads (same Q) | Parallel = Add Flow Rates (same H)",
+    "desc": "Need to push water higher? Put pumps in SERIES. Need to move more water at the same height? Put pumps in PARALLEL.",
+    "trap": "STUDENT MISTAKE: Blindly putting mismatched pumps in series. If a small pump is put in series with a huge pump, the huge pump will pull more water than the small one can handle, forcing the small pump to act like a blockage (negative head) and literally wasting power!"
+  },
+  {
+    "name": "Pump Operating Point (Duty Point)",
+    "keywords": ["operating point", "duty point", "system curve", "pump curve", "head", "flow rate"],
+    "formula": "Rule: Operating Point is where H_pump = H_system",
+    "desc": "A pump doesn't just operate wherever it wants. It settles exactly at the intersection where the head the pump *can* supply matches the head the piping system *requires*.",
+    "trap": "STUDENT MISTAKE: Assuming a pump always operates at its Best Efficiency Point (BEP). The pump has no brain; it only obeys the system curve! If your piping system is poorly designed, the pump will operate far away from the BEP, wasting massive amounts of electricity."
+  },
+  {
+    "name": "Euler Turbomachine Equation (Torque)",
+    "keywords": ["euler turbomachine", "torque", "angular momentum", "tangential velocity", "impeller", "radius"],
+    "formula": "T_shaft = ṁ * (r_out * V_t,out - r_in * V_t,in)",
+    "desc": "The fundamental equation for all rotating fluid machines. It proves that shaft torque depends purely on the change in ANGULAR momentum of the fluid.",
+    "trap": "STUDENT MISTAKE: Using the total absolute velocity (V) in the Euler equation. The radial velocity (moving outwards) and axial velocity (moving along the shaft) produce ZERO torque! Only the TANGENTIAL component (V_t) swirling around the shaft does work."
+  },
+  {
+    "name": "Pump Specific Speed (N_sp)",
+    "keywords": ["specific speed", "pump type", "centrifugal", "axial", "mixed flow", "head", "flow rate"],
+    "formula": "Rule: Low N_sp = Centrifugal | High N_sp = Axial",
+    "desc": "A dimensionless number used to select the shape of the pump impeller based on required Head and Flow Rate. High Head/Low Flow needs a Centrifugal pump. Low Head/High Flow needs an Axial pump.",
+    "trap": "STUDENT MISTAKE: Thinking 'Specific Speed' is an actual physical RPM speed you can measure with a tachometer. It is a purely dimensionless shape factor used strictly for choosing between Centrifugal, Mixed, or Axial impeller designs!"
+  },
+  {
+    "name": "Grid Independence (The Golden Rule of CFD)",
+    "keywords": ["grid independence", "mesh refinement", "resolution", "convergence", "accuracy", "cells"],
+    "formula": "Rule: If refining the mesh changes the answer, your first answer was WRONG.",
+    "desc": "The mandatory process of continuously making the computational mesh finer (more cells) until the final results (like drag force or pressure drop) stop changing.",
+    "trap": "STUDENT MISTAKE: Running a CFD simulation once, getting a 'colorful' plot, and trusting it. A single CFD run is mathematically meaningless. You MUST prove your solution is independent of the grid size before showing that data to anyone!"
+  },
+  {
+    "name": "Mesh Quality (Equiangle Skewness)",
+    "keywords": ["skewness", "grid quality", "unstructured", "structured", "aspect ratio", "convergence"],
+    "formula": "Rule: Skewness must approach 0 (Perfect Shape).",
+    "desc": "A measure of how horribly distorted a computational cell is compared to a perfectly equilateral triangle or square. High skewness mathematically destroys the solver's accuracy.",
+    "trap": "STUDENT MISTAKE: Thinking 'more cells' automatically means 'better results'. A highly refined but badly skewed unstructured mesh will yield much worse results (and probably crash the solver) compared to a coarser, high-quality structured mesh!"
+  },
+  {
+    "name": "The Forced Symmetry Trap (Vortex Shedding)",
+    "keywords": ["symmetry boundary condition", "unsteady", "von karman", "vortex street", "cylinder", "bluff body"],
+    "formula": "Rule: Don't force symmetry on an inherently asymmetric flow!",
+    "desc": "Applying a symmetry boundary condition down the middle of a pipe/domain saves 50% computing time, but it mathematically BANS any alternating or wavy fluid phenomena from happening.",
+    "trap": "STUDENT MISTAKE: Using a half-cylinder symmetry model to find drag at Re = 150. At this speed, the flow naturally creates an alternating, unsteady von Kármán vortex street. Forcing symmetry kills this physics, giving you a completely fake, steady-state wake and massively underpredicting the drag!"
+  },
+  {
+    "name": "Laminar (Exact) vs. Turbulent (Modeled)",
+    "keywords": ["turbulence model", "dns", "k-epsilon", "eddies", "transition", "RANS", "laminar"],
+    "formula": "Rule: Laminar = Exact Math | Turbulent = Educated Guess",
+    "desc": "Laminar CFD directly solves the exact Navier-Stokes equations. Turbulent CFD (like k-ε models) cannot afford to calculate every tiny swirling eddy, so it relies on empirical 'models' to guess the average mixing behavior.",
+    "trap": "STUDENT MISTAKE: Assuming CFD is 100% accurate for turbulent flows. CFD models struggle immensely with 'transitional' regimes (part laminar, part turbulent) and flow separation. Never blindly trust turbulent CFD without experimental validation!"
+  },
+  {
+    "name": "Residuals & True Convergence",
+    "keywords": ["residuals", "convergence", "iterations", "steady state", "error", "tolerance"],
+    "formula": "Rule: Solution is Converged when Residuals flatline (usually < 10^-4).",
+    "desc": "A residual is the mathematical imbalance (error) left over in the N-S equations after each calculation loop. The solver repeats the math until this error becomes microscopically small.",
+    "trap": "STUDENT MISTAKE: Stopping the simulation manually just because the flow 'looks steady' on the screen. You must wait until the residuals drop by at least 3 to 4 orders of magnitude AND your tracked physical properties (like total Drag Force) flatline into a constant value."
+  },
+  {
+    "name": "Steady vs. Transient Solvers",
+    "keywords": ["steady", "unsteady", "transient", "time step", "pseudo-time", "marching", "oscillating"],
+    "formula": "Rule: Not all steady-looking setups have steady solutions.",
+    "desc": "A steady solver assumes time-derivative terms (∂/∂t) are exactly zero. A transient (unsteady) solver actually marches forward in physical time steps, allowing the flow to evolve.",
+    "trap": "STUDENT MISTAKE: Forcing a Steady-State solver on a flow that naturally wants to oscillate (like flow over a blunt car mirror). The residuals will bounce up and down forever and never converge. You MUST switch to a Transient solver and let the flow oscillate in time!"
   }
 ]
