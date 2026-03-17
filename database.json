@@ -365,5 +365,94 @@
     "formula": "Series: Q_total = Q_1 = Q_2, h_L_total = h_L1 + h_L2 | Parallel: Q_total = Q_1 + Q_2, h_L_total = h_L1 = h_L2",
     "desc": "Rules for combining multiple pipes in a network.",
     "trap": "⚠️ TRAP: In parallel pipes, the head loss (ΔP) is identical across all branches, NO MATTER their diameter or length! Fluid will automatically distribute its flow rate (Q) to make the head losses equal."
+  },
+  {
+    "name": "Continuity Equation (Incompressible)",
+    "keywords": ["continuity", "incompressible", "differential", "divergence", "conservation of mass"],
+    "formula": "∂u/∂x + ∂v/∂y + ∂w/∂z = 0",
+    "desc": "The volumetric strain rate is zero. Fluid elements do not change volume as they move.",
+    "trap": "⚠️ TRAP: Incompressible flow ka matlab divergence zero hona hai, chahe flow STEADY ho ya UNSTEADY. Bacche aksar unsteady flow mein ∂ρ/∂t dhoondne lagte hain, par incompressible fluid ke liye density constant rahegi!"
+  },
+  {
+    "name": "Stream Function (ψ) - Cartesian 2D",
+    "keywords": ["stream function", "psi", "2d flow", "cartesian", "velocity components"],
+    "formula": "u = ∂ψ/∂y  |  v = -∂ψ/∂x",
+    "desc": "A scalar function whose constant values define streamlines in 2D incompressible flow.",
+    "validations": "📌 Automatically satisfies the 2D incompressible continuity equation.",
+    "trap": "⚠️ TRAP: Sign convention ka dhyan rakhna! 'v' hamesha negative gradient hota hai (-∂ψ/∂x). Agar tune minus sign miss kiya, toh flow ki direction ulti ho jayegi. Yaad rakhna: ψ sirf 2D flow ke liye valid hai (3D ke liye nahi)."
+  },
+  {
+    "name": "Stream Function (ψ) - Cylindrical Planar",
+    "keywords": ["stream function", "cylindrical", "polar", "radial velocity", "tangential"],
+    "formula": "u_r = (1/r) * ∂ψ/∂θ  |  u_θ = -∂ψ/∂r",
+    "desc": "Stream function relations for 2D planar flow in r-θ coordinates.",
+    "trap": "⚠️ TRAP: Yahan (1/r) wala factor sabse bada killer hai! Radial velocity (u_r) nikalte waqt 1/r se multiply karna mat bhoolna, warna answer aur units dono galat ho jayenge."
+  },
+  {
+    "name": "Navier-Stokes Equation (Vector Form)",
+    "keywords": ["navier stokes", "momentum", "viscous", "differential", "newtonian"],
+    "formula": "ρ(DV/Dt) = -∇P + ρg + μ∇²V",
+    "desc": "Newton's second law applied to an incompressible, Newtonian fluid element.",
+    "validations": "📌 DV/Dt is the Material Derivative (Local + Convective acceleration).",
+    "trap": "⚠️ TRAP: Yeh equation sirf NEWTONIAN fluids aur constant viscosity ke liye hai. Isme non-linearity convective acceleration terms (jaise u*∂u/∂x) ki wajah se aati hai, viscous terms ki wajah se nahi!"
+  },
+  {
+    "name": "Couette Flow (Parallel Plates)",
+    "keywords": ["couette flow", "parallel plates", "moving plate", "velocity profile"],
+    "formula": "u(y) = (V/h)*y + (1/2μ)*(dP/dx)*(y² - hy)",
+    "desc": "Steady, incompressible, laminar flow between two infinite parallel plates (one moving).",
+    "trap": "⚠️ TRAP: Agar pressure gradient zero hai (dP/dx = 0), toh velocity profile ekdum LINEAR hoti hai. Par agar dP/dx non-zero hai, toh profile PARABOLIC ho jayegi. Question mein carefully padhna ki 'Simple Couette' (no pressure gradient) pucha hai ya nahi."
+  },
+  {
+    "name": "Poiseuille Flow (Pipe Flow Profile)",
+    "keywords": ["poiseuille", "pipe flow", "velocity profile", "laminar", "centerline"],
+    "formula": "u(r) = [(R² - r²) / 4μ] * (-dP/dx)",
+    "desc": "Exact solution for steady, incompressible, laminar flow in a long round pipe.",
+    "validations": "📌 Maximum velocity occurs at r = 0 (centerline).",
+    "trap": "⚠️ TRAP: Boundary conditions yaad rakhna! Wall par (r = R) velocity zero hoti hai (No-slip), aur center par (r = 0) shear stress zero hota hai. Centerline velocity exactly double hoti hai average velocity ki (V_max = 2*V_avg)."
+  },
+  {
+    "name": "Creeping Flow (Stokes Flow)",
+    "keywords": ["creeping", "stokes", "low reynolds", "drag", "sphere"],
+    "formula": "F_D = 3 * π * μ * V * D",
+    "desc": "Drag force on a sphere when viscous forces completely dominate inertial forces (Re << 1).",
+    "validations": "📌 Inertial terms are completely neglected in the N-S equations.",
+    "trap": "⚠️ TRAP: Notice that DENSITY (ρ) is completely missing from this formula! In creeping flow, aerodynamic drag is 100% independent of fluid density. Don't let the examiner trick you by giving density values in the question."
+  },
+  {
+    "name": "Irrotational Flow (Laplace Equation)",
+    "keywords": ["irrotational", "potential flow", "laplace", "velocity potential", "phi"],
+    "formula": "∇²ϕ = 0  AND  ∇²ψ = 0",
+    "desc": "In 2D irrotational and incompressible flow, both velocity potential (ϕ) and stream function (ψ) satisfy Laplace's equation.",
+    "trap": "⚠️ TRAP: D'Alembert's Paradox! Potential flow theory always predicts exactly ZERO aerodynamic drag on any non-lifting body of any shape. If a question asks for drag using ONLY potential flow assumptions, the answer is always zero."
+  },
+  {
+    "name": "Boundary Layer Thickness (Laminar Flat Plate)",
+    "keywords": ["boundary layer", "thickness", "laminar", "flat plate", "blasius", "delta"],
+    "formula": "δ = 5 * x / √(Re_x) = 5 * √(ν * x / U)",
+    "desc": "The Blasius solution for the physical thickness (δ) of a laminar boundary layer.",
+    "trap": "⚠️ TRAP: Boundary layer thickness (δ) grows proportional to √x, NOT x! If you double the distance from the leading edge, the boundary layer does NOT double in thickness; it increases by a factor of 1.414 (√2)."
+  },
+  {
+    "name": "Displacement Thickness (δ*)",
+    "keywords": ["displacement thickness", "delta star", "boundary layer", "mass deficit"],
+    "formula": "δ* = ∫ [1 - (u/U)] dy  ≈ 1.72 * x / √(Re_x)",
+    "desc": "The distance the solid boundary would need to be displaced to account for the mass flow reduction due to the boundary layer.",
+    "trap": "⚠️ TRAP: Never confuse this with Momentum Thickness (θ)! Displacement thickness (δ*) accounts for MASS deficit, while Momentum thickness (θ) accounts for MOMENTUM deficit. δ* is always greater than θ."
+  },
+  {
+    "name": "Momentum Thickness (θ)",
+    "keywords": ["momentum thickness", "theta", "boundary layer", "momentum deficit", "drag"],
+    "formula": "θ = ∫ (u/U) * [1 - (u/U)] dy  ≈ 0.664 * x / √(Re_x)",
+    "desc": "A measure of the loss of momentum flux due to the boundary layer.",
+    "validations": "📌 Directly related to the skin friction drag on the surface.",
+    "trap": "⚠️ TRAP: In the integral, the term is (u/U) * [1 - (u/U)]. Many students forget the leading (u/U) multiplier and accidentally calculate the formula for displacement thickness instead!"
+  },
+  {
+    "name": "Turbulent Boundary Layer Thickness (Flat Plate)",
+    "keywords": ["turbulent", "boundary layer", "thickness", "flat plate", "1/7th power"],
+    "formula": "δ ≈ 0.16 * x / (Re_x)^(1/7)",
+    "desc": "Empirical thickness approximation for a turbulent boundary layer using the 1/7th power law.",
+    "trap": "⚠️ TRAP: A turbulent boundary layer grows much FASTER than a laminar one. Laminar grows as x^(1/2) (or x^0.5), while turbulent grows as x^(6/7) (or x^0.857). This is a very common theoretical comparison question."
   }
 ]
