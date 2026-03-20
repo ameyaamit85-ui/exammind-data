@@ -1812,5 +1812,420 @@
     "formula": "Rule: Emissivity (ε) = Absorptivity (α) at thermal equilibrium",
     "desc": "A fundamental law stating that a material's ability to emit radiation at a given wavelength and temperature is exactly equal to its ability to absorb radiation at that same wavelength.",
     "trap": "STUDENT MISTAKE: Thinking a good reflector (like aluminum foil) is a good emitter. By Kirchhoff's law, because foil reflects (does not absorb) infrared heat, its absorptivity is nearly zero. Therefore, its emissivity is ALSO nearly zero! Good reflectors are terrible emitters."
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Conduction",
+    "name": "Heat Transfer as a Vector Quantity",
+    "desc": "Unlike temperature, heat transfer has both magnitude and direction, making it a vector quantity. At any point, specifying the heat flux requires indicating the direction of energy flow.",
+    "formula": "",
+    "trap": "🚨 Confusing temperature (scalar) with heat flux (vector). Stating a heat flux value without specifying direction is incomplete.",
+    "steps": [],
+    "keywords": ["heat transfer", "vector", "magnitude", "direction", "heat flux"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Conduction",
+    "name": "Steady vs Transient Heat Transfer",
+    "desc": "Steady heat transfer implies no change with time at any point; temperature distribution is time-independent. Transient (unsteady) heat transfer involves variation with time, often occurring during heating or cooling processes.",
+    "formula": "",
+    "trap": "🚨 Assuming a problem is steady when conditions actually vary with time (e.g., daily temperature cycles). Properly identifying whether a system reaches steady state is critical.",
+    "steps": [],
+    "keywords": ["steady", "transient", "unsteady", "time-dependent", "lumped system"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Conduction",
+    "name": "Multidimensional Heat Transfer",
+    "desc": "Heat transfer is classified as one‑, two‑, or three‑dimensional based on the number of spatial coordinates required to describe the temperature field. For a plane wall, temperature varies only in the x‑direction (1D); for a long cylinder, temperature varies radially (1D); for a rectangular bar, it may vary in x and y (2D).",
+    "formula": "",
+    "trap": "🚨 Over‑simplifying a 2D or 3D problem as 1D without justification can lead to significant errors. Symmetry and aspect ratios should be considered.",
+    "steps": [],
+    "keywords": ["one-dimensional", "two-dimensional", "three-dimensional", "temperature distribution", "coordinate system"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Conduction",
+    "name": "Fourier's Law of Heat Conduction",
+    "desc": "The rate of heat conduction is proportional to the temperature gradient and the area normal to the direction of heat flow. For one‑dimensional conduction in the x‑direction: Q_cond = -k A (dT/dx). The negative sign ensures heat flows from higher to lower temperature.",
+    "formula": "Q_cond = -k A (dT/dx)",
+    "trap": "🚨 Forgetting the negative sign when heat flows in the positive x‑direction. Also, incorrectly applying the gradient in multidimensional problems.",
+    "steps": [],
+    "keywords": ["Fourier's law", "thermal conductivity", "temperature gradient", "heat flux", "conduction"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Conduction",
+    "name": "Heat Generation",
+    "desc": "Heat generation refers to the conversion of electrical, chemical, or nuclear energy into thermal energy within a medium. It is a volumetric phenomenon, expressed per unit volume (ġ, W/m³). Examples include resistance heating, nuclear fission, and exothermic reactions.",
+    "formula": "G_dot = ∫ ġ dV",
+    "trap": "🚨 Confusing heat generation with heat flux; generation occurs throughout the volume, while flux is at a surface. Also, assuming uniform generation when it may vary with position.",
+    "steps": [],
+    "keywords": ["heat generation", "volumetric", "internal heat source", "ġ", "resistance heating"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Heat Conduction Equation",
+    "name": "One-Dimensional Heat Conduction Equation",
+    "desc": "For constant thermal conductivity, the one‑dimensional transient heat conduction equation is: (1/r^n) ∂/∂r (r^n ∂T/∂r) + ġ/k = (1/α) ∂T/∂t, where n=0 for plane wall, n=1 for cylinder, n=2 for sphere. α = k/(ρC) is thermal diffusivity.",
+    "formula": "(1/r^n) ∂/∂r (r^n ∂T/∂r) + ġ/k = (1/α) ∂T/∂t",
+    "trap": "🚨 Using the wrong coordinate system or forgetting to include the area variation for cylindrical/spherical coordinates. The term (1/r) or (1/r²) is often omitted erroneously.",
+    "steps": [],
+    "keywords": ["heat conduction equation", "thermal diffusivity", "plane wall", "cylinder", "sphere", "Poisson equation", "Laplace equation"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Boundary Conditions",
+    "name": "Boundary and Initial Conditions",
+    "desc": "Boundary conditions specify thermal conditions at surfaces (temperature, heat flux, convection, radiation, or interface conditions). Initial conditions specify the temperature distribution at time t=0. The number of boundary conditions needed equals the order of the spatial derivatives.",
+    "formula": "",
+    "trap": "🚨 Specifying too few or too many boundary conditions; incorrectly applying the sign for heat flux (convection or radiation) based on assumed direction.",
+    "steps": [],
+    "keywords": ["boundary conditions", "initial condition", "specified temperature", "specified heat flux", "convection", "radiation", "insulation", "symmetry"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Steady One-Dimensional Heat Conduction",
+    "name": "Solution of Steady 1D Conduction",
+    "desc": "For constant k and no heat generation, the steady 1D heat conduction equation reduces to d²T/dx² = 0 (plane wall). Integration yields T(x) = C₁x + C₂. The constants are determined from boundary conditions. This approach extends to cylinders and spheres with area variation.",
+    "formula": "",
+    "trap": "🚨 Mistaking the temperature distribution as linear in cylinders/spheres when k is constant; the profile is logarithmic for cylinders and hyperbolic for spheres.",
+    "steps": ["Set up appropriate differential equation", "Integrate twice to obtain general solution with two constants", "Apply boundary conditions to determine constants", "Obtain temperature distribution and heat flux"],
+    "keywords": ["steady state", "integration method", "temperature distribution", "plane wall", "cylindrical shell", "spherical shell"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Heat Generation in Solids",
+    "name": "Maximum Temperature in Uniform Heat Generation",
+    "desc": "For uniform heat generation, the maximum temperature occurs at the center (or plane of symmetry). For a plane wall of thickness 2L: ΔT_max = ġL²/(2k); for a cylinder of radius r₀: ΔT_max = ġr₀²/(4k); for a sphere: ΔT_max = ġr₀²/(6k). Surface temperature is determined from energy balance.",
+    "formula": "ΔT_max, plane = (ġ L²)/(2k); ΔT_max, cylinder = (ġ r₀²)/(4k); ΔT_max, sphere = (ġ r₀²)/(6k)",
+    "trap": "🚨 Using the wrong formula for the geometry; forgetting that the surface temperature is not the ambient temperature but is determined by convection and generation.",
+    "steps": [],
+    "keywords": ["maximum temperature", "centerline temperature", "uniform heat generation", "plane wall", "cylinder", "sphere"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Variable Thermal Conductivity",
+    "name": "Variable Thermal Conductivity",
+    "desc": "When thermal conductivity varies with temperature, the steady heat conduction equation becomes nonlinear. For linear variation k(T)=k₀(1+βT), the average conductivity equals k(T_avg). The heat transfer rate can be expressed using the integrated form: Q̇ = (k_avg A ΔT)/L (or analogous forms for cylinders/spheres).",
+    "formula": "k_avg = (∫_{T1}^{T2} k(T) dT) / (T2 - T1); for linear: k_avg = k₀[1 + β(T1+T2)/2]",
+    "trap": "🚨 Assuming the temperature distribution remains linear when k varies; it becomes nonlinear. Also, using the average conductivity without checking that the variation is not too large.",
+    "steps": [],
+    "keywords": ["variable thermal conductivity", "average thermal conductivity", "linear variation", "nonlinear"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Conduction",
+    "problem": "In order to size the compressor of a new refrigerator, it is desired to determine the rate of heat transfer from the kitchen air into the refrigerated space through the walls, door, and the top and bottom section of the refrigerator. In your analysis, would you treat this as a transient or steady-state heat transfer problem? Also, would you consider the heat transfer to be one-dimensional or multidimensional? Explain.",
+    "solution_steps": [
+      "Step 1: Recognize that thermal conditions in kitchen and refrigerator change with time, so the problem is transient in nature.",
+      "Step 2: However, for sizing the compressor, we analyze under worst anticipated conditions (design conditions) as a steady heat transfer problem.",
+      "Step 3: Heat transfer is three‑dimensional overall, but through each wall it is essentially one‑dimensional in the direction normal to the surface.",
+      "Step 4: Simplify by analyzing each surface as one‑dimensional and then summing the contributions."
+    ],
+    "formula_used": "",
+    "final_answer": "Treat as steady under design conditions; multidimensional but can be simplified to one‑dimensional per surface.",
+    "trap": "🚨 Assuming the problem is inherently transient without considering design approach; ignoring that overall heat transfer is three‑dimensional but can be simplified.",
+    "keywords": ["refrigerator", "transient", "steady", "one-dimensional", "multidimensional", "design conditions"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Conduction",
+    "problem": "The resistance wire of a 1200‑W hair dryer is 80 cm long and has a diameter of D = 0.3 cm. Determine the rate of heat generation in the wire per unit volume, in W/cm³, and the heat flux on the outer surface of the wire as a result of this heat generation.",
+    "solution_steps": [
+      "Step 1: Rate of heat generation equals power consumption: Ġ = 1200 W.",
+      "Step 2: Volume of wire: V = (π D²/4) L = (π (0.3 cm)²/4) × 80 cm = 5.6549 cm³.",
+      "Step 3: Heat generation per unit volume: ġ = Ġ / V = 1200 W / 5.6549 cm³ ≈ 212 W/cm³.",
+      "Step 4: Surface area of wire: A = π D L = π × 0.3 cm × 80 cm = 75.398 cm².",
+      "Step 5: Heat flux on outer surface: q̇ = Ġ / A = 1200 W / 75.398 cm² ≈ 15.9 W/cm²."
+    ],
+    "formula_used": "ġ = Ġ / V; q̇ = Ġ / A",
+    "final_answer": "ġ = 212 W/cm³, q̇ = 15.9 W/cm²",
+    "trap": "🚨 Confusing volume and area; forgetting to convert units consistently (cm vs m); using diameter as radius.",
+    "keywords": ["hair dryer", "resistance wire", "heat generation", "heat flux", "volumetric generation"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Heat Conduction Equation",
+    "problem": "Consider a steel pan placed on top of an electric range to cook spaghetti. The bottom section of the pan is L = 0.4 cm thick and has a diameter of D = 18 cm. The electric heating unit on the range top consumes 800 W of power during cooking, and 80 percent of the heat generated in the heating element is transferred uniformly to the pan. Assuming constant thermal conductivity, obtain the differential equation that describes the variation of the temperature in the bottom section of the pan during steady operation.",
+    "solution_steps": [
+      "Step 1: Approximate the bottom section as a large plane wall (thickness small compared to area).",
+      "Step 2: Heat transfer is one‑dimensional in the x‑direction (normal to bottom).",
+      "Step 3: For steady operation, T = T(x) only.",
+      "Step 4: Constant thermal conductivity and no heat generation in the pan material.",
+      "Step 5: The governing differential equation is d²T/dx² = 0."
+    ],
+    "formula_used": "d²T/dx² = 0",
+    "final_answer": "d²T/dx² = 0",
+    "trap": "🚨 Including heat generation or time dependence incorrectly; forgetting to justify 1D approximation.",
+    "keywords": ["pan", "plane wall", "steady conduction", "differential equation", "no generation"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Heat Conduction Equation",
+    "problem": "A 2‑kW resistance heater wire with thermal conductivity k = 15 W/m·°C, diameter D = 0.4 cm, and length L = 50 cm is used to boil water by immersing it in water. Assuming the variation of the thermal conductivity of the wire with temperature to be negligible, obtain the differential equation that describes the variation of the temperature in the wire during steady operation.",
+    "solution_steps": [
+      "Step 1: Wire is long (L/D > 100) → can be considered a very long cylinder.",
+      "Step 2: Heat generated uniformly, conditions on outer surface uniform → temperature varies only radially, T = T(r).",
+      "Step 3: Constant thermal conductivity, steady state.",
+      "Step 4: Volumetric heat generation: ġ = Ġ / V = 2000 W / [(π×(0.004 m)²/4)×0.5 m] = 0.318×10⁹ W/m³.",
+      "Step 5: Differential equation for cylinder with constant k and uniform generation: (1/r) d/dr (r dT/dr) + ġ/k = 0."
+    ],
+    "formula_used": "(1/r) d/dr (r dT/dr) + ġ/k = 0",
+    "final_answer": "(1/r) d/dr (r dT/dr) + ġ/k = 0",
+    "trap": "🚨 Using plane wall equation instead of cylindrical; forgetting the radial area variation.",
+    "keywords": ["resistance heater", "cylinder", "steady conduction", "heat generation", "differential equation"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Heat Conduction Equation",
+    "problem": "A spherical metal ball of radius R is heated in an oven to a temperature of 600°F throughout and is then taken out of the oven and allowed to cool in ambient air at T∞ = 75°F by convection and radiation. The thermal conductivity of the ball material is known to vary linearly with temperature. Assuming the ball is cooled uniformly from the entire outer surface, obtain the differential equation that describes the variation of the temperature in the ball during cooling.",
+    "solution_steps": [
+      "Step 1: Cooling is uniform from outer surface → temperature depends on radial distance r and time t: T = T(r, t).",
+      "Step 2: One‑dimensional transient heat conduction in spherical coordinates.",
+      "Step 3: Thermal conductivity varies with temperature, no heat generation.",
+      "Step 4: Using the general spherical coordinate equation with ġ = 0 and variable k: (1/r²) ∂/∂r (r² k ∂T/∂r) = ρ C ∂T/∂t."
+    ],
+    "formula_used": "(1/r²) ∂/∂r (r² k ∂T/∂r) = ρ C ∂T/∂t",
+    "final_answer": "(1/r²) ∂/∂r (r² k ∂T/∂r) = ρ C ∂T/∂t",
+    "trap": "🚨 Using constant‑k form; forgetting the time dependence; assuming steady state.",
+    "keywords": ["sphere", "transient", "variable conductivity", "cooling", "differential equation"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Heat Conduction Equation",
+    "problem": "A short cylindrical metal billet of radius R and height h is heated in an oven to a temperature of 600°F throughout and is then taken out of the oven and allowed to cool in ambient air at T∞ = 65°F by convection and radiation. Assuming the billet is cooled uniformly from all outer surfaces and the variation of the thermal conductivity of the material with temperature is negligible, obtain the differential equation that describes the variation of the temperature in the billet during this cooling process.",
+    "solution_steps": [
+      "Step 1: Cooling is uniform from top, bottom, and lateral surfaces → temperature varies radially and axially: T = T(r, z, t).",
+      "Step 2: Two‑dimensional transient problem in cylindrical coordinates (no θ variation due to symmetry).",
+      "Step 3: Constant thermal conductivity, no heat generation.",
+      "Step 4: Use general cylindrical equation, drop θ derivative: (1/r) ∂/∂r (r ∂T/∂r) + ∂²T/∂z² = (1/α) ∂T/∂t."
+    ],
+    "formula_used": "(1/r) ∂/∂r (r ∂T/∂r) + ∂²T/∂z² = (1/α) ∂T/∂t",
+    "final_answer": "(1/r) ∂/∂r (r ∂T/∂r) + ∂²T/∂z² = (1/α) ∂T/∂t",
+    "trap": "🚨 Reducing to one‑dimensional incorrectly; forgetting that both r and z directions are significant.",
+    "keywords": ["billet", "cylinder", "transient", "two-dimensional", "cooling"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Boundary and Initial Conditions",
+    "problem": "Consider an aluminum pan used to cook beef stew on top of an electric range. The bottom section of the pan is L = 0.3 cm thick and has a diameter of D = 20 cm. The electric heating unit on the range top consumes 800 W of power during cooking, and 90 percent of the heat generated in the heating element is transferred to the pan. During steady operation, the temperature of the inner surface of the pan is measured to be 110°C. Express the boundary conditions for the bottom section of the pan during this cooking process.",
+    "solution_steps": [
+      "Step 1: One‑dimensional steady conduction through bottom, x‑axis from outer (x=0) to inner (x=L).",
+      "Step 2: Outer surface at x=0 receives 90% of 800 W = 720 W over area A = π D²/4 = π(0.1 m)² = 0.031416 m².",
+      "Step 3: Heat flux at x=0: q̇₀ = 720 W / 0.031416 m² = 22.9 kW/m² (into the pan).",
+      "Step 4: Boundary condition at x=0: -k dT(0)/dx = q̇₀.",
+      "Step 5: Inner surface at x=L: T(L) = 110°C."
+    ],
+    "formula_used": "-k dT(0)/dx = q̇₀; T(L) = 110°C",
+    "final_answer": "At x=0: -k dT/dx = 22.9 kW/m²; at x=L: T = 110°C",
+    "trap": "🚨 Sign error in heat flux boundary condition; forgetting that heat flux direction must match coordinate orientation.",
+    "keywords": ["pan", "specified heat flux", "specified temperature", "boundary conditions"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Boundary and Initial Conditions",
+    "problem": "Steam flows through a pipe at an average temperature of T = 200°C. The inner and outer radii of the pipe are r₁ = 8 cm and r₂ = 8.5 cm, respectively, and the outer surface of the pipe is heavily insulated. If the convection heat transfer coefficient on the inner surface of the pipe is h = 65 W/m²·°C, express the boundary conditions on the inner and outer surfaces of the pipe during transient periods.",
+    "solution_steps": [
+      "Step 1: One‑dimensional transient conduction in radial direction: T = T(r, t).",
+      "Step 2: Inner surface at r = r₁: convection from steam to pipe. Assuming heat flow positive in +r direction, the boundary condition is -k ∂T(r₁,t)/∂r = h[T∞ - T(r₁,t)].",
+      "Step 3: Outer surface at r = r₂: heavily insulated → heat flux zero: ∂T(r₂,t)/∂r = 0."
+    ],
+    "formula_used": "-k ∂T(r₁,t)/∂r = h[T∞ - T(r₁,t)]; ∂T(r₂,t)/∂r = 0",
+    "final_answer": "At r=r₁: -k ∂T/∂r = h[200 - T]; at r=r₂: ∂T/∂r = 0",
+    "trap": "🚨 Forgetting to account for the direction of heat flow in the convection condition; assuming insulation means T = constant instead of zero gradient.",
+    "keywords": ["pipe", "convection", "insulation", "boundary conditions", "transient"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Boundary and Initial Conditions",
+    "problem": "A spherical metal ball of radius r₀ is heated in an oven to a temperature of 600°F throughout and is then taken out of the oven and allowed to cool in ambient air at T∞ = 78°F, as shown in Figure 2–38. The thermal conductivity of the ball material is k = 8.3 Btu/h·ft·°F, and the average convection heat transfer coefficient on the outer surface of the ball is evaluated to be h = 4.5 Btu/h·ft²·°F. The emissivity of the outer surface of the ball is ε = 0.6, and the average temperature of the surrounding surfaces is Tsurr = 525 R. Assuming the ball is cooled uniformly from the entire outer surface, express the initial and boundary conditions for the cooling process of the ball.",
+    "solution_steps": [
+      "Step 1: One‑dimensional transient conduction in spherical coordinates: T = T(r, t).",
+      "Step 2: Initial condition: T(r, 0) = Ti = 600°F.",
+      "Step 3: Symmetry at center: ∂T(0, t)/∂r = 0.",
+      "Step 4: Outer surface at r = r₀: energy balance – conduction equals convection plus radiation. Assuming heat flow positive outward: -k ∂T(r₀,t)/∂r = h[T(r₀,t) - T∞] + εσ[T(r₀,t)⁴ - Tsurr⁴]."
+    ],
+    "formula_used": "T(r,0)=600°F; ∂T/∂r|_(0,t)=0; -k ∂T/∂r|_(r₀,t) = h(T(r₀,t)-T∞) + εσ(T(r₀,t)⁴-Tsurr⁴)",
+    "final_answer": "Initial: T(r,0)=600°F; BC at r=0: ∂T/∂r=0; BC at r=r₀: -k ∂T/∂r = h(T-T∞) + εσ(T⁴-Tsurr⁴)",
+    "trap": "🚨 Using wrong sign for radiation or convection; forgetting to use absolute temperature for radiation; assuming symmetry condition incorrectly.",
+    "keywords": ["sphere", "combined convection and radiation", "initial condition", "boundary condition"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Boundary and Initial Conditions",
+    "problem": "Consider the south wall of a house that is L = 0.2 m thick. The outer surface of the wall is exposed to solar radiation and has an absorptivity of α = 0.5 for solar energy. The interior of the house is maintained at T∞1 = 20°C, while the ambient air temperature outside remains at T∞2 = 5°C. The sky, the ground, and the surfaces of the surrounding structures at this location can be modeled as a surface at an effective temperature of Tsky = 255 K for radiation exchange on the outer surface. The radiation exchange between the inner surface of the wall and the surfaces of the walls, floor, and ceiling it faces is negligible. The convection heat transfer coefficients on the inner and the outer surfaces of the wall are h₁ = 6 W/m²·°C and h₂ = 25 W/m²·°C, respectively. The thermal conductivity of the wall material is k = 0.7 W/m·°C, and the emissivity of the outer surface is ε₂ = 0.9. Assuming the heat transfer through the wall to be steady and one‑dimensional, express the boundary conditions on the inner and the outer surfaces of the wall.",
+    "solution_steps": [
+      "Step 1: Steady one‑dimensional conduction, x‑axis from inner (x=0) to outer (x=L).",
+      "Step 2: Inner surface (x=0): convection from room air to wall. Assuming heat flow positive in +x, -k dT(0)/dx = h₁[T∞1 - T(0)].",
+      "Step 3: Outer surface (x=L): energy balance includes convection, radiation, and absorbed solar flux. -k dT(L)/dx = h₂[T(L) - T∞2] + ε₂σ[T(L)⁴ - Tsky⁴] - α q̇_solar."
+    ],
+    "formula_used": "-k dT(0)/dx = h₁(T∞1 - T(0)); -k dT(L)/dx = h₂(T(L)-T∞2) + ε₂σ(T(L)⁴-Tsky⁴) - α q̇_solar",
+    "final_answer": "At x=0: -k dT/dx = 6(20 - T); at x=L: -k dT/dx = 25(T-5) + 0.9×5.67e-8(T⁴-255⁴) - 0.5 q̇_solar",
+    "trap": "🚨 Sign errors in the combined boundary condition; forgetting that absorbed solar radiation adds heat to the wall; using wrong direction for convection.",
+    "keywords": ["wall", "combined boundary condition", "solar radiation", "convection", "radiation"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Steady One-Dimensional Conduction",
+    "problem": "Consider a large plane wall of thickness L = 0.2 m, thermal conductivity k = 1.2 W/m·°C, and surface area A = 15 m². The two sides of the wall are maintained at constant temperatures of T₁ = 120°C and T₂ = 50°C, respectively. Determine (a) the variation of temperature within the wall and the value of temperature at x = 0.1 m and (b) the rate of heat conduction through the wall under steady conditions.",
+    "solution_steps": [
+      "Step 1: Governing equation d²T/dx² = 0, integrate twice: T(x) = C₁x + C₂.",
+      "Step 2: Apply BCs: T(0) = T₁ = 120°C → C₂ = 120; T(L) = T₂ = 50°C → 50 = C₁·0.2 + 120 → C₁ = -350.",
+      "Step 3: Temperature distribution: T(x) = -350x + 120 (x in m).",
+      "Step 4: At x = 0.1 m: T = -350×0.1 + 120 = 85°C.",
+      "Step 5: Heat conduction rate: Q̇ = -k A dT/dx = -1.2×15×(-350) = 6300 W."
+    ],
+    "formula_used": "T(x) = (T₂-T₁)x/L + T₁; Q̇ = kA (T₁-T₂)/L",
+    "final_answer": "T(x) = -350x + 120 (°C); T(0.1 m) = 85°C; Q̇ = 6300 W",
+    "trap": "🚨 Forgetting to include negative sign in Fourier's law; assuming temperature gradient is positive when it is negative.",
+    "keywords": ["plane wall", "specified temperatures", "linear temperature profile", "heat rate"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Steady One-Dimensional Conduction",
+    "problem": "Consider a steam pipe of length L = 20 m, inner radius r₁ = 6 cm, outer radius r₂ = 8 cm, and thermal conductivity k = 20 W/m·°C. The inner and outer surfaces of the pipe are maintained at average temperatures of T₁ = 150°C and T₂ = 60°C, respectively. Obtain a general relation for the temperature distribution inside the pipe under steady conditions, and determine the rate of heat loss from the steam through the pipe.",
+    "solution_steps": [
+      "Step 1: One‑dimensional radial conduction in cylinder: d/dr (r dT/dr) = 0.",
+      "Step 2: Integrate: r dT/dr = C₁ → dT/dr = C₁/r → T(r) = C₁ ln r + C₂.",
+      "Step 3: Apply BCs: T(r₁)=T₁ → C₁ ln r₁ + C₂ = T₁; T(r₂)=T₂ → C₁ ln r₂ + C₂ = T₂.",
+      "Step 4: Solve: C₁ = (T₂ - T₁)/ln(r₂/r₁) = (60-150)/ln(0.08/0.06) = -90 / ln(1.3333) = -90/0.28768 = -312.8; C₂ = T₁ - C₁ ln r₁ = 150 - (-312.8) ln(0.06) = 150 + 312.8×(-2.8134) = 150 - 879.9 = -729.9.",
+      "Step 5: Temperature distribution: T(r) = -312.8 ln r - 729.9 (r in m).",
+      "Step 6: Heat loss: Q̇ = -k A dT/dr = -k (2πrL)(C₁/r) = -2πkL C₁ = -2π×20×20×(-312.8) = 786,000 W = 786 kW."
+    ],
+    "formula_used": "T(r) = (T₂-T₁) ln(r/r₁)/ln(r₂/r₁) + T₁; Q̇ = 2πkL (T₁-T₂)/ln(r₂/r₁)",
+    "final_answer": "T(r) = 150 + (60-150) ln(r/0.06)/ln(0.08/0.06) (°C); Q̇ = 786 kW",
+    "trap": "🚨 Using plane wall formula for cylinder; forgetting that area varies with r; sign error in C₁.",
+    "keywords": ["steam pipe", "cylindrical shell", "temperature distribution", "logarithmic", "heat loss"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Steady One-Dimensional Conduction",
+    "problem": "Consider a spherical container of inner radius r₁ = 8 cm, outer radius r₂ = 10 cm, and thermal conductivity k = 45 W/m·°C. The inner and outer surfaces of the container are maintained at constant temperatures of T₁ = 200°C and T₂ = 80°C, respectively, as a result of some chemical reactions occurring inside. Obtain a general relation for the temperature distribution inside the shell under steady conditions, and determine the rate of heat loss from the container.",
+    "solution_steps": [
+      "Step 1: One‑dimensional radial conduction in sphere: d/dr (r² dT/dr) = 0.",
+      "Step 2: Integrate: r² dT/dr = C₁ → dT/dr = C₁/r² → T(r) = -C₁/r + C₂.",
+      "Step 3: Apply BCs: T(r₁)=T₁ → -C₁/r₁ + C₂ = T₁; T(r₂)=T₂ → -C₁/r₂ + C₂ = T₂.",
+      "Step 4: Solve: C₁ = (T₁ - T₂) / (1/r₁ - 1/r₂) = (200-80)/(1/0.08 - 1/0.10) = 120 / (12.5 - 10) = 120/2.5 = 48; C₂ = T₁ + C₁/r₁ = 200 + 48/0.08 = 200 + 600 = 800.",
+      "Step 5: Temperature distribution: T(r) = -48/r + 800 (r in m).",
+      "Step 6: Heat loss: Q̇ = -k A dT/dr = -k (4πr²)(C₁/r²) = -4πk C₁ = -4π×45×48 = -27,140 W ≈ 27.1 kW (negative indicates outward)."
+    ],
+    "formula_used": "T(r) = (T₁ - T₂) (1/r - 1/r₂) / (1/r₁ - 1/r₂) + T₂; Q̇ = 4πk r₁ r₂ (T₁-T₂)/(r₂-r₁)",
+    "final_answer": "T(r) = -48/r + 800 (°C); Q̇ = 27.1 kW (outward)",
+    "trap": "🚨 Using cylindrical or plane wall formula; forgetting that temperature profile is hyperbolic (1/r).",
+    "keywords": ["spherical container", "spherical shell", "temperature distribution", "heat loss"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Heat Generation in Solids",
+    "problem": "A 2‑kW resistance heater wire whose thermal conductivity is k = 15 W/m·°C has a diameter of D = 4 mm and a length of L = 0.5 m, and is used to boil water. If the outer surface temperature of the resistance wire is T_s = 105°C, determine the temperature at the center of the wire.",
+    "solution_steps": [
+      "Step 1: Volumetric heat generation: ġ = Q̇ / V = 2000 / [(π(0.002 m)²/4)×0.5] = 0.318×10⁹ W/m³.",
+      "Step 2: For a solid cylinder with uniform generation, the centerline temperature: T₀ = T_s + ġ r₀²/(4k).",
+      "Step 3: r₀ = 0.002 m, T_s = 105°C, k = 15 W/m·°C.",
+      "Step 4: T₀ = 105 + (0.318×10⁹ × (0.002)²) / (4×15) = 105 + (0.318×10⁹ × 4×10⁻⁶) / 60 = 105 + (1272) / 60 = 105 + 21.2 = 126.2°C."
+    ],
+    "formula_used": "T₀ = T_s + ġ r₀²/(4k)",
+    "final_answer": "126.2°C",
+    "trap": "🚨 Using wrong geometry factor (e.g., plane wall or sphere); forgetting to convert diameter to radius.",
+    "keywords": ["resistance wire", "uniform heat generation", "centerline temperature", "cylinder"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Heat Generation in Solids",
+    "problem": "A long homogeneous resistance wire of radius r₀ = 0.2 in. and thermal conductivity k = 7.8 Btu/h·ft·°F is being used to boil water at atmospheric pressure by the passage of electric current. Heat is generated in the wire uniformly as a result of resistance heating at a rate of ġ = 2400 Btu/h·in³. If the outer surface temperature of the wire is measured to be T_s = 226°F, obtain a relation for the temperature distribution, and determine the temperature at the centerline of the wire when steady operating conditions are reached.",
+    "solution_steps": [
+      "Step 1: Differential equation for cylinder with uniform generation: (1/r) d/dr (r dT/dr) + ġ/k = 0.",
+      "Step 2: Integrate twice: T(r) = -ġ r²/(4k) + C₁ ln r + C₂.",
+      "Step 3: Symmetry at r=0 → dT/dr=0 → C₁=0.",
+      "Step 4: BC at r=r₀: T(r₀)=T_s → T_s = -ġ r₀²/(4k) + C₂ → C₂ = T_s + ġ r₀²/(4k).",
+      "Step 5: Temperature distribution: T(r) = T_s + (ġ/(4k))(r₀² - r²).",
+      "Step 6: Centerline (r=0): T₀ = T_s + ġ r₀²/(4k).",
+      "Step 7: Convert units: ġ = 2400 Btu/h·in³ = 2400×12³ = 4,147,200 Btu/h·ft³; r₀ = 0.2/12 = 0.01667 ft; k = 7.8 Btu/h·ft·°F.",
+      "Step 8: T₀ = 226 + (4,147,200 × (0.01667)²) / (4×7.8) = 226 + (4,147,200×0.0002778)/31.2 = 226 + (1152)/31.2 = 226 + 36.92 = 262.9°F."
+    ],
+    "formula_used": "T(r) = T_s + (ġ/(4k))(r₀² - r²); T₀ = T_s + ġ r₀²/(4k)",
+    "final_answer": "T(r) = 226 + (2400×12³/(4×7.8))( (0.2/12)² - r² ); T₀ = 263°F",
+    "trap": "🚨 Unit inconsistency (in³ vs ft³); forgetting symmetry eliminates ln term.",
+    "keywords": ["wire", "uniform generation", "temperature distribution", "centerline temperature", "parabolic profile"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Heat Generation in Solids",
+    "problem": "Consider a long resistance wire of radius r₁ = 0.2 cm and thermal conductivity k_wire = 15 W/m·°C in which heat is generated uniformly at a constant rate of ġ = 50 W/cm³. The wire is embedded in a 0.5‑cm‑thick layer of ceramic whose thermal conductivity is k_ceramic = 1.2 W/m·°C. If the outer surface temperature of the ceramic layer is measured to be T_s = 45°C, determine the temperatures at the center of the resistance wire and the interface of the wire and the ceramic layer under steady conditions.",
+    "solution_steps": [
+      "Step 1: For the wire (cylinder with uniform generation): T_wire(r) = T_i + (ġ/(4k_wire))(r₁² - r²), where T_i is interface temperature.",
+      "Step 2: For the ceramic layer (no generation): T_ceramic(r) = T_i + (T_s - T_i) ln(r/r₁) / ln(r₂/r₁).",
+      "Step 3: Energy balance at interface: heat flux from wire equals flux through ceramic: -k_wire dT_wire/dr|_(r₁) = -k_ceramic dT_ceramic/dr|_(r₁).",
+      "Step 4: dT_wire/dr|_(r₁) = -(ġ r₁)/(2k_wire); dT_ceramic/dr|_(r₁) = (T_s - T_i) / (r₁ ln(r₂/r₁)).",
+      "Step 5: Equating: -k_wire ( -ġ r₁/(2k_wire) ) = -k_ceramic ( (T_s - T_i) / (r₁ ln(r₂/r₁)) ) → ġ r₁/2 = -k_ceramic (T_s - T_i)/(r₁ ln(r₂/r₁)).",
+      "Step 6: Solve for T_i: T_i = T_s + (ġ r₁²)/(2k_ceramic) ln(r₂/r₁).",
+      "Step 7: Plug values: ġ = 50×10⁶ W/m³, r₁=0.002 m, r₂=0.007 m, k_ceramic=1.2 W/m·°C, T_s=45°C → T_i = 45 + (50e6×(0.002)²)/(2×1.2) × ln(0.007/0.002) = 45 + (50e6×4e-6)/(2.4) × ln(3.5) = 45 + (200)/(2.4) × 1.2528 = 45 + 83.33×1.2528 = 45 + 104.4 = 149.4°C.",
+      "Step 8: Centerline temperature: T₀ = T_i + ġ r₁²/(4k_wire) = 149.4 + (50e6×4e-6)/(4×15) = 149.4 + 200/(60) = 149.4 + 3.33 = 152.7°C."
+    ],
+    "formula_used": "T_i = T_s + (ġ r₁²)/(2k_ceramic) ln(r₂/r₁); T₀ = T_i + ġ r₁²/(4k_wire)",
+    "final_answer": "Interface temperature = 149.4°C; Center temperature = 152.7°C",
+    "trap": "🚌 Using wrong heat flux continuity; forgetting that the interface temperature is not directly given; unit conversion errors.",
+    "keywords": ["composite cylinder", "interface temperature", "heat generation", "two-layer"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Variable Thermal Conductivity",
+    "problem": "Consider a plane wall of thickness L whose thermal conductivity varies linearly in a specified temperature range as k(T) = k₀(1+βT) where k₀ and β are constants. The wall surface at x=0 is maintained at a constant temperature of T₁ while the surface at x=L is maintained at T₂. Assuming steady one‑dimensional heat transfer, obtain a relation for (a) the heat transfer rate through the wall and (b) the temperature distribution T(x) in the wall.",
+    "solution_steps": [
+      "Step 1: Fourier's law: Q̇ = -k(T) A dT/dx, with constant Q̇ and A.",
+      "Step 2: Separate variables: Q̇ dx = -k₀(1+βT) A dT.",
+      "Step 3: Integrate from x=0 to x=L: Q̇ L = -k₀ A ∫_{T₁}^{T₂} (1+βT) dT = -k₀ A [ (T₂ - T₁) + (β/2)(T₂² - T₁²) ].",
+      "Step 4: Thus Q̇ = (k₀ A / L) [ (T₁ - T₂) + (β/2)(T₁² - T₂²) ] = k_avg A (T₁ - T₂)/L, where k_avg = k₀[1 + β(T₁+T₂)/2].",
+      "Step 5: For temperature distribution, integrate from 0 to x: Q̇ x = -k₀ A ∫_{T₁}^{T} (1+βT) dT = -k₀ A [ (T - T₁) + (β/2)(T² - T₁²) ].",
+      "Step 6: Substitute Q̇ from part (a) and solve the quadratic for T(x)."
+    ],
+    "formula_used": "Q̇ = k_avg A (T₁ - T₂)/L; T(x) = [ -1 + sqrt(1 + 2β(T₁ + (T₂-T₁)x/L + (β/2)T₁²) ) ] / β (assuming β small)",
+    "final_answer": "Q̇ = k₀ A [1 + β(T₁+T₂)/2] (T₁ - T₂)/L; temperature distribution obtained from quadratic equation.",
+    "trap": "🚨 Assuming linear temperature profile; forgetting that k_avg is at average temperature only for linear variation.",
+    "keywords": ["variable conductivity", "linear variation", "plane wall", "average conductivity"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Variable Thermal Conductivity",
+    "problem": "Consider a 2‑m‑high and 0.7‑m‑wide bronze plate whose thickness is 0.1 m. One side of the plate is maintained at a constant temperature of 600 K while the other side is maintained at 400 K. The thermal conductivity of the bronze plate can be assumed to vary linearly in that temperature range as k(T) = k₀(1+βT) where k₀ = 38 W/m·K and β = 9.21×10⁻⁴ K⁻¹. Disregarding the edge effects and assuming steady one‑dimensional heat transfer, determine the rate of heat conduction through the plate.",
+    "solution_steps": [
+      "Step 1: Average temperature: T_avg = (600+400)/2 = 500 K.",
+      "Step 2: Average thermal conductivity: k_avg = k₀(1+β T_avg) = 38 [1 + 9.21e-4×500] = 38 (1 + 0.4605) = 38 × 1.4605 = 55.5 W/m·K.",
+      "Step 3: Area A = 2 m × 0.7 m = 1.4 m², thickness L = 0.1 m.",
+      "Step 4: Heat rate: Q̇ = k_avg A (T₁ - T₂)/L = 55.5 × 1.4 × (600-400)/0.1 = 55.5 × 1.4 × 2000 = 155,400 W."
+    ],
+    "formula_used": "Q̇ = k_avg A ΔT/L; k_avg = k₀(1+β(T₁+T₂)/2)",
+    "final_answer": "155,400 W",
+    "trap": "🚌 Forgetting to use average temperature to evaluate k_avg; using arithmetic mean of k at endpoints incorrectly.",
+    "keywords": ["bronze plate", "variable conductivity", "average conductivity", "heat transfer rate"]
   }
 ]
