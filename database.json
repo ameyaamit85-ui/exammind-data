@@ -2837,5 +2837,211 @@
     "final_answer": "3963 W",
     "trap": "🚨 Using wrong shape factor formula; forgetting that the pipe is buried, not exposed to air; incorrectly assuming one‑dimensional conduction.",
     "keywords": ["buried pipe", "shape factor", "conduction", "soil"]
-  } 
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Transient Heat Conduction",
+    "name": "Lumped System Analysis",
+    "desc": "When a body's temperature remains uniform at any time, it can be analyzed as a lumped system. The temperature varies only with time, not position. This is valid when the Biot number Bi = hL_c/k < 0.1, where L_c = V/A_s is the characteristic length.",
+    "formula": "T(t) - T∞ = (Ti - T∞) e^{-bt}, b = hA_s/(ρV C_p) = h/(ρ C_p L_c)",
+    "trap": "🚨 Using lumped analysis when Bi > 0.1 leads to significant error. The characteristic length L_c is V/A_s, not simply a geometric dimension.",
+    "steps": [],
+    "keywords": ["lumped system", "uniform temperature", "Biot number", "characteristic length", "exponential decay"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Transient Heat Conduction",
+    "name": "Biot and Fourier Numbers",
+    "desc": "The Biot number Bi = hL_c/k compares internal conduction resistance to external convection resistance. Small Bi (<< 0.1) allows lumped analysis. The Fourier number τ = αt/L_c² measures heat conduction relative to heat storage, indicating the time scale of transient.",
+    "formula": "Bi = h L_c / k; τ = α t / L_c²",
+    "trap": "🚨 Confusing Biot number with Nusselt number; using wrong characteristic length (e.g., using half‑thickness for a plane wall when L_c = L for lumped but Bi = hL/k for wall with 2L thickness in charts).",
+    "steps": [],
+    "keywords": ["Biot number", "Fourier number", "characteristic length", "thermal diffusivity", "lumped system criterion"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Transient Heat Conduction",
+    "name": "One‑Term Approximation",
+    "desc": "For Fourier number τ ≥ 0.2, the infinite series solution for 1D transient conduction can be approximated by the first term. For a plane wall, T(x,t) = T∞ + A₁ e^{-λ₁²τ} cos(λ₁ x/L). Constants A₁, λ₁ depend on Bi and are tabulated.",
+    "formula": "θ(x,t) = A₁ e^{-λ₁²τ} cos(λ₁ x/L) (wall); center: θ₀ = A₁ e^{-λ₁²τ}",
+    "trap": "🚨 Applying one‑term approximation when τ < 0.2 (error >2%). Using wrong eigenvalue for the geometry (cylinder vs. sphere).",
+    "steps": [],
+    "keywords": ["one-term approximation", "Heisler charts", "eigenvalues", "transient conduction"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Transient Heat Conduction",
+    "name": "Heisler and Gröber Charts",
+    "desc": "Graphical solutions for 1D transient conduction in plane walls, long cylinders, and spheres. They provide mid‑plane temperature (Heisler), temperature at any x (Heisler), and total heat transfer (Gröber) as functions of Bi, τ, and x/L. Valid for τ ≥ 0.2.",
+    "formula": "",
+    "trap": "🚌 Reading charts inaccurately; using them when the initial temperature is not uniform or boundary conditions differ (e.g., convection vs. specified temperature).",
+    "steps": [],
+    "keywords": ["Heisler charts", "Gröber charts", "transient charts", "one-dimensional", "convection"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Transient Heat Conduction",
+    "name": "Semi‑Infinite Solid",
+    "desc": "An idealization for a thick medium where only one surface experiences a thermal change. For convection at the surface, the temperature distribution is given by an error‑function solution. It is used for short‑time or near‑surface effects.",
+    "formula": "(T(x,t)-Ti)/(T∞-Ti) = erfc(x/(2√(αt))) - exp(hx/k + h²αt/k²) erfc(x/(2√(αt)) + h√(αt)/k)",
+    "trap": "🚨 Using semi‑infinite model when the other boundary influences the region; forgetting that the error function arguments must be dimensionless.",
+    "steps": [],
+    "keywords": ["semi-infinite", "error function", "complementary error function", "short-time"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Transient Heat Conduction",
+    "name": "Product Solution",
+    "desc": "For multidimensional transient conduction (e.g., short cylinder, rectangular bar) with uniform initial temperature and same convection on all surfaces, the dimensionless temperature is the product of 1D solutions of the intersecting geometries.",
+    "formula": "θ_2D(x,y,t) = θ_wall1(x,t) × θ_wall2(y,t); θ_short_cyl(r,x,t) = θ_cyl(r,t) × θ_wall(x,t)",
+    "trap": "🚨 Applying product solution when boundary conditions or initial temperatures are not the same on all faces; using incorrect 1D solutions.",
+    "steps": [],
+    "keywords": ["product solution", "multidimensional", "superposition", "short cylinder", "rectangular bar"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Transient Heat Conduction",
+    "name": "Refrigeration of Foods",
+    "desc": "Rapid cooling and freezing of foods slows microbial growth and extends shelf life. The cooling rate affects ice crystal size (slow freezing = large crystals, tissue damage). Properties like specific heat, thermal conductivity depend on water content and temperature.",
+    "formula": "Freezing time depends on geometry, temperature, heat transfer coefficient; latent heat of fusion ~ 250 kJ/kg for meat.",
+    "trap": "🚨 Assuming properties are constant during phase change; ignoring the latent heat plateau during freezing.",
+    "steps": [],
+    "keywords": ["food refrigeration", "freezing", "shelf life", "microbial growth", "latent heat"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Transient Heat Conduction",
+    "problem": "The temperature of a gas stream is to be measured by a thermocouple whose junction can be approximated as a 1-mm-diameter sphere. The properties of the junction are k = 35 W/m·°C, ρ = 8500 kg/m³, C_p = 320 J/kg·°C, and the convection heat transfer coefficient between the junction and the gas is h = 210 W/m²·°C. Determine how long it will take for the thermocouple to read 99 percent of the initial temperature difference.",
+    "solution_steps": [
+      "Step 1: Compute characteristic length L_c = V/A_s = D/6 = 0.001/6 = 1.667×10⁻⁴ m.",
+      "Step 2: Biot number Bi = hL_c/k = 210×1.667e-4 / 35 = 0.001 < 0.1 → lumped analysis valid.",
+      "Step 3: Exponent b = h/(ρ C_p L_c) = 210/(8500×320×1.667e-4) = 0.462 s⁻¹.",
+      "Step 4: Condition for 99% of initial temperature difference: (T - T∞)/(Ti - T∞) = 0.01 = e^{-bt}.",
+      "Step 5: Solve t = -ln(0.01)/0.462 = 10 s."
+    ],
+    "formula_used": "Bi = hL_c/k; b = h/(ρ C_p L_c); (T-T∞)/(Ti-T∞) = e^{-bt}",
+    "final_answer": "t = 10 s",
+    "trap": "🚨 Using diameter as characteristic length instead of radius; forgetting to convert to meters; applying lumped analysis without checking Bi.",
+    "keywords": ["thermocouple", "lumped system", "characteristic length", "time constant"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Transient Heat Conduction",
+    "problem": "A person is found dead at 5 PM in a room whose temperature is 20°C. The temperature of the body is measured to be 25°C when found, and the heat transfer coefficient is estimated to be h = 8 W/m²·°C. Modeling the body as a 30-cm-diameter, 1.70-m-long cylinder, estimate the time of death.",
+    "solution_steps": [
+      "Step 1: Characteristic length L_c = V/A_s = (πr²L)/(2πrL+2πr²) = rL/(2L+2r) = (0.15×1.70)/(2×1.70+2×0.15) = 0.255/3.70 = 0.0689 m.",
+      "Step 2: Bi = hL_c/k, using water properties at average temp: k ≈ 0.617 W/m·°C, ρ=996 kg/m³, C_p=4178 J/kg·°C → Bi = 8×0.0689/0.617 = 0.89 > 0.1 → lumped not strictly valid, but used for estimate.",
+      "Step 3: b = h/(ρ C_p L_c) = 8/(996×4178×0.0689) = 2.79×10⁻⁵ s⁻¹.",
+      "Step 4: (T - T∞)/(Ti - T∞) = (25-20)/(37-20) = 5/17 = 0.294 = e^{-bt} → t = -ln(0.294)/2.79e-5 = 43,860 s ≈ 12.2 h.",
+      "Step 5: Time of death ≈ 5 PM – 12.2 h = 5 AM (approx)."
+    ],
+    "formula_used": "L_c = V/A_s; b = h/(ρ C_p L_c); (T-T∞)/(Ti-T∞) = e^{-bt}",
+    "final_answer": "Approximately 12 hours before discovery (5 AM)",
+    "trap": "🚌 Using body properties incorrectly (specific heat of water); applying lumped analysis despite Bi > 0.1, leading to approximate result.",
+    "keywords": ["body cooling", "time of death", "lumped analysis", "approximation"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Transient Heat Conduction",
+    "problem": "An ordinary egg can be approximated as a 5-cm-diameter sphere. The egg is initially at 5°C and is dropped into boiling water at 95°C. Convection heat transfer coefficient h = 1200 W/m²·°C. Determine how long it will take for the center of the egg to reach 70°C. (Properties: k = 0.627 W/m·°C, α = 0.151×10⁻⁶ m²/s.)",
+    "solution_steps": [
+      "Step 1: Bi = h r₀ / k = 1200×0.025/0.627 = 47.8 > 0.1 → not lumped.",
+      "Step 2: From Table 4‑1 for sphere with Bi=47.8, λ₁ ≈ 3.0753, A₁ ≈ 1.9958.",
+      "Step 3: Center temperature: (T₀ - T∞)/(Ti - T∞) = (70-95)/(5-95) = (-25)/(-90) = 0.2778 = A₁ e^{-λ₁²τ}.",
+      "Step 4: Solve e^{-λ₁²τ} = 0.2778/1.9958 = 0.1392 → λ₁²τ = -ln(0.1392) = 1.972 → τ = 1.972/(3.0753²) = 0.208.",
+      "Step 5: τ = α t / r₀² → t = τ r₀²/α = 0.208×(0.025)²/(0.151×10⁻⁶) = 861 s ≈ 14.4 min."
+    ],
+    "formula_used": "θ₀ = A₁ e^{-λ₁²τ}; τ = αt/r₀²",
+    "final_answer": "14.4 minutes",
+    "trap": "🚨 Using lumped analysis when Bi is large; forgetting to use absolute temperatures in exponential; mis‑reading Table 4‑1 for eigenvalues.",
+    "keywords": ["sphere", "one-term approximation", "egg cooking", "transient conduction"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Transient Heat Conduction",
+    "problem": "Large brass plates of 4 cm thickness initially at 20°C are heated in an oven at 500°C for 7 min. Combined convection/radiation coefficient h = 120 W/m²·°C. Determine the surface temperature of the plates when they come out. (Brass: k = 110 W/m·°C, α = 33.9×10⁻⁶ m²/s.)",
+    "solution_steps": [
+      "Step 1: Half‑thickness L = 0.02 m. τ = αt/L² = (33.9e-6×420)/(0.02²) = 35.6. 1/Bi = k/(hL) = 110/(120×0.02) = 45.8. From Heisler chart (Fig. 4‑13a), θ₀ = (T₀ - T∞)/(Ti - T∞) ≈ 0.46.",
+      "Step 2: From Fig. 4‑13b, with x/L=1, 1/Bi=45.8, (T - T∞)/(T₀ - T∞) ≈ 0.99.",
+      "Step 3: Then (T - T∞)/(Ti - T∞) = 0.46×0.99 = 0.455 → T = 500 + 0.455×(20-500) = 500 - 218 = 282°C."
+    ],
+    "formula_used": "Heisler charts: θ₀ = f(τ,Bi), θ/θ₀ = f(x/L,Bi)",
+    "final_answer": "282°C",
+    "trap": "🚌 Using the chart incorrectly (e.g., mixing up axes); forgetting that half‑thickness is used for plane wall; misreading the values.",
+    "keywords": ["plane wall", "Heisler chart", "surface temperature", "oven heating"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Transient Heat Conduction",
+    "problem": "A long 20-cm-diameter stainless steel 304 shaft (k=14.9 W/m·°C, α=3.95×10⁻⁶ m²/s) at 600°C is cooled in an environment at 200°C with h = 80 W/m²·°C. Determine the center temperature after 45 min and the heat transfer per unit length.",
+    "solution_steps": [
+      "Step 1: r₀ = 0.1 m, τ = αt/r₀² = 3.95e-6×2700/(0.01) = 1.07. Bi = h r₀/k = 80×0.1/14.9 = 0.537. 1/Bi = 1.86.",
+      "Step 2: From Heisler chart (Fig. 4‑14a), θ₀ = (T₀ - T∞)/(Ti - T∞) ≈ 0.40 → T₀ = 200 + 0.40×(600-200) = 360°C.",
+      "Step 3: Max heat: m = ρ V = 7900×π×0.1²×1 = 248.2 kg, Q_max = m C_p (Ti-T∞) = 248.2×0.477×400 = 47,354 kJ.",
+      "Step 4: From Gröber chart (Fig. 4‑14c), Bi²τ = (0.537)²×1.07 = 0.309 → Q/Q_max ≈ 0.62 → Q = 0.62×47,354 = 29,360 kJ/m."
+    ],
+    "formula_used": "Heisler charts for cylinder; Q/Q_max from Gröber chart; Q_max = ρV C_p (Ti-T∞)",
+    "final_answer": "Center temperature = 360°C; Heat transfer = 29,360 kJ per meter length",
+    "trap": "🚨 Using plane wall charts for cylinder; misreading τ axis; forgetting to convert time to seconds.",
+    "keywords": ["long cylinder", "cooling", "Heisler chart", "Gröber chart"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Transient Heat Conduction",
+    "problem": "The ground is covered with snow at –10°C for three months. The soil initially at 15°C has k = 0.4 W/m·°C, α = 0.15×10⁻⁶ m²/s. Determine the minimum burial depth of water pipes to prevent freezing (temperature below 0°C).",
+    "solution_steps": [
+      "Step 1: Treat as semi‑infinite solid with sudden surface temperature change to Ts = –10°C. We need depth x where T = 0°C after t = 90×24×3600 = 7.78×10⁶ s.",
+      "Step 2: Use solution for specified surface temperature: (T(x,t)-Ti)/(Ts-Ti) = erfc(x/(2√(αt))) = (0-15)/(-10-15) = -15/ -25 = 0.6.",
+      "Step 3: From Table 4‑3, erfc(η) = 0.6 → η ≈ 0.37. Then x = 2η√(αt) = 2×0.37×√(0.15e-6×7.78e6) = 0.74×√1.167 = 0.74×1.08 = 0.80 m."
+    ],
+    "formula_used": "T(x,t) = Ts + (Ti - Ts) erfc(x/(2√(αt)))",
+    "final_answer": "0.80 m",
+    "trap": "🚨 Using convection boundary instead of specified temperature; forgetting to use absolute values in temperature ratio; misreading error function table.",
+    "keywords": ["semi-infinite solid", "freezing", "burial depth", "error function"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Transient Heat Conduction",
+    "problem": "A short brass cylinder (D = 10 cm, H = 12 cm, Ti = 120°C) is placed in air at 25°C with h = 60 W/m²·°C. Using properties: k = 110 W/m·°C, α = 33.9×10⁻⁶ m²/s, determine the temperature at the center of the cylinder and at the center of the top surface after 15 min.",
+    "solution_steps": [
+      "Step 1: For plane wall (thickness 2L=12 cm, L=0.06 m): τ_wall = αt/L² = 33.9e-6×900/(0.06²) = 8.48. 1/Bi_wall = k/(hL) = 110/(60×0.06) = 30.6. From Fig. 4‑13a, θ_wall,center ≈ 0.8.",
+      "Step 2: For cylinder (r₀=0.05 m): τ_cyl = αt/r₀² = 33.9e-6×900/(0.05²) = 12.2. 1/Bi_cyl = k/(h r₀) = 110/(60×0.05) = 36.7. From Fig. 4‑14a, θ_cyl,center ≈ 0.5.",
+      "Step 3: Product solution for short cylinder center: θ_center = θ_wall,center × θ_cyl,center = 0.8×0.5 = 0.4 → T_center = 25 + 0.4×(120-25) = 63°C.",
+      "Step 4: For top surface center: x/L = 1. From Fig. 4‑13b, with 1/Bi=30.6, θ/θ₀ ≈ 0.98 → θ_wall,surface = 0.8×0.98 = 0.784.",
+      "Step 5: Cylinder center still 0.5 → product = 0.784×0.5 = 0.392 → T_top_center = 25 + 0.392×(120-25) = 62.2°C."
+    ],
+    "formula_used": "θ_short_cyl = θ_wall × θ_cyl",
+    "final_answer": "Center temperature = 63°C; Top surface center = 62.2°C",
+    "trap": "🚨 Using wrong geometry intersection (e.g., using sphere instead of cylinder); forgetting that the top surface corresponds to x = L.",
+    "keywords": ["short cylinder", "product solution", "multidimensional", "transient"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Transient Heat Conduction",
+    "problem": "1‑in‑thick steaks initially at 75°F are cooled in a refrigerator at 5°F. The steak must be cooled below 45°F but not below 35°F anywhere. Determine the heat transfer coefficient h that meets both constraints while minimizing time. Properties: k = 0.26 Btu/h·ft·°F, α = 0.0035 ft²/h.",
+    "solution_steps": [
+      "Step 1: For the limiting case, surface temperature T_s = 35°F, center T_c = 45°F, T∞ = 5°F, half‑thickness L = 0.5 in = 0.04167 ft.",
+      "Step 2: Using Heisler charts: At surface, (T_s - T∞)/(T_c - T∞) = (35-5)/(45-5) = 30/40 = 0.75. From Fig. 4‑13b for x/L = 1, this ratio corresponds to 1/Bi = 1.5 → Bi = 0.667.",
+      "Step 3: Bi = hL/k → h = Bi×k/L = 0.667×0.26/0.04167 = 4.16 Btu/h·ft²·°F."
+    ],
+    "formula_used": "Bi = hL/k; Heisler chart for plane wall",
+    "final_answer": "h = 4.16 Btu/h·ft²·°F",
+    "trap": "🚨 Using correct half‑thickness; not mixing up center and surface temperatures; reading the chart accurately.",
+    "keywords": ["steak cooling", "plane wall", "Heisler chart", "refrigeration"]
+  }
 ]
