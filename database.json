@@ -2227,5 +2227,615 @@
     "final_answer": "155,400 W",
     "trap": "🚌 Forgetting to use average temperature to evaluate k_avg; using arithmetic mean of k at endpoints incorrectly.",
     "keywords": ["bronze plate", "variable conductivity", "average conductivity", "heat transfer rate"]
-  }
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "name": "Thermodynamics vs Heat Transfer",
+    "desc": "Thermodynamics deals with the amount of heat transfer as a system changes from one equilibrium state to another, without considering time. Heat transfer deals with the rate of heat transfer and the time required for cooling or heating processes.",
+    "formula": "",
+    "trap": "🚨 Confusing heat transfer (rate) with thermodynamics (amount). A thermodynamic analysis gives total energy change, not how long it takes.",
+    "steps": [],
+    "keywords": ["thermodynamics", "heat transfer", "rate", "equilibrium", "time"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "name": "Rating and Sizing Problems",
+    "desc": "Rating problems determine the heat transfer rate for an existing system at a specified temperature difference. Sizing problems determine the size of a system required to transfer heat at a specified rate for a given temperature difference.",
+    "formula": "",
+    "trap": "🚌 Mixing up rating (existing system) with sizing (new design). Both require a heat transfer analysis.",
+    "steps": [],
+    "keywords": ["rating", "sizing", "heat transfer rate", "design", "analysis"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "name": "Modeling in Heat Transfer",
+    "desc": "Modeling simplifies real problems by making reasonable assumptions and approximations. The simplest model that yields adequate results is usually chosen. Complex models may be more accurate but harder to solve.",
+    "formula": "",
+    "trap": "🚨 Using an overly simplified model that violates key physics or an overly complex model that is impractical. Results are only as good as assumptions.",
+    "steps": [],
+    "keywords": ["modeling", "assumptions", "simplification", "accuracy", "analysis"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "name": "Internal Energy and Heat",
+    "desc": "Internal energy (U) is the sum of microscopic forms of energy, including sensible (kinetic), latent (phase change), chemical, and nuclear. Heat is the transfer of sensible and latent internal energy due to a temperature difference.",
+    "formula": "",
+    "trap": "🚨 Calling internal energy 'heat' is incorrect; heat is the transfer of thermal energy, not the stored energy itself.",
+    "steps": [],
+    "keywords": ["internal energy", "sensible", "latent", "thermal energy", "heat"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "name": "Specific Heats of Ideal Gases",
+    "desc": "For ideal gases, specific heat at constant volume (Cv) and constant pressure (Cp) are related by Cp = Cv + R. They depend only on temperature. For incompressible substances, Cv ≈ Cp = C.",
+    "formula": "Cp = Cv + R; ΔU = m Cv ΔT; ΔH = m Cp ΔT",
+    "trap": "🚨 Using Cp for constant-volume processes or vice versa. For liquids and solids, assume Cv = Cp = C.",
+    "steps": [],
+    "keywords": ["specific heat", "Cv", "Cp", "ideal gas", "incompressible"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "name": "Energy Transfer: Heat and Work",
+    "desc": "Energy transfer occurs by heat (driving force: temperature difference) and work (all other forms). Heat transfer rate Q̇ has units of watts (J/s). Heat flux q̇ = Q̇ / A (W/m²).",
+    "formula": "Q = ∫ Q̇ dt; q̇ = Q̇ / A",
+    "trap": "🚨 Confusing heat (Q) with heat flux (q̇); forgetting that heat transfer rate is not the same as heat transfer amount.",
+    "steps": [],
+    "keywords": ["heat transfer rate", "heat flux", "work", "power", "energy transfer"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "name": "First Law of Thermodynamics",
+    "desc": "Energy cannot be created or destroyed; it only changes forms. For any system, the net energy transfer equals the change in total energy of the system.",
+    "formula": "Ein - Eout = ΔEsystem",
+    "trap": "🚨 Forgetting to include all forms of energy (internal, kinetic, potential) and all interactions (heat, work, mass flow).",
+    "steps": [],
+    "keywords": ["first law", "conservation of energy", "energy balance", "closed system", "control volume"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "name": "Energy Balance for Closed Systems",
+    "desc": "For a stationary closed system with no work interactions, the net heat transfer equals the change in internal energy: Q = ΔU = m Cv ΔT.",
+    "formula": "Q = m Cv ΔT",
+    "trap": "🚌 Using Cp instead of Cv for closed systems (constant volume).",
+    "steps": [],
+    "keywords": ["closed system", "fixed mass", "internal energy", "constant volume", "energy balance"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "name": "Energy Balance for Steady-Flow Systems",
+    "desc": "For a steady-flow control volume with one inlet and one exit, negligible kinetic/potential changes, and no work, the heat transfer rate equals the enthalpy change: Q̇ = ṁ Cp ΔT.",
+    "formula": "Q̇ = ṁ Cp (Tout - Tin)",
+    "trap": "🚨 Using Cv instead of Cp for flowing fluids; forgetting that mass flow rate ṁ = ρ A V.",
+    "steps": [],
+    "keywords": ["steady-flow", "control volume", "enthalpy", "mass flow rate", "Cp"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "name": "Surface Energy Balance",
+    "desc": "A surface has no volume and cannot store energy. The sum of all energy interactions (conduction, convection, radiation) at a surface must be zero: Σ Q̇_in = Σ Q̇_out.",
+    "formula": "Σ Q̇_in = Σ Q̇_out",
+    "trap": "🚨 Including heat generation on a surface (surface has no volume, so no generation). Forgetting to account for all modes.",
+    "steps": [],
+    "keywords": ["surface", "energy balance", "conduction", "convection", "radiation"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "name": "Conduction and Fourier's Law",
+    "desc": "Conduction is energy transfer from more energetic particles to adjacent less energetic ones. Fourier's law states that heat flux is proportional to the temperature gradient: q̇ = -k dT/dx.",
+    "formula": "Q̇_cond = -k A dT/dx",
+    "trap": "🚨 Forgetting the negative sign; assuming heat flows up the temperature gradient.",
+    "steps": [],
+    "keywords": ["conduction", "Fourier's law", "temperature gradient", "thermal conductivity"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "name": "Thermal Conductivity",
+    "desc": "Thermal conductivity k is a material property that indicates how well a material conducts heat. High k (e.g., metals) are good conductors; low k (e.g., insulation) are poor conductors. k varies with temperature.",
+    "formula": "k = - (Q̇/A) / (dT/dx)",
+    "trap": "🚌 Assuming k is constant when temperature variation is large; using wrong average value.",
+    "steps": [],
+    "keywords": ["thermal conductivity", "conductor", "insulator", "temperature dependence", "isotropic"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "name": "Thermal Diffusivity",
+    "desc": "Thermal diffusivity α = k/(ρ Cp) represents how fast heat diffuses through a material. It is the ratio of heat conducted to heat stored per unit volume.",
+    "formula": "α = k / (ρ Cp)",
+    "trap": "🚨 Confusing with thermal conductivity; high α means fast propagation of temperature changes.",
+    "steps": [],
+    "keywords": ["thermal diffusivity", "heat diffusion", "transient", "heat capacity"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "name": "Convection and Newton's Law of Cooling",
+    "desc": "Convection combines conduction and fluid motion. Newton’s law of cooling expresses the heat transfer rate as Q̇ = h A (Ts - T∞), where h is the convection heat transfer coefficient.",
+    "formula": "Q̇_conv = h A (Ts - T∞)",
+    "trap": "🚨 Treating h as a property (it depends on flow, geometry, fluid properties). Using wrong sign for temperature difference.",
+    "steps": [],
+    "keywords": ["convection", "Newton's law of cooling", "convection coefficient", "forced", "natural"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "name": "Forced vs Natural Convection",
+    "desc": "Forced convection occurs when fluid motion is caused by external means (fan, pump). Natural (free) convection occurs when fluid motion is due to buoyancy forces from density differences caused by temperature variations.",
+    "formula": "",
+    "trap": "🚌 Assuming natural convection is negligible when it may be significant; forgetting that the driving mechanism affects h values.",
+    "steps": [],
+    "keywords": ["forced convection", "natural convection", "buoyancy", "flow"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "name": "Radiation and Stefan-Boltzmann Law",
+    "desc": "Thermal radiation is energy emitted by matter due to temperature, in the form of electromagnetic waves. The maximum radiation from a blackbody is given by the Stefan-Boltzmann law: Q̇ = σ A T⁴.",
+    "formula": "Q̇_emit_max = σ A T⁴",
+    "trap": "🚨 Using Celsius or Fahrenheit instead of absolute temperature (K or R). Forgetting emissivity for real surfaces.",
+    "steps": [],
+    "keywords": ["radiation", "Stefan-Boltzmann", "blackbody", "emissivity", "absorptivity"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "name": "Emissivity and Absorptivity",
+    "desc": "Emissivity ε (0 to 1) is a measure of how closely a surface approximates a blackbody. Absorptivity α is the fraction of incident radiation absorbed. Kirchhoff's law states that ε = α at the same temperature and wavelength.",
+    "formula": "Q̇_emit = ε σ A T⁴; Q̇_abs = α Q̇_incident",
+    "trap": "🚨 Assuming ε = α for all conditions; forgetting that both depend on temperature and wavelength.",
+    "steps": [],
+    "keywords": ["emissivity", "absorptivity", "Kirchhoff's law", "blackbody"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "name": "Simultaneous Heat Transfer Mechanisms",
+    "desc": "In a medium, heat transfer may occur by multiple mechanisms. Solids: conduction only (and radiation if semi-transparent). Fluids: conduction or convection (if moving) plus radiation. Vacuum: only radiation.",
+    "formula": "",
+    "trap": "🚨 Assuming all three mechanisms always act; e.g., neglecting radiation in gases when it might be important.",
+    "steps": [],
+    "keywords": ["combined modes", "conduction", "convection", "radiation", "vacuum"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "name": "Problem-Solving Technique",
+    "desc": "A systematic approach includes: problem statement, schematic, assumptions, physical laws, properties, calculations, and reasoning/verification. It ensures clarity, accuracy, and communication.",
+    "formula": "",
+    "trap": "🚨 Skipping steps; unrealistic assumptions; not checking reasonableness of results; reporting too many significant digits.",
+    "steps": ["State problem clearly", "Draw schematic with known info", "List assumptions", "Apply relevant laws", "Determine properties", "Perform calculations", "Verify and discuss"],
+    "keywords": ["problem solving", "methodology", "assumptions", "verification", "engineering"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "problem": "A 10-cm diameter copper ball is to be heated from 100°C to an average temperature of 150°C in 30 minutes. Taking the average density and specific heat of copper in this temperature range to be 8950 kg/m³ and Cp = 0.395 kJ/kg·°C, respectively, determine (a) the total amount of heat transfer to the copper ball, (b) the average rate of heat transfer to the ball, and (c) the average heat flux.",
+    "solution_steps": [
+      "Step 1: Calculate mass: m = ρV = 8950 × (π/6)×(0.1)³ = 4.69 kg.",
+      "Step 2: Heat transfer = change in internal energy: Q = m Cp (T2 - T1) = 4.69 × 0.395 × (150-100) = 92.6 kJ.",
+      "Step 3: Average rate: Q̇_avg = Q / Δt = 92.6 kJ / (30×60 s) = 0.0514 kW = 51.4 W.",
+      "Step 4: Surface area: A = π D² = π × (0.1)² = 0.0314 m².",
+      "Step 5: Average heat flux: q̇_avg = Q̇_avg / A = 51.4 / 0.0314 = 1636 W/m²."
+    ],
+    "formula_used": "Q = m Cp ΔT; Q̇ = Q / t; q̇ = Q̇ / A",
+    "final_answer": "Q = 92.6 kJ; Q̇_avg = 51.4 W; q̇_avg = 1636 W/m²",
+    "trap": "🚨 Using diameter instead of radius for area; forgetting to convert time to seconds; using Cv for solid (Cp is correct for constant pressure, but for solid Cp≈Cv).",
+    "keywords": ["copper ball", "heating", "energy transfer", "heat flux"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "problem": "1.2 kg of liquid water initially at 15°C is to be heated to 95°C in a teapot equipped with a 1200-W electric heating element inside. The teapot is 0.5 kg and has an average specific heat of 0.7 kJ/kg·°C. Taking the specific heat of water to be 4.18 kJ/kg·°C and disregarding any heat loss from the teapot, determine how long it will take for the water to be heated.",
+    "solution_steps": [
+      "Step 1: Energy needed for water: Q_water = m_w C_w ΔT = 1.2 × 4.18 × (95-15) = 401.28 kJ.",
+      "Step 2: Energy needed for teapot: Q_teapot = m_t C_t ΔT = 0.5 × 0.7 × (95-15) = 28 kJ.",
+      "Step 3: Total energy: Q_total = 401.28 + 28 = 429.28 kJ.",
+      "Step 4: Heater power: 1200 W = 1.2 kJ/s.",
+      "Step 5: Time = Q_total / power = 429.28 / 1.2 = 357.7 s ≈ 6.0 min."
+    ],
+    "formula_used": "Q = m C ΔT; t = Q / Q̇",
+    "final_answer": "6.0 minutes",
+    "trap": "🚨 Forgetting to include the teapot's heat capacity; assuming only water is heated.",
+    "keywords": ["teapot", "water heating", "energy balance", "time"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "problem": "A 5-m-long section of an air heating system of a house passes through an unheated space in the basement. The cross section of the rectangular duct of the heating system is 20 cm × 25 cm. Hot air enters the duct at 100 kPa and 60°C at an average velocity of 5 m/s. The temperature of the air in the duct drops to 54°C as a result of heat loss to the cool space in the basement. Determine the rate of heat loss from the air in the duct to the basement under steady conditions. Also, determine the cost of this heat loss per hour if the house is heated by a natural gas furnace that has an efficiency of 80%, and the cost of the natural gas in that area is $0.60/therm (1 therm = 100,000 Btu = 105,500 kJ).",
+    "solution_steps": [
+      "Step 1: Density at inlet: ρ = P/(RT) = 100 / (0.287 × (60+273)) = 1.046 kg/m³.",
+      "Step 2: Area: A_c = 0.20×0.25 = 0.05 m².",
+      "Step 3: Mass flow rate: ṁ = ρ A_c V = 1.046 × 0.05 × 5 = 0.2615 kg/s.",
+      "Step 4: Heat loss rate: Q̇ = ṁ Cp ΔT = 0.2615 × 1.007 × (60-54) = 1.58 kJ/s = 1.58 kW.",
+      "Step 5: Heat loss per hour: Q = 1.58 × 3600 = 5688 kJ/h.",
+      "Step 6: Cost = (Q / (η × 105,500 kJ/therm)) × $0.60/therm = (5688 / (0.8×105500)) × 0.60 = $0.040/h."
+    ],
+    "formula_used": "ṁ = ρ A V; Q̇ = ṁ Cp ΔT; Cost = (Q / (η × heating value)) × unit cost",
+    "final_answer": "Q̇ = 1.58 kW; cost = $0.040/h",
+    "trap": "🚌 Using Cp of air at wrong temperature; forgetting to convert units; using Cv instead of Cp.",
+    "keywords": ["duct", "heat loss", "steady-flow", "energy cost", "air"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "problem": "Consider a house that has a floor space of 2000 ft² and an average height of 9 ft at 5000 ft elevation where the standard atmospheric pressure is 12.2 psia. Initially the house is at a uniform temperature of 50°F. Now the electric heater is turned on, and the heater runs until the air temperature in the house rises to an average value of 70°F. Determine the amount of energy transferred to the air assuming (a) the house is air-tight and thus no air escapes during the heating process and (b) some air escapes through the cracks as the heated air in the house expands at constant pressure. Also determine the cost of this heat for each case if the cost of electricity in that area is $0.075/kWh.",
+    "solution_steps": [
+      "Step 1: Volume: V = 2000 × 9 = 18,000 ft³.",
+      "Step 2: Mass of air: m = PV/(RT) = (12.2 × 18000) / (0.3704 × (50+460)) = 1162 lbm.",
+      "Step 3: (a) Constant volume: Q = m Cv ΔT = 1162 × 0.171 × (70-50) = 3974 Btu.",
+      "Step 4: (b) Constant pressure: Q = m Cp ΔT = 1162 × 0.240 × (70-50) = 5578 Btu.",
+      "Step 5: Cost: (a) 3974 Btu × (1 kWh/3412 Btu) × $0.075/kWh = $0.087; (b) 5578 × (1/3412) × 0.075 = $0.123."
+    ],
+    "formula_used": "PV = mRT; Q_const vol = m Cv ΔT; Q_const press = m Cp ΔT",
+    "final_answer": "(a) 3974 Btu, $0.087; (b) 5578 Btu, $0.123",
+    "trap": "🚨 Using constant volume approach (closed system) when actual process is constant pressure due to air leakage; forgetting to convert to absolute temperature for ideal gas law.",
+    "keywords": ["house heating", "constant volume", "constant pressure", "energy cost"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "problem": "The roof of an electrically heated home is 6 m long, 8 m wide, and 0.25 m thick, and is made of a flat layer of concrete whose thermal conductivity is k = 0.8 W/m·°C. The temperatures of the inner and the outer surfaces of the roof one night are measured to be 15°C and 4°C, respectively, for a period of 10 hours. Determine (a) the rate of heat loss through the roof that night and (b) the cost of that heat loss to the home owner if the cost of electricity is $0.08/kWh.",
+    "solution_steps": [
+      "Step 1: Area: A = 6 × 8 = 48 m².",
+      "Step 2: Heat transfer rate: Q̇ = k A (T1 - T2)/L = 0.8 × 48 × (15-4)/0.25 = 1690 W = 1.69 kW.",
+      "Step 3: Total heat loss: Q = Q̇ × t = 1.69 × 10 = 16.9 kWh.",
+      "Step 4: Cost = 16.9 × $0.08 = $1.35."
+    ],
+    "formula_used": "Q̇ = k A ΔT / L; Q = Q̇ t",
+    "final_answer": "Q̇ = 1.69 kW; cost = $1.35",
+    "trap": "🚨 Using wrong thickness; forgetting to convert units (kW·h).",
+    "keywords": ["roof", "heat loss", "conduction", "cost"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "problem": "A common way of measuring the thermal conductivity of a material is to sandwich an electric thermofoil heater between two identical samples of the material. The thickness of the resistance heater is less than 0.5 mm. A circulating fluid keeps the exposed ends of the samples at constant temperature. Two thermocouples are embedded into each sample some distance L apart, and a differential thermometer reads the temperature drop ΔT across this distance. When steady conditions are reached, the electric power drawn by the heater is VI. Cylindrical samples of diameter 5 cm and length 10 cm are used. The two thermocouples in each sample are placed 3 cm apart. The electric heater draws 0.4 A at 110 V, and both differential thermometers read a temperature difference of 15°C. Determine the thermal conductivity of the sample.",
+    "solution_steps": [
+      "Step 1: Electrical power: Ẇ_e = VI = 110 × 0.4 = 44 W.",
+      "Step 2: Heat flow through each sample: Q̇ = Ẇ_e / 2 = 22 W.",
+      "Step 3: Cross-sectional area: A = π D²/4 = π × (0.05)²/4 = 0.0019635 m².",
+      "Step 4: Using Fourier's law: Q̇ = k A (ΔT/L) → k = (Q̇ L) / (A ΔT) = (22 × 0.03) / (0.0019635 × 15) = 22.4 W/m·°C."
+    ],
+    "formula_used": "Q̇ = k A ΔT / L",
+    "final_answer": "k = 22.4 W/m·°C",
+    "trap": "🚨 Forgetting that half the heat goes through each sample; using diameter instead of radius for area.",
+    "keywords": ["thermal conductivity", "measurement", "guarded hot plate", "conduction"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "problem": "An engineer needs the thermal conductivity of brick in English units. The only value he can find is 0.72 W/m·°C in SI units. Convert this to Btu/h·ft·°F.",
+    "solution_steps": [
+      "Step 1: Use conversion factors: 1 W = 3.41214 Btu/h; 1 m = 3.2808 ft; 1°C change = 1.8°F change.",
+      "Step 2: 1 W/m·°C = (3.41214 Btu/h) / (3.2808 ft × 1.8°F) = 0.5778 Btu/h·ft·°F.",
+      "Step 3: Multiply: 0.72 × 0.5778 = 0.416 Btu/h·ft·°F ≈ 0.42 Btu/h·ft·°F."
+    ],
+    "formula_used": "1 W/m·°C = 0.5778 Btu/h·ft·°F",
+    "final_answer": "0.42 Btu/h·ft·°F",
+    "trap": "🚨 Using °C to °F conversion incorrectly (using offset instead of per degree change).",
+    "keywords": ["unit conversion", "thermal conductivity", "SI to English"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "problem": "A 2-m-long, 0.3-cm-diameter electrical wire extends across a room at 15°C. Heat is generated in the wire as a result of resistance heating, and the surface temperature of the wire is measured to be 152°C in steady operation. The voltage drop and electric current through the wire are measured to be 60 V and 1.5 A, respectively. Disregarding any heat transfer by radiation, determine the convection heat transfer coefficient for heat transfer between the outer surface of the wire and the air in the room.",
+    "solution_steps": [
+      "Step 1: Electrical power: Q̇ = VI = 60 × 1.5 = 90 W.",
+      "Step 2: Surface area: A = π D L = π × 0.003 × 2 = 0.01885 m².",
+      "Step 3: Newton's law of cooling: Q̇ = h A (Ts - T∞).",
+      "Step 4: h = Q̇ / [A (Ts - T∞)] = 90 / [0.01885 × (152-15)] = 34.9 W/m²·°C."
+    ],
+    "formula_used": "h = Q̇ / (A (Ts - T∞))",
+    "final_answer": "h = 34.9 W/m²·°C",
+    "trap": "🚨 Using diameter as radius; forgetting that heat generated equals heat lost by convection.",
+    "keywords": ["convection coefficient", "wire", "electrical heating", "Newton's law"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "problem": "Consider a person standing in a room maintained at 22°C at all times. The inner surfaces of the walls, floors, and the ceiling of the house are observed to be at an average temperature of 10°C in winter and 25°C in summer. Determine the rate of radiation heat transfer between this person and the surrounding surfaces if the exposed surface area and the average outer surface temperature of the person are 1.4 m² and 30°C, respectively.",
+    "solution_steps": [
+      "Step 1: Use net radiation formula: Q̇_rad = ε σ A (Ts⁴ - Tsurr⁴).",
+      "Step 2: Winter: Tsurr = 10°C = 283 K, Ts = 30°C = 303 K, ε=0.95 (from table).",
+      "Step 3: Q̇_rad = 0.95 × 5.67e-8 × 1.4 × (303⁴ - 283⁴) = 152 W.",
+      "Step 4: Summer: Tsurr = 25°C = 298 K, Q̇_rad = 0.95 × 5.67e-8 × 1.4 × (303⁴ - 298⁴) = 40.9 W."
+    ],
+    "formula_used": "Q̇_rad = ε σ A (Ts⁴ - Tsurr⁴)",
+    "final_answer": "Winter: 152 W; Summer: 40.9 W",
+    "trap": "🚨 Using Celsius in radiation calculations; forgetting to use absolute temperatures.",
+    "keywords": ["radiation", "human body", "thermal comfort", "Stefan-Boltzmann"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "problem": "Consider a person standing in a breezy room at 20°C. Determine the total rate of heat transfer from this person if the exposed surface area and the average outer surface temperature of the person are 1.6 m² and 29°C, respectively, and the convection heat transfer coefficient is 6 W/m²·°C. The emissivity of the person is 0.95, and the surrounding surfaces are at the same temperature as the air.",
+    "solution_steps": [
+      "Step 1: Convection: Q̇_conv = h A (Ts - T∞) = 6 × 1.6 × (29-20) = 86.4 W.",
+      "Step 2: Radiation: Q̇_rad = ε σ A (Ts⁴ - Tsurr⁴) = 0.95 × 5.67e-8 × 1.6 × ((29+273)⁴ - (20+273)⁴) = 81.7 W.",
+      "Step 3: Total: Q̇_total = 86.4 + 81.7 = 168.1 W."
+    ],
+    "formula_used": "Q̇_conv = h A (Ts - T∞); Q̇_rad = ε σ A (Ts⁴ - Tsurr⁴)",
+    "final_answer": "168.1 W",
+    "trap": "🚨 Double counting if radiation is already included in h; using wrong sign.",
+    "keywords": ["combined heat transfer", "convection", "radiation", "human body"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "problem": "Consider steady heat transfer between two large parallel plates at constant temperatures of T1 = 300 K and T2 = 200 K that are L = 1 cm apart. Assuming the surfaces to be black (emissivity = 1), determine the rate of heat transfer between the plates per unit surface area assuming the gap between the plates is (a) filled with atmospheric air, (b) evacuated, (c) filled with urethane insulation, and (d) filled with superinsulation that has an apparent thermal conductivity of 0.00002 W/m·°C.",
+    "solution_steps": [
+      "Step 1: (a) Air: Q̇_cond = k A ΔT/L = 0.0219 × 1 × (300-200)/0.01 = 219 W/m²; Q̇_rad = σ (T1⁴ - T2⁴) = 5.67e-8 × (300⁴ - 200⁴) = 368 W/m²; total = 587 W/m².",
+      "Step 2: (b) Vacuum: only radiation: Q̇ = 368 W/m².",
+      "Step 3: (c) Urethane: Q̇ = k ΔT/L = 0.026 × (100)/0.01 = 260 W/m².",
+      "Step 4: (d) Superinsulation: Q̇ = 0.00002 × 100 / 0.01 = 0.2 W/m²."
+    ],
+    "formula_used": "Q̇_cond = k ΔT/L; Q̇_rad = σ (T1⁴ - T2⁴)",
+    "final_answer": "(a) 587 W/m²; (b) 368 W/m²; (c) 260 W/m²; (d) 0.2 W/m²",
+    "trap": "🚨 Forgetting that air also allows radiation; using wrong k for air at low temperature.",
+    "keywords": ["insulation", "parallel plates", "conduction", "radiation", "superinsulation"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "problem": "A thin metal plate is insulated on the back and exposed to solar radiation at the front surface. The exposed surface of the plate has an absorptivity of 0.6 for solar radiation. If solar radiation is incident on the plate at a rate of 700 W/m² and the surrounding air temperature is 25°C, determine the surface temperature of the plate when the heat loss by convection and radiation equals the solar energy absorbed by the plate. Assume the combined convection and radiation heat transfer coefficient to be 50 W/m²·°C.",
+    "solution_steps": [
+      "Step 1: Energy balance: α q̇_solar = h_combined (Ts - T∞).",
+      "Step 2: Solve for Ts: Ts = T∞ + (α q̇_solar)/h_combined = 25 + (0.6 × 700)/50 = 25 + 8.4 = 33.4°C."
+    ],
+    "formula_used": "α q̇_solar = h_combined (Ts - T∞)",
+    "final_answer": "33.4°C",
+    "trap": "🚌 Assuming only convection; forgetting that radiation is included in combined coefficient.",
+    "keywords": ["solar radiation", "absorptivity", "combined coefficient", "steady-state temperature"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Basics of Heat Transfer",
+    "problem": "The difference of two numbers is 4, and the sum of the squares of these two numbers is equal to the sum of the numbers plus 20. Determine these two numbers.",
+    "solution_steps": [
+      "Step 1: Write equations: x - y = 4; x² + y² = x + y + 20.",
+      "Step 2: Solve using EES or algebra: From first, x = y+4. Substitute: (y+4)² + y² = (y+4) + y + 20 → 2y² + 8y + 16 = 2y + 24 → 2y² + 6y - 8 = 0 → y² + 3y - 4 = 0 → (y+4)(y-1)=0 → y=1 or y=-4.",
+      "Step 3: Corresponding x: if y=1, x=5; if y=-4, x=0. Both satisfy? Check second: if x=0, y=-4: 0+16=0-4+20=16 works. Two solutions."
+    ],
+    "formula_used": "",
+    "final_answer": "x = 5, y = 1 or x = 0, y = -4",
+    "trap": "🚨 Assuming only positive numbers; missing the second solution.",
+    "keywords": ["algebra", "system of equations", "EES", "problem solving"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Steady Heat Conduction",
+    "name": "Thermal Resistance Concept",
+    "desc": "Analogous to electrical resistance, thermal resistance is defined as the ratio of temperature difference to heat transfer rate. For conduction through a plane wall: R_wall = L/(kA). For convection: R_conv = 1/(hA). Total resistance in series is the sum.",
+    "formula": "R_wall = L/(kA); R_conv = 1/(hA); Q = ΔT / R_total",
+    "trap": "🚨 Using wrong area for convection (must be the surface area where convection occurs); forgetting to add resistances correctly for composite walls.",
+    "steps": [],
+    "keywords": ["thermal resistance", "conduction resistance", "convection resistance", "series", "Fourier's law"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Steady Heat Conduction",
+    "name": "Overall Heat Transfer Coefficient U",
+    "desc": "For a plane wall with convection on both sides, the total heat transfer rate is Q = U A ΔT, where 1/U = R_total A = 1/h1 + L/k + 1/h2. U is the overall heat transfer coefficient, often used in heat exchanger and building heat loss calculations.",
+    "formula": "1/U = 1/h1 + L/k + 1/h2 (for plane wall)",
+    "trap": "🚨 Using U without correctly identifying the reference area (U is area‑specific; must use consistent area).",
+    "steps": [],
+    "keywords": ["overall heat transfer coefficient", "U-factor", "total thermal resistance"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Steady Heat Conduction",
+    "name": "Multilayer Plane Wall",
+    "desc": "For composite walls with multiple layers in series, the total thermal resistance is the sum of individual conduction resistances plus convection resistances. Heat transfer rate is Q = (T∞1 - T∞2) / R_total.",
+    "formula": "R_total = 1/(h1 A) + Σ(L_i/(k_i A)) + 1/(h2 A)",
+    "trap": "🚌 Ignoring the area variation when layers have different areas; assuming perfect contact when there may be contact resistance.",
+    "steps": [],
+    "keywords": ["composite wall", "multilayer", "thermal resistance network", "series"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Steady Heat Conduction",
+    "name": "Thermal Contact Resistance",
+    "desc": "When two solid surfaces are pressed together, the actual contact is imperfect, creating air gaps that impede heat flow. The thermal contact resistance R_c = ΔT_interface / (Q/A). It depends on surface roughness, pressure, material, and interstitial fluid.",
+    "formula": "R_c = 1/h_c; h_c = thermal contact conductance",
+    "trap": "🚨 Neglecting contact resistance in high‑conductivity materials (e.g., metals) where it can dominate; assuming perfect contact.",
+    "steps": [],
+    "keywords": ["contact resistance", "thermal contact conductance", "interface", "imperfect contact"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Steady Heat Conduction",
+    "name": "Critical Radius of Insulation",
+    "desc": "For a cylindrical pipe or spherical shell, adding insulation may initially increase heat transfer because the increase in surface area for convection outweighs the added conduction resistance. The critical radius for a cylinder is r_cr = k/h; for a sphere, r_cr = 2k/h. For r_outer < r_cr, heat transfer increases with insulation.",
+    "formula": "r_cr,cylinder = k/h; r_cr,sphere = 2k/h",
+    "trap": "🚨 Assuming insulation always reduces heat loss; for small pipes/wires, insulation can increase heat transfer.",
+    "steps": [],
+    "keywords": ["critical radius", "insulation", "cylinder", "sphere", "heat transfer enhancement"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Steady Heat Conduction",
+    "name": "Finned Surfaces",
+    "desc": "Fins increase the surface area for convection, enhancing heat transfer. Fin efficiency η_fin = actual heat transfer / ideal heat transfer if entire fin were at base temperature. For a fin with insulated tip, η = tanh(mL)/(mL) where m = sqrt(hp/(kA_c)).",
+    "formula": "Q_fin = η_fin h A_fin (T_b - T_∞); η_fin,insulated = tanh(mL)/(mL)",
+    "trap": "🚌 Using the wrong fin length (need corrected length if tip convection is significant); ignoring that adding too many fins may reduce h due to flow blockage.",
+    "steps": [],
+    "keywords": ["fins", "extended surfaces", "fin efficiency", "fin effectiveness", "heat sink"]
+  },
+  {
+    "type": "concept",
+    "subject": "Heat Transfer",
+    "chapter": "Steady Heat Conduction",
+    "name": "Conduction Shape Factor",
+    "desc": "For two‑dimensional steady conduction between two surfaces at constant temperatures, Q = S k (T1 - T2), where S is the conduction shape factor. S depends only on geometry and has units of length. Tables provide S for common configurations.",
+    "formula": "Q = S k (T1 - T2)",
+    "trap": "🚨 Using shape factor incorrectly for convective boundaries; shape factor is only for conduction between isothermal surfaces.",
+    "steps": [],
+    "keywords": ["shape factor", "conduction shape factor", "two-dimensional conduction", "isothermal surfaces"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Steady Heat Conduction",
+    "problem": "Consider a 3-m-high, 5-m-wide, and 0.3-m-thick wall whose thermal conductivity is k = 0.9 W/m·°C. On a certain day, the temperatures of the inner and outer surfaces are measured to be 16°C and 2°C, respectively. Determine the rate of heat loss through the wall.",
+    "solution_steps": [
+      "Step 1: Calculate wall area A = 3 m × 5 m = 15 m².",
+      "Step 2: Use Fourier's law: Q = k A (T1 - T2)/L = 0.9 × 15 × (16-2)/0.3 = 630 W.",
+      "Step 3: Alternatively, compute thermal resistance R = L/(kA) = 0.3/(0.9×15) = 0.02222°C/W, then Q = ΔT/R = 14/0.02222 = 630 W."
+    ],
+    "formula_used": "Q = k A ΔT / L",
+    "final_answer": "630 W",
+    "trap": "🚨 Using the wrong area (e.g., perimeter times height) or forgetting to convert units; using Celsius difference correctly (Δ°C = ΔK).",
+    "keywords": ["plane wall", "heat loss", "conduction", "Fourier's law"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Steady Heat Conduction",
+    "problem": "A 0.8-m-high and 1.5-m-wide glass window with thickness 8 mm and thermal conductivity k = 0.78 W/m·°C. Room air at 20°C, outdoor air at –10°C. Convection coefficients: inner h1 = 10 W/m²·°C, outer h2 = 40 W/m²·°C. Determine the steady rate of heat transfer and the inner surface temperature.",
+    "solution_steps": [
+      "Step 1: Area A = 0.8 × 1.5 = 1.2 m².",
+      "Step 2: Compute resistances: R_conv,i = 1/(h1 A) = 1/(10×1.2) = 0.08333°C/W; R_glass = L/(kA) = 0.008/(0.78×1.2) = 0.00855°C/W; R_conv,o = 1/(h2 A) = 1/(40×1.2) = 0.02083°C/W.",
+      "Step 3: Total R = 0.08333+0.00855+0.02083 = 0.1127°C/W.",
+      "Step 4: Q = ΔT / R = [20 – (–10)] / 0.1127 = 266 W.",
+      "Step 5: Inner surface temperature T1 = T∞,i – Q R_conv,i = 20 – 266×0.08333 = 2.2°C."
+    ],
+    "formula_used": "Q = (T∞,i - T∞,o) / (R_conv,i + R_glass + R_conv,o)",
+    "final_answer": "Q = 266 W; T_inner = 2.2°C",
+    "trap": "🚨 Using wrong sign for temperature difference; forgetting that the glass resistance is small but not negligible; confusing Celsius with Kelvin for ΔT.",
+    "keywords": ["window", "convection", "conduction", "thermal resistance", "surface temperature"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Steady Heat Conduction",
+    "problem": "A 0.8-m-high, 1.5-m-wide double-pane window consists of two 4-mm-thick glass layers (k = 0.78 W/m·°C) separated by a 10-mm stagnant air space (k = 0.026 W/m·°C). Room at 20°C, outdoors at –10°C. Convection coefficients: inner h1 = 10 W/m²·°C, outer h2 = 40 W/m²·°C. Determine the steady rate of heat transfer and the inner surface temperature.",
+    "solution_steps": [
+      "Step 1: Area A = 1.2 m².",
+      "Step 2: Resistances: R_conv,i = 1/(10×1.2)=0.08333; R_glass1 = 0.004/(0.78×1.2)=0.00427; R_air = 0.01/(0.026×1.2)=0.3205; R_glass2 = same 0.00427; R_conv,o = 1/(40×1.2)=0.02083.",
+      "Step 3: Total R = 0.08333+0.00427+0.3205+0.00427+0.02083 = 0.4332°C/W.",
+      "Step 4: Q = (20 - (-10))/0.4332 = 69.2 W.",
+      "Step 5: T_inner = 20 – 69.2×0.08333 = 14.2°C."
+    ],
+    "formula_used": "Q = ΔT / (R_conv,i + 2R_glass + R_air + R_conv,o)",
+    "final_answer": "Q = 69.2 W; T_inner = 14.2°C",
+    "trap": "🚌 Assuming the air layer resistance is negligible; forgetting that air is a good insulator when stagnant.",
+    "keywords": ["double-pane", "air gap", "insulation", "thermal resistance", "window"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Steady Heat Conduction",
+    "problem": "Steam at T∞1 = 320°C flows in a cast iron pipe (k = 80 W/m·°C) with inner radius r1 = 2.5 cm and outer radius r2 = 2.75 cm. The pipe is covered with 3-cm-thick glass wool insulation (k = 0.05 W/m·°C). Heat is lost to surroundings at T∞2 = 5°C by natural convection and radiation with combined coefficient h2 = 18 W/m²·°C. Inside convection coefficient h1 = 60 W/m²·°C. Determine the rate of heat loss per meter length and the temperature drops across the pipe and insulation.",
+    "solution_steps": [
+      "Step 1: Per unit length L = 1 m. Areas: A1 = 2πr1 = 0.157 m², A3 = 2πr3 = 2π(0.0575)=0.361 m² (r3 = 0.0275+0.03=0.0575 m).",
+      "Step 2: Resistances: R_conv,i = 1/(h1 A1) = 1/(60×0.157)=0.106°C/W; R_pipe = ln(r2/r1)/(2πk1 L) = ln(2.75/2.5)/(2π×80)=0.0002°C/W; R_ins = ln(r3/r2)/(2πk2 L) = ln(5.75/2.75)/(2π×0.05)=2.35°C/W; R_conv,o = 1/(h2 A3) = 1/(18×0.361)=0.154°C/W.",
+      "Step 3: Total R = 0.106+0.0002+2.35+0.154 = 2.61°C/W.",
+      "Step 4: Q = (320-5)/2.61 = 121 W per meter.",
+      "Step 5: ΔT_pipe = Q R_pipe = 121×0.0002 = 0.02°C; ΔT_ins = Q R_ins = 121×2.35 = 284°C."
+    ],
+    "formula_used": "R_cyl = ln(r2/r1)/(2πkL); R_conv = 1/(hA); Q = ΔT / R_total",
+    "final_answer": "Q = 121 W/m; ΔT_pipe ≈ 0°C; ΔT_ins = 284°C",
+    "trap": "🚨 Neglecting the insulation resistance because it's large but critical; using wrong radius for convection area.",
+    "keywords": ["steam pipe", "insulation", "cylindrical resistance", "temperature drop"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Steady Heat Conduction",
+    "problem": "A 3-mm-diameter and 5-m-long electric wire is tightly wrapped with a 2-mm-thick plastic cover (k = 0.15 W/m·°C). A current of 10 A passes through the wire with a voltage drop of 8 V. The insulated wire is exposed to air at 30°C with h = 12 W/m²·°C. Determine the temperature at the interface of the wire and plastic cover. Also, will doubling the thickness increase or decrease this interface temperature?",
+    "solution_steps": [
+      "Step 1: Heat generated: Q = VI = 8×10 = 80 W.",
+      "Step 2: Outer radius r2 = r1 + t = 0.0015+0.002 = 0.0035 m. Outer surface area per meter: A2 = 2πr2 = 0.0220 m²/m (for L=5 m, total A2 = 0.110 m²).",
+      "Step 3: Resistances per total length: R_plastic = ln(r2/r1)/(2πkL) = ln(3.5/1.5)/(2π×0.15×5) = 0.18°C/W; R_conv = 1/(hA2) = 1/(12×0.110) = 0.76°C/W.",
+      "Step 4: Total R = 0.18+0.76 = 0.94°C/W.",
+      "Step 5: Interface temperature T1 = T∞ + Q R_total = 30 + 80×0.94 = 105°C.",
+      "Step 6: Critical radius r_cr = k/h = 0.15/12 = 0.0125 m = 12.5 mm, which is larger than current r2 (3.5 mm). So increasing thickness increases heat transfer (decreases T1)."
+    ],
+    "formula_used": "R_cyl = ln(r2/r1)/(2πkL); R_conv = 1/(hA); r_cr = k/h",
+    "final_answer": "Interface temperature = 105°C; doubling thickness will decrease interface temperature.",
+    "trap": "🚨 Forgetting that the heat generated is the total Q; using incorrect radius for convection; misapplying critical radius concept.",
+    "keywords": ["electric wire", "insulation", "critical radius", "interface temperature"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Steady Heat Conduction",
+    "problem": "Steam in a heating system flows through tubes of outer diameter D1 = 3 cm, wall temperature 120°C. Circular aluminum fins (k = 180 W/m·°C) of outer diameter D2 = 6 cm and thickness t = 2 mm are attached. Fin spacing 3 mm (200 fins per meter). Surrounding air at 25°C with h = 60 W/m²·°C. Determine the increase in heat transfer per meter of tube length due to fins.",
+    "solution_steps": [
+      "Step 1: Without fins: A_no_fin = π D1 L = π×0.03×1 = 0.0942 m²; Q_no_fin = h A_no_fin (Tb – T∞) = 60×0.0942×(120-25) = 537 W.",
+      "Step 2: For one fin: r1 = 0.015 m, r2 = 0.03 m, L_fin = (D2-D1)/2 = 0.015 m. Corrected length L_c = L + t/2 = 0.015 + 0.001 = 0.016 m. Parameter ξ = (L_c)√(2h/(k t)) = 0.016√(2×60/(180×0.002)) = 0.207. From fin efficiency chart, η_fin ≈ 0.95.",
+      "Step 3: Fin area A_fin = 2π(r2² - r1²) + 2πr2 t = 2π(0.03²-0.015²) + 2π×0.03×0.002 = 0.00462 m². Q_fin = η_fin h A_fin (Tb – T∞) = 0.95×60×0.00462×95 = 25.0 W.",
+      "Step 4: Unfinned portion per fin spacing: A_unfin = π D1 × spacing = π×0.03×0.003 = 0.000283 m². Q_unfin = h A_unfin (Tb – T∞) = 60×0.000283×95 = 1.60 W.",
+      "Step 5: Total for 200 fins: Q_total = 200×(25.0+1.60) = 5320 W. Increase = 5320 – 537 = 4783 W per meter."
+    ],
+    "formula_used": "η_fin = tanh(mL_c)/(mL_c); m = √(2h/(kt)); Q_fin = η_fin h A_fin (Tb - T∞)",
+    "final_answer": "Increase in heat transfer = 4783 W/m",
+    "trap": "🚨 Using actual length instead of corrected length; mis‑calculating fin area (include both sides); forgetting to account for unfinned area.",
+    "keywords": ["fins", "fin efficiency", "heat transfer enhancement", "steam pipe"]
+  },
+  {
+    "type": "solved_example",
+    "subject": "Heat Transfer",
+    "chapter": "Steady Heat Conduction",
+    "problem": "A 30-m-long, 10-cm-diameter hot water pipe is buried 50 cm below the ground surface. Outer surface temperature of pipe = 80°C, earth surface temperature = 10°C, soil thermal conductivity = 0.9 W/m·°C. Determine the rate of heat loss from the pipe.",
+    "solution_steps": [
+      "Step 1: Use shape factor for an isothermal cylinder buried in a semi‑infinite medium (Table 3-5): S = 2πL / ln(4z/D) where z = depth to centerline, D = diameter. Here z = 0.5 m, D = 0.1 m, L = 30 m.",
+      "Step 2: S = (2π×30) / ln(4×0.5/0.1) = 188.5 / ln(20) = 188.5 / 2.9957 = 62.9 m.",
+      "Step 3: Q = S k (T_pipe – T_surface) = 62.9 × 0.9 × (80-10) = 3963 W."
+    ],
+    "formula_used": "Q = S k ΔT; S = 2πL / ln(4z/D)",
+    "final_answer": "3963 W",
+    "trap": "🚨 Using wrong shape factor formula; forgetting that the pipe is buried, not exposed to air; incorrectly assuming one‑dimensional conduction.",
+    "keywords": ["buried pipe", "shape factor", "conduction", "soil"]
+  } 
 ]
